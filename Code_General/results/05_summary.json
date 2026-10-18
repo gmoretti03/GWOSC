@@ -1,0 +1,2192 @@
+{
+ "bias_variance": [
+  {
+   "max_depth": 1,
+   "train_auc": 0.9356203045795743,
+   "val_auc": 0.9332479684077744
+  },
+  {
+   "max_depth": 2,
+   "train_auc": 0.9434516615600286,
+   "val_auc": 0.937508829177511
+  },
+  {
+   "max_depth": 3,
+   "train_auc": 0.946459470564829,
+   "val_auc": 0.9379472715440442
+  },
+  {
+   "max_depth": 4,
+   "train_auc": 0.9474730631823844,
+   "val_auc": 0.938327594823847
+  },
+  {
+   "max_depth": 6,
+   "train_auc": 0.9519079240941173,
+   "val_auc": 0.938472850750246
+  },
+  {
+   "max_depth": 8,
+   "train_auc": 0.9544172302903581,
+   "val_auc": 0.9381308986807964
+  },
+  {
+   "max_depth": 12,
+   "train_auc": 0.9544057303246415,
+   "val_auc": 0.9379153284612078
+  }
+ ],
+ "learning_curve": [
+  {
+   "n": 500,
+   "train_auc": 1.0,
+   "val_auc": 0.9247673838451034
+  },
+  {
+   "n": 1000,
+   "train_auc": 1.0,
+   "val_auc": 0.9238931357080751
+  },
+  {
+   "n": 2000,
+   "train_auc": 0.9999479866845913,
+   "val_auc": 0.9288638638693402
+  },
+  {
+   "n": 4000,
+   "train_auc": 0.9969222298568459,
+   "val_auc": 0.929685600435131
+  },
+  {
+   "n": 8000,
+   "train_auc": 0.9852624916903737,
+   "val_auc": 0.9319512266508525
+  },
+  {
+   "n": 16000,
+   "train_auc": 0.9565734205364924,
+   "val_auc": 0.937066048204817
+  },
+  {
+   "n": 32000,
+   "train_auc": 0.9521119438322947,
+   "val_auc": 0.9377453022089173
+  }
+ ],
+ "pca_explained": [
+  0.4623461067676544,
+  0.14133991301059723,
+  0.10367211699485779,
+  0.06423348188400269,
+  0.05394348129630089,
+  0.04680224135518074
+ ],
+ "top_features": [
+  "ep_10ms",
+  "bandstd_80-120",
+  "bandmax_80-120",
+  "bandmax_50-80",
+  "bandstd_50-80",
+  "bandmax_120-180"
+ ],
+ "calibration": [
+  {
+   "model": "ridge-logistic",
+   "temperature_scaled": false,
+   "T": 1.0,
+   "ECE_val": 0.024641012114219263,
+   "ECE": 0.026622048344607303,
+   "brier": 0.09030386280189405,
+   "logloss": 0.30627489894402304,
+   "AUC": 0.934607752923567
+  },
+  {
+   "model": "gradient boosting",
+   "temperature_scaled": false,
+   "T": 1.0,
+   "ECE_val": 0.00797569969209979,
+   "ECE": 0.007111346181717751,
+   "brier": 0.07788276420545465,
+   "logloss": 0.258803716997878,
+   "AUC": 0.9449522589199919
+  },
+  {
+   "model": "CNN (mix)",
+   "temperature_scaled": false,
+   "T": 1.0,
+   "ECE_val": 0.008276357768627915,
+   "ECE": 0.02221429424454077,
+   "brier": 0.04125356301665306,
+   "logloss": 0.12796138226985931,
+   "AUC": 0.9908987744068253
+  },
+  {
+   "model": "CNN ensemble (5)",
+   "temperature_scaled": false,
+   "T": 1.0,
+   "ECE_val": 0.012277186675551945,
+   "ECE": 0.024078368050522953,
+   "brier": 0.03500467911362648,
+   "logloss": 0.10973750054836273,
+   "AUC": 0.9937876706508294
+  },
+  {
+   "model": "ridge-logistic",
+   "temperature_scaled": true,
+   "T": 0.9379359693549715,
+   "ECE_val": 0.023771977138150237,
+   "ECE": 0.020663770254745473,
+   "brier": 0.08982351477843172,
+   "logloss": 0.30515212434004185,
+   "AUC": 0.934607752923567
+  },
+  {
+   "model": "gradient boosting",
+   "temperature_scaled": true,
+   "T": 0.9781448253988415,
+   "ECE_val": 0.00988172352665181,
+   "ECE": 0.005352964517645303,
+   "brier": 0.07785348413775443,
+   "logloss": 0.25848149110111995,
+   "AUC": 0.9449522589199919
+  },
+  {
+   "model": "CNN (mix)",
+   "temperature_scaled": true,
+   "T": 1.0220282842428452,
+   "ECE_val": 0.008122483835409661,
+   "ECE": 0.02305027333901371,
+   "brier": 0.04122101506187274,
+   "logloss": 0.12807992689975317,
+   "AUC": 0.9909052025343418
+  },
+  {
+   "model": "CNN ensemble (5)",
+   "temperature_scaled": true,
+   "T": 0.9480791596123239,
+   "ECE_val": 0.01204380612264954,
+   "ECE": 0.02328500580519315,
+   "brier": 0.035104191087966606,
+   "logloss": 0.10973999860674241,
+   "AUC": 0.9937877846247212
+  }
+ ],
+ "uncertainty": {
+  "auc_all": 0.9924286666666668,
+  "auc_keep80": 0.9996989784613544,
+  "corr_mcd_ens": 0.3452596966462682,
+  "mean_std_mcd": 0.03615131601691246,
+  "mean_std_ens": 0.043468840420246124
+ },
+ "generalisation": [
+  {
+   "model": "ridge-logistic",
+   "AUC_val": 0.9256171123988033,
+   "AUC_test": 0.9346077377270482
+  },
+  {
+   "model": "gradient boosting",
+   "AUC_val": 0.9366116039038276,
+   "AUC_test": 0.9449522589199919
+  },
+  {
+   "model": "CNN (mix)",
+   "AUC_val": 0.9830431010964835,
+   "AUC_test": 0.9909052025343418
+  },
+  {
+   "model": "CNN ensemble (5)",
+   "AUC_val": 0.9883758939200309,
+   "AUC_test": 0.9937877846247212
+  }
+ ],
+ "efficiency_table": [
+  {
+   "morphology": "sg",
+   "statistic": "matched-filter bank",
+   "rho50": 4.873626373626373,
+   "rho90": 6.53225806451613,
+   "eff_at_rho8": 1.0,
+   "rho50_testthr": 4.831521739130435,
+   "rho90_testthr": 6.500000000000001,
+   "eff_at_rho8_testthr": 1.0
+  },
+  {
+   "morphology": "sg",
+   "statistic": "excess power",
+   "rho50": 6.534883720930233,
+   "rho90": 9.096774193548388,
+   "eff_at_rho8": 0.788,
+   "rho50_testthr": 6.503875968992248,
+   "rho90_testthr": 9.0,
+   "eff_at_rho8_testthr": 0.79
+  },
+  {
+   "morphology": "sg",
+   "statistic": "ridge-logistic",
+   "rho50": 6.395348837209302,
+   "rho90": 8.256410256410257,
+   "eff_at_rho8": 0.88,
+   "rho50_testthr": 6.188524590163935,
+   "rho90_testthr": 8.0,
+   "eff_at_rho8_testthr": 0.9
+  },
+  {
+   "morphology": "sg",
+   "statistic": "gradient boosting",
+   "rho50": 5.606896551724138,
+   "rho90": 7.296296296296297,
+   "eff_at_rho8": 0.976,
+   "rho50_testthr": 5.503311258278146,
+   "rho90_testthr": 7.180000000000001,
+   "eff_at_rho8_testthr": 0.982
+  },
+  {
+   "morphology": "sg",
+   "statistic": "CNN (mix)",
+   "rho50": 5.5588235294117645,
+   "rho90": 7.796610169491525,
+   "eff_at_rho8": 0.924,
+   "rho50_testthr": 4.939130434782609,
+   "rho90_testthr": 7.2857142857142865,
+   "eff_at_rho8_testthr": 0.96
+  },
+  {
+   "morphology": "sg",
+   "statistic": "CNN (sg only)",
+   "rho50": 5.092198581560284,
+   "rho90": 6.867469879518072,
+   "eff_at_rho8": 0.978,
+   "rho50_testthr": 4.883333333333333,
+   "rho90_testthr": 6.756410256410256,
+   "eff_at_rho8_testthr": 0.988
+  },
+  {
+   "morphology": "sg",
+   "statistic": "CNN ensemble (5)",
+   "rho50": 5.052631578947368,
+   "rho90": 7.054054054054054,
+   "eff_at_rho8": 0.97,
+   "rho50_testthr": 4.619469026548673,
+   "rho90_testthr": 6.771428571428571,
+   "eff_at_rho8_testthr": 0.984
+  },
+  {
+   "morphology": "sg",
+   "statistic": "autoencoder (MSE)",
+   "rho50": 12.084848484848484,
+   "rho90": 15.135135135135137,
+   "eff_at_rho8": 0.048,
+   "rho50_testthr": 10.957575757575757,
+   "rho90_testthr": 13.824,
+   "eff_at_rho8_testthr": 0.124
+  },
+  {
+   "morphology": "sg",
+   "statistic": "autoencoder (local max)",
+   "rho50": 6.887417218543046,
+   "rho90": 8.8,
+   "eff_at_rho8": 0.788,
+   "rho50_testthr": 6.6558441558441555,
+   "rho90_testthr": 8.600000000000001,
+   "eff_at_rho8_testthr": 0.828
+  },
+  {
+   "morphology": "pulse",
+   "statistic": "matched-filter bank",
+   "rho50": 5.343373493975903,
+   "rho90": 6.81981981981982,
+   "eff_at_rho8": 0.992,
+   "rho50_testthr": 5.2976190476190474,
+   "rho90_testthr": 6.788461538461538,
+   "eff_at_rho8_testthr": 0.992
+  },
+  {
+   "morphology": "pulse",
+   "statistic": "excess power",
+   "rho50": 5.774193548387097,
+   "rho90": 7.543859649122807,
+   "eff_at_rho8": 0.952,
+   "rho50_testthr": 5.768595041322314,
+   "rho90_testthr": 7.526315789473685,
+   "eff_at_rho8_testthr": 0.954
+  },
+  {
+   "morphology": "pulse",
+   "statistic": "ridge-logistic",
+   "rho50": 5.715189873417722,
+   "rho90": 7.464285714285714,
+   "eff_at_rho8": 0.96,
+   "rho50_testthr": 5.594771241830065,
+   "rho90_testthr": 7.297872340425532,
+   "eff_at_rho8_testthr": 0.966
+  },
+  {
+   "morphology": "pulse",
+   "statistic": "gradient boosting",
+   "rho50": 5.70440251572327,
+   "rho90": 7.235294117647059,
+   "eff_at_rho8": 0.978,
+   "rho50_testthr": 5.622641509433962,
+   "rho90_testthr": 7.183673469387755,
+   "eff_at_rho8_testthr": 0.98
+  },
+  {
+   "morphology": "pulse",
+   "statistic": "CNN (mix)",
+   "rho50": 4.62043795620438,
+   "rho90": 6.5166666666666675,
+   "eff_at_rho8": 0.994,
+   "rho50_testthr": 4.130434782608696,
+   "rho90_testthr": 6.024390243902439,
+   "eff_at_rho8_testthr": 0.996
+  },
+  {
+   "morphology": "pulse",
+   "statistic": "CNN (sg only)",
+   "rho50": 6.494845360824742,
+   "rho90": 12.928571428571429,
+   "eff_at_rho8": 0.714,
+   "rho50_testthr": 6.134020618556701,
+   "rho90_testthr": 11.047619047619047,
+   "eff_at_rho8_testthr": 0.786
+  },
+  {
+   "morphology": "pulse",
+   "statistic": "CNN ensemble (5)",
+   "rho50": 4.212328767123288,
+   "rho90": 5.904255319148936,
+   "eff_at_rho8": 1.0,
+   "rho50_testthr": 3.8226950354609928,
+   "rho90_testthr": 5.681818181818182,
+   "eff_at_rho8_testthr": 1.0
+  },
+  {
+   "morphology": "pulse",
+   "statistic": "autoencoder (MSE)",
+   "rho50": 12.434782608695652,
+   "rho90": 15.055555555555557,
+   "eff_at_rho8": 0.04,
+   "rho50_testthr": 11.05732484076433,
+   "rho90_testthr": 13.894736842105264,
+   "eff_at_rho8_testthr": 0.11
+  },
+  {
+   "morphology": "pulse",
+   "statistic": "autoencoder (local max)",
+   "rho50": 6.753164556962026,
+   "rho90": 8.53225806451613,
+   "eff_at_rho8": 0.834,
+   "rho50_testthr": 6.5524475524475525,
+   "rho90_testthr": 8.285714285714286,
+   "eff_at_rho8_testthr": 0.872
+  },
+  {
+   "morphology": "chirp",
+   "statistic": "matched-filter bank",
+   "rho50": 6.279411764705882,
+   "rho90": 8.209302325581396,
+   "eff_at_rho8": 0.882,
+   "rho50_testthr": 6.239130434782608,
+   "rho90_testthr": 8.105263157894736,
+   "eff_at_rho8_testthr": 0.892
+  },
+  {
+   "morphology": "chirp",
+   "statistic": "excess power",
+   "rho50": 10.098039215686274,
+   "rho90": 12.214285714285715,
+   "eff_at_rho8": 0.19,
+   "rho50_testthr": 10.06,
+   "rho90_testthr": 12.214285714285715,
+   "eff_at_rho8_testthr": 0.196
+  },
+  {
+   "morphology": "chirp",
+   "statistic": "ridge-logistic",
+   "rho50": 6.811320754716981,
+   "rho90": 8.95945945945946,
+   "eff_at_rho8": 0.758,
+   "rho50_testthr": 6.675324675324675,
+   "rho90_testthr": 8.777777777777777,
+   "eff_at_rho8_testthr": 0.788
+  },
+  {
+   "morphology": "chirp",
+   "statistic": "gradient boosting",
+   "rho50": 6.062893081761007,
+   "rho90": 7.728571428571429,
+   "eff_at_rho8": 0.938,
+   "rho50_testthr": 5.944444444444445,
+   "rho90_testthr": 7.636363636363637,
+   "eff_at_rho8_testthr": 0.948
+  },
+  {
+   "morphology": "chirp",
+   "statistic": "CNN (mix)",
+   "rho50": 5.713333333333334,
+   "rho90": 7.638888888888889,
+   "eff_at_rho8": 0.952,
+   "rho50_testthr": 5.286713286713287,
+   "rho90_testthr": 7.2745098039215685,
+   "eff_at_rho8_testthr": 0.974
+  },
+  {
+   "morphology": "chirp",
+   "statistic": "CNN (sg only)",
+   "rho50": 6.8,
+   "rho90": 10.820512820512821,
+   "eff_at_rho8": 0.704,
+   "rho50_testthr": 6.46236559139785,
+   "rho90_testthr": 9.9375,
+   "eff_at_rho8_testthr": 0.748
+  },
+  {
+   "morphology": "chirp",
+   "statistic": "CNN ensemble (5)",
+   "rho50": 5.281690140845071,
+   "rho90": 6.9245283018867925,
+   "eff_at_rho8": 0.972,
+   "rho50_testthr": 4.821917808219178,
+   "rho90_testthr": 6.726027397260275,
+   "eff_at_rho8_testthr": 0.99
+  },
+  {
+   "morphology": "chirp",
+   "statistic": "autoencoder (MSE)",
+   "rho50": 12.32258064516129,
+   "rho90": 15.142857142857142,
+   "eff_at_rho8": 0.056,
+   "rho50_testthr": 10.953020134228188,
+   "rho90_testthr": 13.848484848484848,
+   "eff_at_rho8_testthr": 0.122
+  },
+  {
+   "morphology": "chirp",
+   "statistic": "autoencoder (local max)",
+   "rho50": 8.298245614035087,
+   "rho90": 11.076923076923078,
+   "eff_at_rho8": 0.432,
+   "rho50_testthr": 7.966292134831461,
+   "rho90_testthr": 10.64406779661017,
+   "eff_at_rho8_testthr": 0.506
+  }
+ ],
+ "auc_table": [
+  {
+   "morphology": "sg",
+   "snr": 6,
+   "statistic": "matched-filter bank",
+   "AUC": 0.9793799309664695
+  },
+  {
+   "morphology": "sg",
+   "snr": 6,
+   "statistic": "excess power",
+   "AUC": 0.8699926035502958
+  },
+  {
+   "morphology": "sg",
+   "snr": 6,
+   "statistic": "ridge-logistic",
+   "AUC": 0.9068715483234714
+  },
+  {
+   "morphology": "sg",
+   "snr": 6,
+   "statistic": "gradient boosting",
+   "AUC": 0.946055966469428
+  },
+  {
+   "morphology": "sg",
+   "snr": 6,
+   "statistic": "CNN (mix)",
+   "AUC": 0.9693500995635986
+  },
+  {
+   "morphology": "sg",
+   "snr": 6,
+   "statistic": "CNN (sg only)",
+   "AUC": 0.9812527298927307
+  },
+  {
+   "morphology": "sg",
+   "snr": 6,
+   "statistic": "CNN ensemble (5)",
+   "AUC": 0.9837135076522827
+  },
+  {
+   "morphology": "sg",
+   "snr": 6,
+   "statistic": "autoencoder (MSE)",
+   "AUC": 0.6775332689285278
+  },
+  {
+   "morphology": "sg",
+   "snr": 6,
+   "statistic": "autoencoder (local max)",
+   "AUC": 0.8440255177514793
+  },
+  {
+   "morphology": "sg",
+   "snr": 8,
+   "statistic": "matched-filter bank",
+   "AUC": 0.9991452169625247
+  },
+  {
+   "morphology": "sg",
+   "snr": 8,
+   "statistic": "excess power",
+   "AUC": 0.9675793885601578
+  },
+  {
+   "morphology": "sg",
+   "snr": 8,
+   "statistic": "ridge-logistic",
+   "AUC": 0.9914344181459566
+  },
+  {
+   "morphology": "sg",
+   "snr": 8,
+   "statistic": "gradient boosting",
+   "AUC": 0.9989477317554241
+  },
+  {
+   "morphology": "sg",
+   "snr": 8,
+   "statistic": "CNN (mix)",
+   "AUC": 0.996795117855072
+  },
+  {
+   "morphology": "sg",
+   "snr": 8,
+   "statistic": "CNN (sg only)",
+   "AUC": 0.9992507100105286
+  },
+  {
+   "morphology": "sg",
+   "snr": 8,
+   "statistic": "CNN ensemble (5)",
+   "AUC": 0.9984181523323059
+  },
+  {
+   "morphology": "sg",
+   "snr": 8,
+   "statistic": "autoencoder (MSE)",
+   "AUC": 0.7887179255485535
+  },
+  {
+   "morphology": "sg",
+   "snr": 8,
+   "statistic": "autoencoder (local max)",
+   "AUC": 0.9776476824457594
+  },
+  {
+   "morphology": "sg",
+   "snr": 10,
+   "statistic": "matched-filter bank",
+   "AUC": 0.9994807692307692
+  },
+  {
+   "morphology": "sg",
+   "snr": 10,
+   "statistic": "excess power",
+   "AUC": 0.9964314595660749
+  },
+  {
+   "morphology": "sg",
+   "snr": 10,
+   "statistic": "ridge-logistic",
+   "AUC": 0.9984282544378699
+  },
+  {
+   "morphology": "sg",
+   "snr": 10,
+   "statistic": "gradient boosting",
+   "AUC": 0.9999464990138067
+  },
+  {
+   "morphology": "sg",
+   "snr": 10,
+   "statistic": "CNN (mix)",
+   "AUC": 0.9994906187057495
+  },
+  {
+   "morphology": "sg",
+   "snr": 10,
+   "statistic": "CNN (sg only)",
+   "AUC": 0.9999191164970398
+  },
+  {
+   "morphology": "sg",
+   "snr": 10,
+   "statistic": "CNN ensemble (5)",
+   "AUC": 0.9999110102653503
+  },
+  {
+   "morphology": "sg",
+   "snr": 10,
+   "statistic": "autoencoder (MSE)",
+   "AUC": 0.8991075158119202
+  },
+  {
+   "morphology": "sg",
+   "snr": 10,
+   "statistic": "autoencoder (local max)",
+   "AUC": 0.9987280571992111
+  },
+  {
+   "morphology": "pulse",
+   "snr": 6,
+   "statistic": "matched-filter bank",
+   "AUC": 0.9560934418145957
+  },
+  {
+   "morphology": "pulse",
+   "snr": 6,
+   "statistic": "excess power",
+   "AUC": 0.925151134122288
+  },
+  {
+   "morphology": "pulse",
+   "snr": 6,
+   "statistic": "ridge-logistic",
+   "AUC": 0.9378392504930967
+  },
+  {
+   "morphology": "pulse",
+   "snr": 6,
+   "statistic": "gradient boosting",
+   "AUC": 0.9418175542406312
+  },
+  {
+   "morphology": "pulse",
+   "snr": 6,
+   "statistic": "CNN (mix)",
+   "AUC": 0.9919744729995728
+  },
+  {
+   "morphology": "pulse",
+   "snr": 6,
+   "statistic": "CNN (sg only)",
+   "AUC": 0.95564866065979
+  },
+  {
+   "morphology": "pulse",
+   "snr": 6,
+   "statistic": "CNN ensemble (5)",
+   "AUC": 0.9958589673042297
+  },
+  {
+   "morphology": "pulse",
+   "snr": 6,
+   "statistic": "autoencoder (MSE)",
+   "AUC": 0.6747576594352722
+  },
+  {
+   "morphology": "pulse",
+   "snr": 6,
+   "statistic": "autoencoder (local max)",
+   "AUC": 0.8681957593688363
+  },
+  {
+   "morphology": "pulse",
+   "snr": 8,
+   "statistic": "matched-filter bank",
+   "AUC": 0.9986242603550296
+  },
+  {
+   "morphology": "pulse",
+   "snr": 8,
+   "statistic": "excess power",
+   "AUC": 0.9968229783037476
+  },
+  {
+   "morphology": "pulse",
+   "snr": 8,
+   "statistic": "ridge-logistic",
+   "AUC": 0.9972292899408284
+  },
+  {
+   "morphology": "pulse",
+   "snr": 8,
+   "statistic": "gradient boosting",
+   "AUC": 0.9985295857988166
+  },
+  {
+   "morphology": "pulse",
+   "snr": 8,
+   "statistic": "CNN (mix)",
+   "AUC": 0.9996518492698669
+  },
+  {
+   "morphology": "pulse",
+   "snr": 8,
+   "statistic": "CNN (sg only)",
+   "AUC": 0.9888890385627747
+  },
+  {
+   "morphology": "pulse",
+   "snr": 8,
+   "statistic": "CNN ensemble (5)",
+   "AUC": 0.9999558925628662
+  },
+  {
+   "morphology": "pulse",
+   "snr": 8,
+   "statistic": "autoencoder (MSE)",
+   "AUC": 0.7902613282203674
+  },
+  {
+   "morphology": "pulse",
+   "snr": 8,
+   "statistic": "autoencoder (local max)",
+   "AUC": 0.9848651380670611
+  },
+  {
+   "morphology": "pulse",
+   "snr": 10,
+   "statistic": "matched-filter bank",
+   "AUC": 0.9994087771203156
+  },
+  {
+   "morphology": "pulse",
+   "snr": 10,
+   "statistic": "excess power",
+   "AUC": 0.9994307199211045
+  },
+  {
+   "morphology": "pulse",
+   "snr": 10,
+   "statistic": "ridge-logistic",
+   "AUC": 0.9993809171597633
+  },
+  {
+   "morphology": "pulse",
+   "snr": 10,
+   "statistic": "gradient boosting",
+   "AUC": 0.9999945759368837
+  },
+  {
+   "morphology": "pulse",
+   "snr": 10,
+   "statistic": "CNN (mix)",
+   "AUC": 0.9998833537101746
+  },
+  {
+   "morphology": "pulse",
+   "snr": 10,
+   "statistic": "CNN (sg only)",
+   "AUC": 0.9939552545547485
+  },
+  {
+   "morphology": "pulse",
+   "snr": 10,
+   "statistic": "CNN ensemble (5)",
+   "AUC": 0.9999952912330627
+  },
+  {
+   "morphology": "pulse",
+   "snr": 10,
+   "statistic": "autoencoder (MSE)",
+   "AUC": 0.9031605124473572
+  },
+  {
+   "morphology": "pulse",
+   "snr": 10,
+   "statistic": "autoencoder (local max)",
+   "AUC": 0.9988976824457594
+  },
+  {
+   "morphology": "chirp",
+   "snr": 6,
+   "statistic": "matched-filter bank",
+   "AUC": 0.889863782051282
+  },
+  {
+   "morphology": "chirp",
+   "snr": 6,
+   "statistic": "excess power",
+   "AUC": 0.6475894970414201
+  },
+  {
+   "morphology": "chirp",
+   "snr": 6,
+   "statistic": "ridge-logistic",
+   "AUC": 0.8691674063116371
+  },
+  {
+   "morphology": "chirp",
+   "snr": 6,
+   "statistic": "gradient boosting",
+   "AUC": 0.9269674556213018
+  },
+  {
+   "morphology": "chirp",
+   "snr": 6,
+   "statistic": "CNN (mix)",
+   "AUC": 0.9731780290603638
+  },
+  {
+   "morphology": "chirp",
+   "snr": 6,
+   "statistic": "CNN (sg only)",
+   "AUC": 0.9384062886238098
+  },
+  {
+   "morphology": "chirp",
+   "snr": 6,
+   "statistic": "CNN ensemble (5)",
+   "AUC": 0.9832793474197388
+  },
+  {
+   "morphology": "chirp",
+   "snr": 6,
+   "statistic": "autoencoder (MSE)",
+   "AUC": 0.6723719239234924
+  },
+  {
+   "morphology": "chirp",
+   "snr": 6,
+   "statistic": "autoencoder (local max)",
+   "AUC": 0.7436870069033531
+  },
+  {
+   "morphology": "chirp",
+   "snr": 8,
+   "statistic": "matched-filter bank",
+   "AUC": 0.9904339250493097
+  },
+  {
+   "morphology": "chirp",
+   "snr": 8,
+   "statistic": "excess power",
+   "AUC": 0.8313607001972386
+  },
+  {
+   "morphology": "chirp",
+   "snr": 8,
+   "statistic": "ridge-logistic",
+   "AUC": 0.9791040433925049
+  },
+  {
+   "morphology": "chirp",
+   "snr": 8,
+   "statistic": "gradient boosting",
+   "AUC": 0.9969193786982249
+  },
+  {
+   "morphology": "chirp",
+   "snr": 8,
+   "statistic": "CNN (mix)",
+   "AUC": 0.9978424310684204
+  },
+  {
+   "morphology": "chirp",
+   "snr": 8,
+   "statistic": "CNN (sg only)",
+   "AUC": 0.9836792349815369
+  },
+  {
+   "morphology": "chirp",
+   "snr": 8,
+   "statistic": "CNN ensemble (5)",
+   "AUC": 0.9990532398223877
+  },
+  {
+   "morphology": "chirp",
+   "snr": 8,
+   "statistic": "autoencoder (MSE)",
+   "AUC": 0.7924886345863342
+  },
+  {
+   "morphology": "chirp",
+   "snr": 8,
+   "statistic": "autoencoder (local max)",
+   "AUC": 0.9194442800788954
+  },
+  {
+   "morphology": "chirp",
+   "snr": 10,
+   "statistic": "matched-filter bank",
+   "AUC": 0.9989097633136095
+  },
+  {
+   "morphology": "chirp",
+   "snr": 10,
+   "statistic": "excess power",
+   "AUC": 0.9537872287968442
+  },
+  {
+   "morphology": "chirp",
+   "snr": 10,
+   "statistic": "ridge-logistic",
+   "AUC": 0.997094674556213
+  },
+  {
+   "morphology": "chirp",
+   "snr": 10,
+   "statistic": "gradient boosting",
+   "AUC": 0.9993592209072978
+  },
+  {
+   "morphology": "chirp",
+   "snr": 10,
+   "statistic": "CNN (mix)",
+   "AUC": 0.9994710087776184
+  },
+  {
+   "morphology": "chirp",
+   "snr": 10,
+   "statistic": "CNN (sg only)",
+   "AUC": 0.9943699240684509
+  },
+  {
+   "morphology": "chirp",
+   "snr": 10,
+   "statistic": "CNN ensemble (5)",
+   "AUC": 0.998974621295929
+  },
+  {
+   "morphology": "chirp",
+   "snr": 10,
+   "statistic": "autoencoder (MSE)",
+   "AUC": 0.8970727324485779
+  },
+  {
+   "morphology": "chirp",
+   "snr": 10,
+   "statistic": "autoencoder (local max)",
+   "AUC": 0.9885448717948718
+  }
+ ],
+ "calibration_far": [
+  {
+   "statistic": "matched-filter bank",
+   "FAP_target": 0.01,
+   "observed_test_FAP": 0.008505917159763314,
+   "n_alarms": 69
+  },
+  {
+   "statistic": "excess power",
+   "FAP_target": 0.01,
+   "observed_test_FAP": 0.009245562130177515,
+   "n_alarms": 75
+  },
+  {
+   "statistic": "ridge-logistic",
+   "FAP_target": 0.01,
+   "observed_test_FAP": 0.0072731755424063115,
+   "n_alarms": 59
+  },
+  {
+   "statistic": "gradient boosting",
+   "FAP_target": 0.01,
+   "observed_test_FAP": 0.007519723865877712,
+   "n_alarms": 61
+  },
+  {
+   "statistic": "CNN (mix)",
+   "FAP_target": 0.01,
+   "observed_test_FAP": 0.0034516765285996054,
+   "n_alarms": 28
+  },
+  {
+   "statistic": "CNN (sg only)",
+   "FAP_target": 0.01,
+   "observed_test_FAP": 0.008136094674556213,
+   "n_alarms": 66
+  },
+  {
+   "statistic": "CNN ensemble (5)",
+   "FAP_target": 0.01,
+   "observed_test_FAP": 0.005300788954635109,
+   "n_alarms": 43
+  },
+  {
+   "statistic": "autoencoder (MSE)",
+   "FAP_target": 0.01,
+   "observed_test_FAP": 0.003081854043392505,
+   "n_alarms": 25
+  },
+  {
+   "statistic": "autoencoder (local max)",
+   "FAP_target": 0.01,
+   "observed_test_FAP": 0.006040433925049309,
+   "n_alarms": 49
+  },
+  {
+   "statistic": "matched-filter bank",
+   "FAP_target": 0.001,
+   "observed_test_FAP": 0.0014792899408284023,
+   "n_alarms": 12
+  },
+  {
+   "statistic": "excess power",
+   "FAP_target": 0.001,
+   "observed_test_FAP": 0.0014792899408284023,
+   "n_alarms": 12
+  },
+  {
+   "statistic": "ridge-logistic",
+   "FAP_target": 0.001,
+   "observed_test_FAP": 0.0014792899408284023,
+   "n_alarms": 12
+  },
+  {
+   "statistic": "gradient boosting",
+   "FAP_target": 0.001,
+   "observed_test_FAP": 0.0011094674556213018,
+   "n_alarms": 9
+  },
+  {
+   "statistic": "CNN (mix)",
+   "FAP_target": 0.001,
+   "observed_test_FAP": 0.000616370808678501,
+   "n_alarms": 5
+  },
+  {
+   "statistic": "CNN (sg only)",
+   "FAP_target": 0.001,
+   "observed_test_FAP": 0.002095660749506903,
+   "n_alarms": 17
+  },
+  {
+   "statistic": "CNN ensemble (5)",
+   "FAP_target": 0.001,
+   "observed_test_FAP": 0.0009861932938856016,
+   "n_alarms": 8
+  },
+  {
+   "statistic": "autoencoder (MSE)",
+   "FAP_target": 0.001,
+   "observed_test_FAP": 0.0013560157790927022,
+   "n_alarms": 11
+  },
+  {
+   "statistic": "autoencoder (local max)",
+   "FAP_target": 0.001,
+   "observed_test_FAP": 0.0014792899408284023,
+   "n_alarms": 12
+  }
+ ],
+ "eff_curves": {
+  "sg/matched-filter bank": {
+   "snr": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    14,
+    16
+   ],
+   "eff": [
+    0.028,
+    0.182,
+    0.546,
+    0.834,
+    0.958,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "eff_testthr": [
+    0.034,
+    0.194,
+    0.562,
+    0.84,
+    0.96,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ]
+  },
+  "sg/excess power": {
+   "snr": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    14,
+    16
+   ],
+   "eff": [
+    0.018,
+    0.05,
+    0.174,
+    0.362,
+    0.62,
+    0.788,
+    0.894,
+    0.956,
+    0.998,
+    1.0,
+    1.0
+   ],
+   "eff_testthr": [
+    0.018,
+    0.058,
+    0.178,
+    0.37,
+    0.628,
+    0.79,
+    0.9,
+    0.958,
+    0.998,
+    1.0,
+    1.0
+   ]
+  },
+  "sg/ridge-logistic": {
+   "snr": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    14,
+    16
+   ],
+   "eff": [
+    0.022,
+    0.062,
+    0.18,
+    0.398,
+    0.656,
+    0.88,
+    0.958,
+    0.986,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "eff_testthr": [
+    0.028,
+    0.078,
+    0.228,
+    0.454,
+    0.698,
+    0.9,
+    0.966,
+    0.992,
+    1.0,
+    1.0,
+    1.0
+   ]
+  },
+  "sg/gradient boosting": {
+   "snr": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    14,
+    16
+   ],
+   "eff": [
+    0.02,
+    0.102,
+    0.324,
+    0.614,
+    0.868,
+    0.976,
+    0.992,
+    1.0,
+    1.0,
+    1.0,
+    0.998
+   ],
+   "eff_testthr": [
+    0.024,
+    0.114,
+    0.348,
+    0.65,
+    0.882,
+    0.982,
+    0.994,
+    1.0,
+    1.0,
+    1.0,
+    0.998
+   ]
+  },
+  "sg/CNN (mix)": {
+   "snr": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    14,
+    16
+   ],
+   "eff": [
+    0.056,
+    0.176,
+    0.386,
+    0.59,
+    0.806,
+    0.924,
+    0.968,
+    0.992,
+    0.998,
+    1.0,
+    0.998
+   ],
+   "eff_testthr": [
+    0.13,
+    0.284,
+    0.514,
+    0.7,
+    0.876,
+    0.96,
+    0.982,
+    0.994,
+    1.0,
+    1.0,
+    0.998
+   ]
+  },
+  "sg/CNN (sg only)": {
+   "snr": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    14,
+    16
+   ],
+   "eff": [
+    0.09,
+    0.236,
+    0.474,
+    0.756,
+    0.922,
+    0.978,
+    0.998,
+    0.998,
+    1.0,
+    1.0,
+    0.998
+   ],
+   "eff_testthr": [
+    0.134,
+    0.288,
+    0.528,
+    0.782,
+    0.938,
+    0.988,
+    0.998,
+    0.998,
+    1.0,
+    1.0,
+    0.998
+   ]
+  },
+  "sg/CNN ensemble (5)": {
+   "snr": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    14,
+    16
+   ],
+   "eff": [
+    0.104,
+    0.252,
+    0.488,
+    0.716,
+    0.896,
+    0.97,
+    0.994,
+    0.998,
+    1.0,
+    1.0,
+    0.998
+   ],
+   "eff_testthr": [
+    0.182,
+    0.36,
+    0.586,
+    0.792,
+    0.932,
+    0.984,
+    0.998,
+    1.0,
+    1.0,
+    1.0,
+    0.998
+   ]
+  },
+  "sg/autoencoder (MSE)": {
+   "snr": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    14,
+    16
+   ],
+   "eff": [
+    0.008,
+    0.0,
+    0.004,
+    0.02,
+    0.034,
+    0.048,
+    0.084,
+    0.16,
+    0.486,
+    0.816,
+    0.964
+   ],
+   "eff_testthr": [
+    0.022,
+    0.014,
+    0.024,
+    0.038,
+    0.086,
+    0.124,
+    0.194,
+    0.342,
+    0.672,
+    0.922,
+    0.998
+   ]
+  },
+  "sg/autoencoder (local max)": {
+   "snr": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    14,
+    16
+   ],
+   "eff": [
+    0.018,
+    0.018,
+    0.092,
+    0.232,
+    0.534,
+    0.788,
+    0.928,
+    0.986,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "eff_testthr": [
+    0.022,
+    0.032,
+    0.128,
+    0.298,
+    0.606,
+    0.828,
+    0.948,
+    0.994,
+    1.0,
+    1.0,
+    1.0
+   ]
+  },
+  "pulse/matched-filter bank": {
+   "snr": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    14,
+    16
+   ],
+   "eff": [
+    0.028,
+    0.132,
+    0.386,
+    0.718,
+    0.94,
+    0.992,
+    0.998,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "eff_testthr": [
+    0.032,
+    0.144,
+    0.4,
+    0.736,
+    0.944,
+    0.992,
+    0.998,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ]
+  },
+  "pulse/excess power": {
+   "snr": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    14,
+    16
+   ],
+   "eff": [
+    0.02,
+    0.104,
+    0.308,
+    0.556,
+    0.838,
+    0.952,
+    0.996,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "eff_testthr": [
+    0.02,
+    0.104,
+    0.314,
+    0.556,
+    0.84,
+    0.954,
+    0.996,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ]
+  },
+  "pulse/ridge-logistic": {
+   "snr": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    14,
+    16
+   ],
+   "eff": [
+    0.02,
+    0.088,
+    0.274,
+    0.59,
+    0.848,
+    0.96,
+    0.998,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "eff_testthr": [
+    0.032,
+    0.102,
+    0.318,
+    0.624,
+    0.872,
+    0.966,
+    0.998,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ]
+  },
+  "pulse/gradient boosting": {
+   "snr": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    14,
+    16
+   ],
+   "eff": [
+    0.014,
+    0.07,
+    0.276,
+    0.594,
+    0.876,
+    0.978,
+    0.998,
+    1.0,
+    0.998,
+    0.996,
+    1.0
+   ],
+   "eff_testthr": [
+    0.018,
+    0.082,
+    0.302,
+    0.62,
+    0.882,
+    0.98,
+    0.998,
+    1.0,
+    0.998,
+    0.996,
+    1.0
+   ]
+  },
+  "pulse/CNN (mix)": {
+   "snr": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    14,
+    16
+   ],
+   "eff": [
+    0.108,
+    0.33,
+    0.604,
+    0.838,
+    0.958,
+    0.994,
+    1.0,
+    1.0,
+    0.998,
+    0.998,
+    1.0
+   ],
+   "eff_testthr": [
+    0.204,
+    0.47,
+    0.7,
+    0.898,
+    0.98,
+    0.996,
+    1.0,
+    1.0,
+    1.0,
+    0.998,
+    1.0
+   ]
+  },
+  "pulse/CNN (sg only)": {
+   "snr": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    14,
+    16
+   ],
+   "eff": [
+    0.062,
+    0.126,
+    0.248,
+    0.404,
+    0.598,
+    0.714,
+    0.804,
+    0.836,
+    0.874,
+    0.93,
+    0.914
+   ],
+   "eff_testthr": [
+    0.104,
+    0.172,
+    0.33,
+    0.474,
+    0.668,
+    0.786,
+    0.856,
+    0.878,
+    0.92,
+    0.956,
+    0.96
+   ]
+  },
+  "pulse/CNN ensemble (5)": {
+   "snr": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    14,
+    16
+   ],
+   "eff": [
+    0.188,
+    0.438,
+    0.73,
+    0.918,
+    0.992,
+    1.0,
+    1.0,
+    1.0,
+    0.998,
+    0.996,
+    1.0
+   ],
+   "eff_testthr": [
+    0.268,
+    0.55,
+    0.81,
+    0.942,
+    0.998,
+    1.0,
+    1.0,
+    1.0,
+    0.998,
+    0.996,
+    1.0
+   ]
+  },
+  "pulse/autoencoder (MSE)": {
+   "snr": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    14,
+    16
+   ],
+   "eff": [
+    0.0,
+    0.006,
+    0.012,
+    0.01,
+    0.03,
+    0.04,
+    0.098,
+    0.154,
+    0.41,
+    0.824,
+    0.968
+   ],
+   "eff_testthr": [
+    0.006,
+    0.014,
+    0.032,
+    0.046,
+    0.07,
+    0.11,
+    0.218,
+    0.334,
+    0.648,
+    0.914,
+    0.99
+   ]
+  },
+  "pulse/autoencoder (local max)": {
+   "snr": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    14,
+    16
+   ],
+   "eff": [
+    0.012,
+    0.036,
+    0.094,
+    0.262,
+    0.578,
+    0.834,
+    0.958,
+    0.992,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "eff_testthr": [
+    0.018,
+    0.058,
+    0.136,
+    0.342,
+    0.628,
+    0.872,
+    0.97,
+    0.996,
+    1.0,
+    1.0,
+    1.0
+   ]
+  },
+  "chirp/matched-filter bank": {
+   "snr": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    14,
+    16
+   ],
+   "eff": [
+    0.018,
+    0.048,
+    0.142,
+    0.424,
+    0.696,
+    0.882,
+    0.968,
+    0.994,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "eff_testthr": [
+    0.02,
+    0.05,
+    0.154,
+    0.434,
+    0.71,
+    0.892,
+    0.968,
+    0.994,
+    1.0,
+    1.0,
+    1.0
+   ]
+  },
+  "chirp/excess power": {
+   "snr": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    14,
+    16
+   ],
+   "eff": [
+    0.006,
+    0.014,
+    0.018,
+    0.044,
+    0.078,
+    0.19,
+    0.308,
+    0.48,
+    0.888,
+    1.0,
+    1.0
+   ],
+   "eff_testthr": [
+    0.006,
+    0.014,
+    0.018,
+    0.044,
+    0.078,
+    0.196,
+    0.316,
+    0.488,
+    0.888,
+    1.0,
+    1.0
+   ]
+  },
+  "chirp/ridge-logistic": {
+   "snr": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    14,
+    16
+   ],
+   "eff": [
+    0.006,
+    0.044,
+    0.11,
+    0.242,
+    0.56,
+    0.758,
+    0.906,
+    0.98,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "eff_testthr": [
+    0.008,
+    0.052,
+    0.132,
+    0.292,
+    0.6,
+    0.788,
+    0.932,
+    0.986,
+    1.0,
+    1.0,
+    1.0
+   ]
+  },
+  "chirp/gradient boosting": {
+   "snr": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    14,
+    16
+   ],
+   "eff": [
+    0.01,
+    0.054,
+    0.204,
+    0.48,
+    0.798,
+    0.938,
+    0.99,
+    0.992,
+    0.996,
+    0.998,
+    1.0
+   ],
+   "eff_testthr": [
+    0.014,
+    0.058,
+    0.228,
+    0.516,
+    0.816,
+    0.948,
+    0.992,
+    0.994,
+    0.998,
+    0.998,
+    1.0
+   ]
+  },
+  "chirp/CNN (mix)": {
+   "snr": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    14,
+    16
+   ],
+   "eff": [
+    0.076,
+    0.17,
+    0.286,
+    0.586,
+    0.808,
+    0.952,
+    0.972,
+    0.99,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "eff_testthr": [
+    0.158,
+    0.288,
+    0.418,
+    0.704,
+    0.872,
+    0.974,
+    0.984,
+    0.996,
+    1.0,
+    1.0,
+    1.0
+   ]
+  },
+  "chirp/CNN (sg only)": {
+   "snr": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    14,
+    16
+   ],
+   "eff": [
+    0.05,
+    0.096,
+    0.18,
+    0.34,
+    0.54,
+    0.704,
+    0.8,
+    0.868,
+    0.946,
+    0.976,
+    0.968
+   ],
+   "eff_testthr": [
+    0.076,
+    0.146,
+    0.232,
+    0.414,
+    0.6,
+    0.748,
+    0.84,
+    0.904,
+    0.96,
+    0.986,
+    0.986
+   ]
+  },
+  "chirp/CNN ensemble (5)": {
+   "snr": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    14,
+    16
+   ],
+   "eff": [
+    0.114,
+    0.258,
+    0.42,
+    0.704,
+    0.916,
+    0.972,
+    0.986,
+    0.994,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "eff_testthr": [
+    0.212,
+    0.38,
+    0.526,
+    0.794,
+    0.94,
+    0.99,
+    0.99,
+    0.996,
+    1.0,
+    1.0,
+    1.0
+   ]
+  },
+  "chirp/autoencoder (MSE)": {
+   "snr": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    14,
+    16
+   ],
+   "eff": [
+    0.002,
+    0.0,
+    0.004,
+    0.01,
+    0.016,
+    0.056,
+    0.074,
+    0.164,
+    0.44,
+    0.812,
+    0.966
+   ],
+   "eff_testthr": [
+    0.01,
+    0.014,
+    0.028,
+    0.042,
+    0.064,
+    0.122,
+    0.198,
+    0.358,
+    0.656,
+    0.92,
+    0.986
+   ]
+  },
+  "chirp/autoencoder (local max)": {
+   "snr": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    14,
+    16
+   ],
+   "eff": [
+    0.01,
+    0.01,
+    0.036,
+    0.1,
+    0.25,
+    0.432,
+    0.66,
+    0.816,
+    0.972,
+    1.0,
+    1.0
+   ],
+   "eff_testthr": [
+    0.012,
+    0.014,
+    0.058,
+    0.126,
+    0.328,
+    0.506,
+    0.734,
+    0.862,
+    0.98,
+    1.0,
+    1.0
+   ]
+  }
+ },
+ "cnn": {
+  "epochs": 14,
+  "params": 17761,
+  "ae_params": 359969
+ },
+ "lr_cv": {
+  "best_C": 0.01873817422860383,
+  "nonzero": 18
+ },
+ "n_features": 22
+}
