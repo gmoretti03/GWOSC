@@ -1,0 +1,30 @@
+\section{Comparison of the three approaches}\label{sec:comparison}
+
+Table~\ref{tab:final} collects what each approach gives on the same data, and what it does \emph{not} give.
+
+\begin{table}[h]\centering\small
+\begin{tabular}{p{3.1cm}p{3.7cm}p{3.7cm}p{3.7cm}}
+\toprule
+& frequentist (bank) & Bayesian (same likelihood) & machine learning\\
+\midrule
+\textbf{statistic} & $\lmax=\max\rho^2$ (profile LR) & $\ln B_{10}$ (prior-weighted mean of the same cube) & CNN logit / ensemble mean\\
+\textbf{detection, sine-Gaussian} & $\snr_{50}=4.9$ (val.\ bkg) & identical to the bank within $0.01$ in efficiency & $5.1$ (ensemble), parity\\
+\textbf{detection, other morphologies} & $5.3$ / $6.3$ (pulse / chirp), robust & as the bank & better if trained on them ($4.2$ / $5.3$), worse if not ($6.5$ / $6.8$)\\
+\textbf{needs} & a template family & a template family and a prior & labelled injections; no template\\
+\textbf{parameters} & MLE, saturates the Fisher bound for $\snr\gtrsim10$ & full posterior; calibrated (SBC) & none (not attempted)\\
+\textbf{uncertainty} & profile LR / Neyman / FC intervals; coverage depends on SNR & credible intervals, prior-dependent at $\snr\lesssim3$ & ensemble / MC dropout; reject-uncertain gain\\
+\textbf{false alarms} & calibrated on real background, epoch-dependent & $B_{10}>100$ in $0.2$--$0.9\,\%$ of noise windows & calibrated on real background, epoch-dependent\\
+\textbf{cost} & seconds & seconds (grid) -- minutes (MCMC) & $\sim$30 min training, ms inference\\
+\bottomrule
+\end{tabular}
+\caption{Summary of the three approaches (FAP $10^{-2}$ per one-second window; SNR values are optimal SNRs).}\label{tab:final}
+\end{table}
+
+\paragraph{What the comparison supports.}
+\begin{enumerate}[nosep]
+\item The frequentist and Bayesian statistics are two views of the same matched-filter cube and detect the same bursts; the Bayesian analysis adds calibrated posteriors and the prior dependence of the evidence, the frequentist analysis adds optimality statements (Neyman--Pearson oracle gap) and guaranteed coverage.
+\item A network with no template knowledge reaches matched-filter performance on the family the bank was designed for, and exceeds it on the shapes it has seen. Its advantage is bounded by its training set: it is not a replacement for a morphology-independent statistic.
+\item None of the statistics escapes the real noise: the glitch floor dominates the price of a low false-alarm probability, and the calibration of a threshold is a property of the epoch in which it was measured.
+\end{enumerate}
+
+\paragraph{What it does not support.} These are efficiencies for single-detector injections into one-second windows at a given \emph{optimal SNR}; they are not astrophysical sensitivities, not rates, and say nothing about coincidence between detectors, where most of the real-world rejection of glitches comes from.

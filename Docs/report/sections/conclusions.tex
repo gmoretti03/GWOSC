@@ -1,0 +1,22 @@
+\section{Conclusions and limits}\label{sec:conclusions}
+
+\paragraph{Conclusions.}
+\begin{itemize}[nosep]
+\item \textbf{The real noise is the main result.} Whitened O1 H1 data are Gaussian in the bulk, but a glitch floor of a few $10^{-3}$ per second and strong epoch-to-epoch variations decide the price of a false-alarm probability: lowering it from $10^{-2}$ to $10^{-3}$ moves the 50\,\% point of the bank from $\snr\approx5.5$ to $\approx11$ (in Gaussian noise the threshold would move only from $\approx27$ to $\approx31$, i.e.\ by $\approx0.4$ in SNR), and a threshold calibrated on one set of epochs is off by a factor $\approx4.5$ on others.
+\item \textbf{Frequentist.} The profile-likelihood bank reaches 50\,\% efficiency at $\snr\approx5$ (oracle with known parameters: $3.0$); the gap is the look-elsewhere penalty, quantified by $N_{\rm eff}\approx6800$ independent trials. The MLE saturates the Fisher bound for $\snr\gtrsim10$; the amplitude estimate is biased and the profile interval under-covers near the boundary, where Neyman/Feldman--Cousins intervals are exact. The dominant analysis systematic is the PSD estimator (mean against median Welch: $+0.025$ on $\varepsilon(\snr=8)$).
+\item \textbf{Bayesian.} The exact grid posterior is validated against a closed form, MCMC and simulation-based calibration, in Gaussian and in real noise; the Bayes factor ranks windows like $\lmax$ but is prior-dependent (Occam factor $-2\ln\sigma_\rho$) and exceeds 100 on $0.2$--$0.9\,\%$ of pure-noise windows because of glitches. Credible intervals match confidence intervals for $\snr\gtrsim3$ and differ, depending on the prior, below.
+\item \textbf{Machine learning.} A small CNN ensemble matches the bank on sine-Gaussians and beats it on the pulses and chirps it was trained on by about one SNR unit, but a network trained on one morphology fails on others; an autoencoder trained on noise adds nothing to an energy statistic. Calibration is good ($\mathrm{ECE}\lesssim3\,\%$), mostly limited by the epoch shift, and ensemble uncertainty identifies the windows where the model should not be trusted.
+\end{itemize}
+
+\paragraph{Limits.}
+\begin{itemize}[nosep]
+\item \textbf{Single detector.} No coincidence and no time slides: the false-alarm numbers are per one-second window, not rates, and the glitch floor would be largely removed by a second detector.
+\item \textbf{Injections at a given SNR.} Not converted into distances or energies; the three morphologies are phenomenological and share the same $t_0$ prior.
+\item \textbf{Background statistics.} $1.6\times10^4$ training windows limit the lowest usable FAP to $\sim10^{-3}$; the quoted $10^{-3}$ efficiencies carry a large uncertainty from the tail of the background.
+\item \textbf{Eight chunks.} The epoch dependence is measured with two test chunks; a systematic study of its size would need many more.
+\item \textbf{Grid resolution.} The Bayesian grid under-resolves $f_0$ and $t_0$ for $\snr\gtrsim15$ (the SBC coverage of those two parameters, $0.50$--$0.60$, reflects this, not the model).
+\item \textbf{ML numbers} are efficiencies \emph{for the training injection prior}; the supervised detectors are only as good as the injections they have seen, and parameter estimation with ML was not attempted.
+\item \textbf{Comparison thresholds.} The bank is compared with the ML detectors on the validation background; the choice of background changes the numbers by up to $0.6$ in $\snr_{50}$ (Section~\ref{sec:ml}).
+\end{itemize}
+
+\paragraph{Natural extensions.} A second detector (L1) for coincidence and a real time-slide background; a rolling background close in time to the data; fine grids or nested sampling for the Bayesian part; training the networks with a glitch class (Gravity-Spy style) and with astrophysical waveforms; parameter regression with the CNN compared with the posterior of Section~\ref{sec:bayes}.

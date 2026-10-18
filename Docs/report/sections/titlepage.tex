@@ -1,0 +1,14 @@
+\title{\color{accent}\textbf{Detecting short gravitational-wave bursts in real LIGO noise}\\[0.3em]
+\Large Frequentist, Bayesian and machine-learning analysis of simulated bursts injected into GWOSC O1 data}
+\author{Giacomo Moretti\\[0.2em]\small Statistics and Data Analysis, Università di Milano-Bicocca, A.Y.\ 2025--2026}
+\date{October 2026}
+\maketitle
+
+\begin{abstract}
+\noindent We use eight stretches of public LIGO-Hanford strain from the first observing run (O1) as a source of \emph{real}, non-Gaussian, non-stationary noise, inject three families of unmodelled bursts
+(sine-Gaussian, Gaussian pulse, linear chirp) at a known optimal SNR, and compare three ways of detecting them at the same false-alarm probability: a frequentist matched-filter bank (profile-likelihood ratio), a Bayesian analysis
+of the same likelihood (exact grid posterior, MCMC, Bayes factors) and machine-learning detectors (feature-based classifiers, a convolutional network and its ensemble, an autoencoder). All methods share the data, the injections and a split by chunk of data.
+(i) The whitened noise is Gaussian in the bulk but has a glitch floor of a few $10^{-3}$ per second and large epoch-to-epoch variations; they dominate the cost of low false-alarm probabilities and make the calibration of a threshold epoch-dependent.
+(ii) At a false-alarm probability of $10^{-2}$ per one-second window the matched-filter bank detects sine-Gaussians with 50\,\% efficiency at an optimal SNR of $\approx5$ (the oracle that knows the parameters: $3.0$), and the Bayes factor detects the same bursts as the bank, with calibrated posteriors and an explicit prior dependence.
+(iii) A small CNN ensemble reaches parity with the bank on sine-Gaussians and is about one SNR unit better on the pulses and chirps it was trained on, but loses efficiency on a morphology it has not seen; its probabilities are well calibrated and its uncertainty flags the windows not to be trusted.
+\end{abstract}

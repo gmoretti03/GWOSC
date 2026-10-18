@@ -1,0 +1,105 @@
+\section{Frequentist analysis}\label{sec:freq}
+
+\subsection{Hypotheses and test statistic}
+We test $H_0$ (noise only) against $H_1$ (noise plus a sine-Gaussian burst). For a window with whitened bins $X$ and a unit-norm complex template $T(t_0,f_0,Q)$ the signal is $a\,T$ with $a=a_c+ia_s$ complex (amplitude and phase),
+and $\ln\mathcal L=-\tfrac12\|X-aT\|^2$ up to constants. Maximising analytically over $a$ gives the likelihood-ratio statistic
+\begin{equation}
+\lambda(t_0,f_0,Q)=-2\ln\frac{\mathcal L(0)}{\mathcal L(\hat a)}=\rho^2(t_0,f_0,Q)=\Big|\sum_kX_kT_k^*e^{2\pi ikt_0}\Big|^2 ,\qquad
+\lmax=\max_{t_0,f_0,Q}\rho^2 ,
+\end{equation}
+evaluated for a bank of 160 templates (40 log-spaced $f_0\in[40,450]$\,Hz $\times$ $Q\in\{3,6,10,16\}$) and for all $t_0\in[0.15,0.85]$\,s (the time shift by one FFT).
+At a \emph{fixed} template Wilks' theorem~\cite{Wilks} applies: $\lambda\sim\chi^2_2$ under $H_0$ (two degrees of freedom: the two quadratures). For $\lmax$ it does not: $(t_0,f_0,Q)$ exist only under $H_1$, which is Davies' problem~\cite{Davies} and the
+look-elsewhere effect. Two other statistics are used for comparison: the \emph{oracle}, $|z|^2$ at the true parameters (the Neyman--Pearson optimal test of a simple hypothesis, not available in practice), and an
+\emph{excess-power} statistic~\cite{ExcessPower}, the maximum over time and over five durations (10--200\,ms) of the z-scored band energy, which assumes nothing about the morphology.
+
+\subsection{Background: Wilks, trials factor and real noise}
+Scanning $20\,000$ windows of ideal Gaussian noise, $\lmax$ is accurately described by $N_{\rm eff}=6.8\times10^3$ independent $\chi^2_2$ trials, $P(\lmax>x)=1-(1-e^{-x/2})^{N_{\rm eff}}$:
+a single-template threshold of $\lambda\approx9$ at FAP $10^{-2}$ becomes $\approx27$ for the bank. On real noise (Fig.~\ref{fig:bkg}) the distribution follows the Gaussian one up to $\lmax\approx22$ and then leaves it, developing a nearly flat \emph{floor} at
+a few $10^{-3}$ per window: the glitches of Section~\ref{sec:data}. The thresholds set on the training chunks are $33.6$ (FAP $10^{-2}$) and $114$ (FAP $10^{-3}$), against $\approx27$ and $\approx31$ for Gaussian noise
+with the same trials factor. Epochs differ enormously: $\sim10\,\%$ of the windows of chunk~2 exceed $\lmax=60$, and this chunk drives the training threshold.
+
+\begin{figure}[h]\centering
+\includegraphics[width=0.62\textwidth]{fig03_background.pdf}
+\caption{Survival function of $\lmax$ under $H_0$: single-template $\chi^2_2$ (dotted), $\chi^2_2$ with $N_{\rm eff}=6794$ trials (dashed), Gaussian simulation (grey), real chunks (colours) and test chunks (black).}\label{fig:bkg}
+\end{figure}
+
+\subsection{Calibration on unseen epochs}
+The threshold at false-alarm probability $\alpha$ is the $(1-\alpha)$ quantile of the training background. On the test chunks the observed FAP of the bank is $2.2\times10^{-3}$ for $\alpha=10^{-2}$ (68\,\% interval $1.7$--$2.9\times10^{-3}$)
+and $1.2\times10^{-3}$ for $\alpha=10^{-3}$; the excess-power statistic gives $3.7\times10^{-3}$ and $1.1\times10^{-3}$. The thresholds are therefore \emph{conservative}, by a factor $\approx4.5$ at $10^{-2}$, because the glitchy chunk~2
+inflates the training background. The false-alarm probability is not a property of the statistic but of the (non-stationary) background it is calibrated on; a threshold transferred to another epoch can be off by a factor of several in either direction.
+
+\subsection{Efficiency and ROC}
+For each morphology and SNR, $500$ bursts are injected in randomly chosen test windows (with the PSD of their own chunk) and the fraction above threshold is the efficiency (Fig.~\ref{fig:eff}, Table~\ref{tab:eff}).
+\begin{itemize}[nosep]
+\item \textbf{Sine-Gaussian.} The oracle reaches 50\,\% efficiency at $\snr=3.0$ and 90\,\% at $4.4$; the bank at $5.5$ and $6.9$; excess power at $6.8$ and $9.7$. The oracle--bank gap is the price of not knowing $(t_0,f_0,Q)$ (look-elsewhere);
+the bank--excess-power gap is the price of not using the signal shape.
+\item \textbf{Pulse and chirp.} Outside the template family the bank is mismatched but still better than the agnostic statistic: the Gaussian pulse is well covered by low-frequency, low-$Q$ templates ($\snr_{50}=5.9$ against $6.1$), and the chirp loses
+only $1.7$ in $\snr_{50}$ with respect to the sine-Gaussian ($7.2$) while excess power needs $10.8$.
+\item \textbf{FAP $10^{-3}$.} Because of the glitch floor, lowering the FAP tenfold costs much more than in Gaussian noise: the 50\,\% point of the bank moves from $\snr\approx5.5$ to $\approx11$ (dotted curves).
+\end{itemize}
+The ROC AUC at $\snr=8$ is $0.997/0.971$ (bank/excess power) for sine-Gaussians, $0.995/0.994$ for pulses and $0.983/0.820$ for chirps.
+
+\begin{figure}[h]\centering
+\includegraphics[width=0.95\textwidth]{fig03_efficiency.pdf}
+\caption{Efficiency against optimal SNR at FAP $10^{-2}$ (solid, with binomial errors) and $10^{-3}$ (dotted) for the three morphologies: oracle (black, sine-Gaussian only), bank (blue), excess power (red).}\label{fig:eff}
+\end{figure}
+
+\begin{table}[h]\centering\small
+\begin{tabular}{llrrrr}
+\toprule
+morphology & statistic & $\snr_{50}$ & $\pm$ & $\snr_{90}$ & $\pm$\\
+\midrule
+sine-Gaussian & oracle & 3.00 & 0.00 & 4.37 & 0.09\\
+ & bank & 5.50 & 0.07 & 6.89 & 0.05\\
+ & excess power & 6.79 & 0.08 & 9.70 & 0.14\\
+Gaussian pulse & bank & 5.90 & 0.07 & 7.56 & 0.08\\
+ & excess power & 6.08 & 0.10 & 7.92 & 0.06\\
+linear chirp & bank & 7.19 & 0.09 & 9.00 & 0.12\\
+ & excess power & 10.76 & 0.09 & 13.25 & 0.10\\
+\bottomrule
+\end{tabular}
+\caption{Optimal SNR at which the efficiency reaches 50\,\% and 90\,\% (FAP $10^{-2}$, test chunks).}\label{tab:eff}
+\end{table}
+
+\subsection{Maximum-likelihood parameter estimation}
+For detected sine-Gaussians the bank maximum is refined with \texttt{iminuit} on the continuous profile $\rho^2(t_0,f_0,Q)$ and the covariance of the MLE is compared with the Fisher (Cram\'er--Rao) matrix, obtained from the Hessian of $-\rho^2$ at the truth on noise-free data,
+$\mathrm{cov}=2[\nabla^2(-\rho^2)]^{-1}$. With $300$ injections per SNR (Fig.~\ref{fig:pe}) the MLE saturates the bound for $\snr\gtrsim10$ ($f_0$: RMS $2.8$ against $2.7$\,Hz at $\snr=10$; $0.90$ against $0.90$\,Hz at $\snr=30$) and the Hessian errors of \texttt{iminuit} agree with it.
+At low SNR the RMS departs upward (at $\snr=6$ the RMS of $f_0$ is $34$\,Hz against $4.5$ predicted) because the likelihood surface has secondary maxima to which the estimate jumps; the robust width stays near the bound. This is the classical threshold effect of non-linear parameters.
+
+\begin{figure}[h]\centering
+\includegraphics[width=0.85\textwidth]{fig03_pe_fisher.pdf}
+\caption{Standard deviation of the MLE of $t_0$, $f_0$, $Q$ against SNR: RMS (blue), robust width (green) and Fisher/Cram\'er--Rao bound (black).}\label{fig:pe}
+\end{figure}
+
+\subsection{Toy Monte Carlo: bias, pulls and coverage}
+With a known template and unknown SNR $s\ge0$ the data reduce to $z=s\,e^{i\varphi}+n$, $n\sim\mathcal N(0,I_2)$; the MLE is $\hat s=|z|$ (Rice distribution) and $-2\Delta\ln\mathcal L_p(s)=(\hat s-s)^2$, so the profile-likelihood interval is $[\hat s-1,\hat s+1]$ truncated at zero.
+With $4\times10^4$ toys per value of $s$ (Fig.~\ref{fig:toy}): the MLE is biased upward at low SNR ($E[\hat s]-s=1.25$ at $s=0$, $\sqrt{\pi/2}$; $0.27$ at $s=2$; $0.05$ at $s=10$); the profile-likelihood interval covers $39\,\%$ at $s=0$ (nominal $68\,\%$), overshoots to $\approx74\,\%$ near $s=1$ and is within one per cent of $68\,\%$ only for $s\gtrsim3$ (parameter on the boundary: Wilks' regularity fails);
+the Neyman central and Feldman--Cousins belts~\cite{FeldmanCousins} cover $68.3\,\%$ at every $s$ by construction. The same experiment repeated with a fixed template injected in $5000$ real windows per SNR gives the same bias, RMS and coverage within $0.03$, so the single-template amplitude estimate is insensitive to the glitches
+(whereas the bank statistic of the previous section is not).
+
+\begin{figure}[h]\centering
+\includegraphics[width=0.95\textwidth]{fig03_toys_amplitude.pdf}
+\caption{Toy Monte Carlo of the amplitude estimate. Left: bias and $\mathrm{RMS}-1$ of $\hat s$. Centre: coverage of the 68\,\% profile-likelihood, central Neyman and Feldman--Cousins intervals. Right: the two Neyman belts.}\label{fig:toy}
+\end{figure}
+
+\subsection{Systematic study}
+The observable is the sine-Gaussian efficiency $\varepsilon(\snr=8)$ at FAP $10^{-2}$; each variant changes one analysis choice and recomputes the whole chain on the \emph{same} windows and injections, so that differences are correlated.
+Barlow's criterion~\cite{Barlow} (a variation is significant if $|\Delta|/\sigma_\Delta>2$, $\sigma_\Delta^2=|\sigma_{\rm var}^2-\sigma_{\rm nom}^2|$) gives Table~\ref{tab:sys}.
+Only the use of the \emph{mean} instead of the median in the Welch average is large and unambiguous ($+0.025$): the mean PSD is inflated by glitches, lowers the whitened-noise level and the threshold ($42.9$ against $45.0$). All other variants change $\varepsilon$ by at most $0.007$ (1--3$\sigma$).
+We quote $0.025$ as the systematic uncertainty on $\varepsilon(\snr=8)$.
+\begin{table}[h]\centering\small
+\begin{tabular}{lrrrr}
+\toprule
+variant & threshold & $\varepsilon$ & $\Delta$ & $|\Delta|/\sigma_\Delta$ (Barlow)\\
+\midrule
+nominal & 45.0 & 0.928 & -- & --\\
+PSD mean-average & 42.9 & 0.953 & $+0.025$ & 5.3\\
+PSD 2\,s segments & 44.6 & 0.935 & $+0.007$ & 2.8\\
+PSD 8\,s segments & 44.6 & 0.933 & $+0.005$ & 2.4\\
+band 20--500\,Hz & 45.0 & 0.929 & $+0.001$ & 1.1\\
+band 30--400\,Hz & 45.0 & 0.925 & $-0.003$ & 1.9\\
+coarse bank (20 $f_0$) & 44.0 & 0.921 & $-0.007$ & 2.9\\
+\bottomrule
+\end{tabular}
+\caption{Systematic variants (threshold from chunks 0 and 2, efficiency from 1000 injections in chunks 3 and 7).}\label{tab:sys}
+\end{table}

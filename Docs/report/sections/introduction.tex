@@ -1,0 +1,19 @@
+\section{Introduction}
+
+Since the first detection of a binary black-hole merger~\cite{GW150914} gravitational-wave detectors have produced a stream of strain data that is public through the Gravitational Wave Open Science Center
+(GWOSC)~\cite{GWOSCO12}. Searches for \emph{short, unmodelled transients} (bursts) cannot rely on a bank of astrophysically motivated waveforms and must either use phenomenological
+templates or make no assumption on the signal shape (excess-power and coherent-network methods~\cite{ExcessPower,cWB}). They all face the same statistical problem: the noise is only approximately
+Gaussian and stationary, the signals are weak ($\snr\sim5$--$10$), the parameters of the signal are unknown nuisance parameters, and the required false-alarm probability is tiny.
+
+This project uses that problem as a laboratory for the techniques of the course \emph{Statistics and Data Analysis}: hypothesis testing and the Neyman--Pearson lemma, maximum likelihood,
+profile likelihood and Wilks' theorem, toy Monte Carlo, Bayesian inference with priors, MCMC and Bayes factors, supervised and unsupervised learning, calibration and uncertainty in machine learning. The organisation follows the
+earlier projects on LHCb open data (asymmetry in $B^\pm\to K^\pm K^+K^-$) and on atomic-force-microscopy curves: one shared data set, one notebook per method, one common set of figures of merit, a report that says where each number comes from.
+
+\paragraph{Research question.} \emph{At a fixed false-alarm probability on real LIGO noise, how do a frequentist matched-filter bank, a Bayesian analysis of the same likelihood and machine-learning detectors
+compare in detection efficiency, in the quality of their uncertainty statements, and in robustness to the non-Gaussian noise and to signal morphologies they were not designed for?}
+
+\paragraph{Scope.} Single detector (H1); three phenomenological burst morphologies injected at a chosen optimal SNR; false-alarm probabilities per one-second window. This is \emph{not} an astrophysical sensitivity estimate: there is no
+second detector, no coincidence and no time-slide background, and SNRs are not converted into distances.
+
+\paragraph{Organisation.} Section~\ref{sec:data} describes the data, the whitening and the tests of the noise model. Section~\ref{sec:signals} defines the signals, the SNR and the injection chain. Sections~\ref{sec:freq}, \ref{sec:bayes} and \ref{sec:ml}
+are the three analyses; Section~\ref{sec:comparison} compares them and Section~\ref{sec:conclusions} gives conclusions and limits. Appendix~\ref{app:code} maps every number to the notebook and result file that produced it.
