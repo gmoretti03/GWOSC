@@ -1,0 +1,50 @@
+[
+ {
+  "detector": "H1",
+  "gps_start": 1126076416,
+  "duration": 4096,
+  "file": "H1_1126076416.npy"
+ },
+ {
+  "detector": "H1",
+  "gps_start": 1128009728,
+  "duration": 4096,
+  "file": "H1_1128009728.npy"
+ },
+ {
+  "detector": "H1",
+  "gps_start": 1129295872,
+  "duration": 4096,
+  "file": "H1_1129295872.npy"
+ },
+ {
+  "detector": "H1",
+  "gps_start": 1130975232,
+  "duration": 4096,
+  "file": "H1_1130975232.npy"
+ },
+ {
+  "detector": "H1",
+  "gps_start": 1132707840,
+  "duration": 4096,
+  "file": "H1_1132707840.npy"
+ },
+ {
+  "detector": "H1",
+  "gps_start": 1134329856,
+  "duration": 4096,
+  "file": "H1_1134329856.npy"
+ },
+ {
+  "detector": "H1",
+  "gps_start": 1135579136,
+  "duration": 4096,
+  "file": "H1_1135579136.npy"
+ },
+ {
+  "detector": "H1",
+  "gps_start": 1137246208,
+  "duration": 4096,
+  "file": "H1_1137246208.npy"
+ }
+]

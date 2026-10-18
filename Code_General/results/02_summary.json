@@ -1,0 +1,50 @@
+{
+ "injection_validation": {
+  "0.0": {
+   "mean": 2.034985741039435,
+   "expected": 2.0,
+   "ks_p": 0.6401001800571362
+  },
+  "5.0": {
+   "mean": 27.106239650988112,
+   "expected": 27.0,
+   "ks_p": 0.6630217224456905
+  },
+  "10.0": {
+   "mean": 101.80868334051982,
+   "expected": 102.0,
+   "ks_p": 0.4887118190955084
+  }
+ },
+ "proxy_vs_analytic": [
+  {
+   "morphology": "sg",
+   "mean_ratio_proxy_over_analytic": 1.049529760204365,
+   "std_ratio": 6.944689565185698e-09
+  },
+  {
+   "morphology": "pulse",
+   "mean_ratio_proxy_over_analytic": 1.0495297600076372,
+   "std_ratio": 9.97136118040993e-09
+  },
+  {
+   "morphology": "chirp",
+   "mean_ratio_proxy_over_analytic": 1.0495297602549534,
+   "std_ratio": 2.805395849827701e-09
+  }
+ ],
+ "peak_per_unit_snr": [
+  {
+   "morphology": "sg",
+   "mean_peak_per_unit_snr": 0.3275448679924011
+  },
+  {
+   "morphology": "pulse",
+   "mean_peak_per_unit_snr": 0.5038248300552368
+  },
+  {
+   "morphology": "chirp",
+   "mean_peak_per_unit_snr": 0.14802971482276917
+  }
+ ]
+}
