@@ -1,0 +1,29 @@
+# Environment used for all the results of the project (macOS arm64, 2026-10).
+#   conda env create -f environment.yml && conda activate gwosc-burst
+#   python -m ipykernel install --user --name cern     # the notebooks use the kernel name "cern"
+name: gwosc-burst
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12.13
+  - numpy=2.4.6
+  - scipy=1.18.0
+  - pandas=3.0.3
+  - matplotlib=3.11.0
+  - gwpy=4.0.1
+  - gwosc=0.8.2
+  - h5py=3.14.0
+  - astropy=7.2.0
+  - iminuit=2.32.0
+  - emcee=3.1.6
+  - corner=2.3.0
+  - scikit-learn=1.9.0
+  - jupyter_core
+  - nbconvert
+  - nbformat
+  - ipykernel=7.3.0
+  - tectonic            # only to compile the report
+  - pip
+  - pip:
+      - tensorflow==2.21.0
+      - keras==3.15.1

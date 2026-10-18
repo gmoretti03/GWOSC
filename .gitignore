@@ -1,0 +1,14 @@
+# raw strain (8 x 4096 s, downloaded by Code_General/download_data.py) and regenerable caches
+Code_General/cache/
+
+# OS / editor junk
+.DS_Store
+.ipynb_checkpoints/
+__pycache__/
+
+# LaTeX build products
+Docs/report/*.aux
+Docs/report/*.log
+Docs/report/*.out
+Docs/report/*.bbl
+Docs/report/*.blg
