@@ -58,6 +58,13 @@ interleaved in time (`gwosc_tools.SPLIT`): train 0,2,4,6 · val 1,5 · test 3,7.
 - All random numbers use fixed seeds. Long blocks cache their output in `cache/` or `results/` and resume on re-run.
 - `cache/` is entirely regenerable (`download_data.py`, then notebooks 01 → 05): treat it as a cache, not a source of truth.
 
+## Planned next steps (if time)
+
+1. **Sequence models.** Transformer encoder on patches (tokens) of the whitened series, compared with the 1-D CNN; same split, injections and common validation background as notebook 05. An RNN/LSTM/GRU is only a cheap baseline: long-time recursion is expected to do worse because the burst is localised in time. If the noise model is complex (glitches, non-stationarity), attention on local patterns of neighbouring samples may help; since the AUC is already high (CNN ensemble ≈ 0.998 at ρ = 8), judge it by efficiency at fixed low FAP (ρ₅₀, ρ₉₀, FAP 10⁻³) and by glitch rejection, not by AUC. The transformer is best used as an *encoder* feeding a classifier head, which suits the multiclass task below; with ~16 000 training windows consider self-supervised pre-training (masked patches) on noise windows.
+2. **Signal hypothesis testing.** Multiclass detector (noise + sine-Gaussian / pulse / chirp): for a signal above threshold that is incompatible with the background, which network structure can tell the morphology? The autoencoder (noise only) can hardly do it; a supervised network exposed to the signal hypotheses should do better. Compare with model comparison in the frequentist and Bayesian frameworks.
+
+Both would go in a new notebook `06_*` following the conventions above.
+
 ## Known limits to keep in the conclusions
 
 Single detector (no coincidence, no time slides); injections are scaled to a *given optimal SNR*, not placed at physical
