@@ -1,5 +1,7 @@
 # Detecting short gravitational-wave bursts in real LIGO noise
 
+### Frequentist, Bayesian and machine-learning analysis of simulated bursts injected into GWOSC O1 data
+
 Frequentist, Bayesian and machine-learning analysis of simulated bursts (sine-Gaussian, Gaussian pulse, linear chirp) injected into
 **real** LIGO-Hanford (H1) strain from the first observing run (O1), public data from GWOSC.
 Final project for the *Statistics and Data Analysis* course (Università di Milano-Bicocca, A.Y. 2025–2026), Giacomo Moretti.
