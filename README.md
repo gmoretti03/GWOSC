@@ -109,3 +109,8 @@ All SNRs are **optimal SNRs**; the false-alarm probability (FAP) is per one-seco
 
 Notebooks, comments and documentation are in English. Every notebook states at the beginning what it does and what it does **not** do, and ends
 with the output produced and the next notebook. `cache/` is a regenerable cache; `results/` is the source of the numbers quoted here.
+
+## License
+
+Released under the [MIT License](LICENSE). The LIGO strain data are public (GWOSC) and are subject to their own
+[data-use terms](https://gwosc.org/terms/).
