@@ -25,7 +25,9 @@ Code_General/
   04_bayesian_analysis.ipynb             exact grid posterior + emcee, Bayes factors, prior dependence, SBC, credible vs confidence
   05_ml_detection.ipynb                  features + Ridge/Lasso/RF/GBT, 1-D CNN, ensemble, MC dropout, autoencoder, calibration
   06_sequence_models_hypothesis_testing.ipynb   Transformer / GRU detectors, masked-patch pre-training, 4-class morphology vs frequentist and Bayesian model comparison
+  07_tuning_sequence_models.ipynb        stress test of the Transformer-vs-CNN result: fresh injections, learning rate, patch size, convolutional stem
   gwosc_tools.py                         functions shared by notebooks 01-05
+  seq_models.py                          models, dataset and resumable training loop of notebook 07 (run it to train the variants in parallel processes)
   download_data.py                       downloads the 8 raw chunks (cache/raw/) and writes results/chunks.json
   results/                               summary JSON of every notebook (tracked)
   figures/                               figures of every notebook, PNG + PDF (tracked)
@@ -52,7 +54,7 @@ All notebooks use the kernel `cern`. Then, from `Code_General/`:
 
 ```
 python download_data.py
-jupyter nbconvert --to notebook --execute --inplace --ExecutePreprocessor.kernel_name=cern 0N_*.ipynb    # N = 1 ... 6, in order
+jupyter nbconvert --to notebook --execute --inplace --ExecutePreprocessor.kernel_name=cern 0N_*.ipynb    # N = 1 ... 7, in order
 ```
 
 Run times on a 10-core laptop: 01 ≈ 1 min, 02 ≈ 1 min, 03 ≈ 10–15 min, 04 ≈ 20 min, 05 ≈ 30–40 min with training from scratch (a few minutes
@@ -71,6 +73,7 @@ The report is compiled with `tectonic -X compile main.tex` from `Docs/report/`.
 | `04` | analytic amplitude marginalisation, exact grid posterior, `emcee` cross-check, Bayes factors and prior dependence, simulation-based calibration, credible vs confidence intervals | `results/04_summary.json` |
 | `05` | 22 features with Ridge/Lasso/RF/GBT (bias–variance, importance, PCA), 1-D CNN, 5-member ensemble, MC dropout, autoencoder, calibration, comparison on the same injections | `results/05_summary.json` |
 | `06` | patch Transformer and GRU against the CNN (efficiency at FAP 10⁻², 10⁻³, glitches, attention), masked-patch pre-training and label efficiency, 4-class (noise / sg / pulse / chirp) detectors against frequentist and Bayesian model comparison, an out-of-family burst | `results/06_summary.json`, `figures/fig06_*` |
+| `07` | tuning of the sequence models, one lever at a time (fresh injections each epoch, learning rate, patch size, convolutional stem); diagnosis by training vs validation loss; same test injections and thresholds as 05–06 | `results/07_summary.json`, `figures/fig07_*` |
 
 ## Main results
 
@@ -102,7 +105,11 @@ All SNRs are **optimal SNRs**; the false-alarm probability (FAP) is per one-seco
 - **Sequence models and hypothesis testing.** With the same data and budget a patch Transformer (114 k parameters) and a bidirectional GRU are *worse* than the 17.8 k-parameter CNN
   (ρ₅₀ at FAP 10⁻² on sine-Gaussian / pulse / chirp: CNN ensemble 5.05 / 4.21 / 5.28, GRU 6.27 / 5.16 / 6.36, Transformer 6.38 / 4.88 / 7.35) and do not reject glitches better; masked-patch
   pre-training on whitened noise learns almost nothing (it helps only at ≈1000 labels per class). For the morphology, Bayesian model comparison is the best classifier
-  (3-way accuracy 0.97 at ρ = 8), the CNN is close at high SNR, the Transformer last; no method flags a burst that belongs to none of the three families. The sequence models were trained for ≤ 12 epochs and not tuned.
+  (3-way accuracy 0.97 at ρ = 8), the CNN is close at high SNR, the Transformer last; no method flags a burst that belongs to none of the three families.
+- **Tuning the sequence models (notebook 07).** The patch Transformers *under-fit* (training ≈ validation loss ≈ 0.3, against 0.15–0.17 for the CNN) and no single lever fixes them: fresh injections,
+  a 3× learning rate, patches of 8 samples and the 25-epoch run all leave mean ρ₅₀ at 6.3–6.6 (FAP 10⁻²). A **convolutional stem** followed by two Transformer blocks is the lever that works
+  (5.7 static, 5.4 with fresh injections) but does not overtake the CNN. The biggest effect is on the CNN itself: **fresh injections at every epoch** cut its mean ρ₅₀ from 5.1–5.3 to 4.6 (FAP 10⁻²) and
+  from 6.2–6.3 to 5.65 (FAP 10⁻³), better than the 5-member static ensemble of notebook 05 (4.85, 5.79); the CNN of notebooks 05–06 was data-limited. One seed for most variants, ≤ 12 epochs for the sequence models.
 
 ## Limits
 

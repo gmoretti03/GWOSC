@@ -17,6 +17,8 @@ Code_General/
     04_bayesian_analysis.ipynb             stage 4: grid posterior + emcee, Bayes factors, prior dependence, SBC, credible vs confidence
     05_ml_detection.ipynb                  stage 5: features+Ridge/Lasso/RF/GBT, 1-D CNN, ensemble, MC dropout, autoencoder, calibration
     06_sequence_models_hypothesis_testing.ipynb   stage 6: Transformer/GRU detectors, masked-patch pre-training, 4-class morphology vs frequentist/Bayesian model comparison
+    07_tuning_sequence_models.ipynb        stage 7: stress test of the Transformer-vs-CNN result (fresh injections, lr, patch size, conv stem)
+    seq_models.py                          models, dataset and resumable training loop of notebook 07 (CLI: python seq_models.py <variant> ... trains in parallel processes)
     gwosc_tools.py                         functions shared by notebooks 01-05 (whitening, waveforms, injection, SGBank, statistics)
     download_data.py                       downloads the 8 raw chunks into cache/raw/ and writes results/chunks.json
     results/                               light results TRACKED by git (summary JSON of every notebook)
@@ -57,7 +59,7 @@ interleaved in time (`gwosc_tools.SPLIT`): train 0,2,4,6 · val 1,5 · test 3,7.
   with a cell describing the output produced and the next expected notebook — keep this pattern in new notebooks.
 - Light results go in `Code_General/results/` (tracked); anything big or regenerable stays in `cache/`.
 - All random numbers use fixed seeds. Long blocks cache their output in `cache/` or `results/` and resume on re-run.
-- `cache/` is entirely regenerable (`download_data.py`, then notebooks 01 → 06): treat it as a cache, not a source of truth.
+- `cache/` is entirely regenerable (`download_data.py`, then notebooks 01 → 07): treat it as a cache, not a source of truth.
 
 ## Notebook 06 (done): what it found, and caveats
 
@@ -67,6 +69,14 @@ interleaved in time (`gwosc_tools.SPLIT`): train 0,2,4,6 · val 1,5 · test 3,7.
 - Everything is cached in `cache/models/` (weights) and `cache/stats06.pkl`; delete the pickle if models change.
 
 Possible follow-ups: tune the Transformer (smaller patches, convolutional stem, more data), an open-set / goodness-of-fit head for unknown morphologies, more background (more chunks) for FAP < 1e-3.
+
+## Notebook 07 (done): tuning of the sequence models
+
+- Diagnosis: the patch Transformers/GRU of notebook 06 *under-fit* (train ≈ val loss ≈ 0.3); the CNN with static data over-fits (train 0.07–0.09, val 0.17–0.19) and fresh injections cure it (val 0.117). Models are cached as `cache/models/v07_*`, logits in `cache/stats07.pkl`.
+- One lever at a time, mean rho50 over the 3 morphologies at FAP 1e-2 / 1e-3 (test injections identical to 05-06, thresholds on validation noise): Transformer nb06 6.20/7.32; fresh injections 6.29/7.25; lr 3e-3 6.36/7.68; patch 8 6.59/7.58 (4x cost); **conv stem + 2 blocks 5.66/6.60 (static), 5.36/6.14 (fresh)**; CNN static 5.1-5.3/6.2-6.3; **CNN with fresh injections 4.6/5.65** (a single net beats the 5-member static ensemble of nb05: 4.85/5.79). Seed-to-seed scatter of the mean rho50: 0.23/0.14 (static CNN), 0.06/0.02 (fresh CNN); most variants have one seed.
+- **Use the fresh-injection CNN as the reference ML detector in any future comparison.** Notebooks 05-06 are unchanged (their CNN is the data-limited one).
+- Training budget: 12 epochs for the sequence models (23-81 min each on a laptop on battery), 20 for the CNN (17 min); 4 parallel processes ~1.5 h. A Mac on battery power runs ~3x slower than the isolated timing; the M4 has only 4 fast cores, so >4 processes do not help.
+- Possible follow-ups: second seed for the hybrid/Transformer, fresh injections for the multiclass networks of 06, longer windows (where attention may matter).
 
 ## Known limits to keep in the conclusions
 
