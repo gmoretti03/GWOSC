@@ -8,13 +8,15 @@ Table~\ref{tab:final} collects what each approach gives on the same data, and wh
 & frequentist (bank) & Bayesian (same likelihood) & machine learning\\
 \midrule
 \textbf{statistic} & $\lmax=\max\rho^2$ (profile LR) & $\ln B_{10}$ (prior-weighted mean of the same cube) & CNN logit / ensemble mean\\
-\textbf{detection, sine-Gaussian} & $\snr_{50}=4.9$ (val.\ bkg) & identical to the bank within $0.01$ in efficiency & $5.1$ (ensemble), parity\\
-\textbf{detection, other morphologies} & $5.3$ / $6.3$ (pulse / chirp), robust & as the bank & better if trained on them ($4.2$ / $5.3$), worse if not ($6.5$ / $6.8$)\\
+\textbf{detection, sine-Gaussian} & $\snr_{50}=4.9$ (val.\ bkg) & identical to the bank within $0.01$ in efficiency & $5.1$ (static ensemble); $4.7$--$4.8$ (CNN with fresh injections): parity or better\\
+\textbf{detection, other morphologies} & $5.3$ / $6.3$ (pulse / chirp), robust & as the bank & better if trained on them ($4.2$ / $5.3$; $4.1$--$4.2$ / $4.8$--$5.0$ with fresh injections), worse if not ($6.5$ / $6.8$)\\
+\textbf{morphology (3-way accuracy, $\snr=8$)} & $0.92$ (largest $\rho^2$) & $\mathbf{0.97}$ (Bayes factors of the families) & $0.96$ (CNN), $0.93$ (GRU), $0.87$ (Transformer)\\
+\textbf{sequence models} & -- & -- & Transformer and GRU worse than the CNN at detection; a convolutional stem recovers most of the gap, not all\\
 \textbf{needs} & a template family & a template family and a prior & labelled injections; no template\\
 \textbf{parameters} & MLE, saturates the Fisher bound for $\snr\gtrsim10$ & full posterior; calibrated (SBC) & none (not attempted)\\
 \textbf{uncertainty} & profile LR / Neyman / FC intervals; coverage depends on SNR & credible intervals, prior-dependent at $\snr\lesssim3$ & ensemble / MC dropout; reject-uncertain gain\\
 \textbf{false alarms} & calibrated on real background, epoch-dependent & $B_{10}>100$ in $0.2$--$0.9\,\%$ of noise windows & calibrated on real background, epoch-dependent\\
-\textbf{cost} & seconds & seconds (grid) -- minutes (MCMC) & $\sim$30 min training, ms inference\\
+\textbf{cost} & seconds & seconds (grid) -- minutes (MCMC) & $17$--$80$ min training (laptop), ms inference\\
 \bottomrule
 \end{tabular}
 \caption{Summary of the three approaches (FAP $10^{-2}$ per one-second window; SNR values are optimal SNRs).}\label{tab:final}
@@ -23,7 +25,9 @@ Table~\ref{tab:final} collects what each approach gives on the same data, and wh
 \paragraph{What the comparison supports.}
 \begin{enumerate}[nosep]
 \item The frequentist and Bayesian statistics are two views of the same matched-filter cube and detect the same bursts; the Bayesian analysis adds calibrated posteriors and the prior dependence of the evidence, the frequentist analysis adds optimality statements (Neyman--Pearson oracle gap) and guaranteed coverage.
-\item A network with no template knowledge reaches matched-filter performance on the family the bank was designed for, and exceeds it on the shapes it has seen. Its advantage is bounded by its training set: it is not a replacement for a morphology-independent statistic.
+\item A network with no template knowledge reaches matched-filter performance on the family the bank was designed for, and exceeds it on the shapes it has seen; trained with fresh injections at every epoch a single CNN does better than a five-member ensemble trained on a fixed set. Its advantage is bounded by its training set: on a morphology it has not seen it falls below the bank, so it is not a replacement for a morphology-independent statistic.
+\item \textbf{Which morphology?} Model comparison with the exact likelihood of each family (Bayes factors) is the best classifier from $\snr\approx6$, the CNN is tied with it at high SNR and $0.04$--$0.05$ behind at $\snr=5$--6, and no method can say that a signal belongs to none of the families.
+\item \textbf{Sequence structure does not help here.} A patch Transformer and a GRU detect worse than the CNN with every lever tried (data, learning rate, patch size, longer training). The patch embedding, not the data or the optimisation, is the limitation: a convolutional stem recovers most of the gap, but the CNN stays ahead on one-second windows with a localised burst.
 \item None of the statistics escapes the real noise: the glitch floor dominates the price of a low false-alarm probability, and the calibration of a threshold is a property of the epoch in which it was measured.
 \end{enumerate}
 

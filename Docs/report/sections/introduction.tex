@@ -10,10 +10,10 @@ profile likelihood and Wilks' theorem, toy Monte Carlo, Bayesian inference with 
 earlier projects on LHCb open data (asymmetry in $B^\pm\to K^\pm K^+K^-$) and on atomic-force-microscopy curves: one shared data set, one notebook per method, one common set of figures of merit, a report that says where each number comes from.
 
 \paragraph{Research question.} \emph{At a fixed false-alarm probability on real LIGO noise, how do a frequentist matched-filter bank, a Bayesian analysis of the same likelihood and machine-learning detectors
-compare in detection efficiency, in the quality of their uncertainty statements, and in robustness to the non-Gaussian noise and to signal morphologies they were not designed for?}
+compare in detection efficiency, in the quality of their uncertainty statements, and in robustness to the non-Gaussian noise and to signal morphologies they were not designed for? And, for a signal that is clearly above the noise, which structure can tell which morphology produced it?}
 
 \paragraph{Scope.} Single detector (H1); three phenomenological burst morphologies injected at a chosen optimal SNR; false-alarm probabilities per one-second window. This is \emph{not} an astrophysical sensitivity estimate: there is no
 second detector, no coincidence and no time-slide background, and SNRs are not converted into distances.
 
 \paragraph{Organisation.} Section~\ref{sec:data} describes the data, the whitening and the tests of the noise model. Section~\ref{sec:signals} defines the signals, the SNR and the injection chain. Sections~\ref{sec:freq}, \ref{sec:bayes} and \ref{sec:ml}
-are the three analyses; Section~\ref{sec:comparison} compares them and Section~\ref{sec:conclusions} gives conclusions and limits. Appendix~\ref{app:code} maps every number to the notebook and result file that produced it.
+are the three analyses; Section~\ref{sec:seq} extends the machine-learning part with sequence models (Transformer, GRU), morphology classification (signal hypothesis testing) and a tuning study of the Transformer-against-CNN comparison; Section~\ref{sec:comparison} compares the approaches and Section~\ref{sec:conclusions} gives conclusions and limits. Appendix~\ref{app:code} maps every number to the notebook and result file that produced it.

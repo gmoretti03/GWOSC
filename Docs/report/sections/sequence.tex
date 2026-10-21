@@ -1,0 +1,129 @@
+\section{Sequence models and signal hypothesis testing}\label{sec:seq}
+
+Section~\ref{sec:ml} used a small convolutional network. Two natural questions follow, both asked on the same data, the same split by chunk, the same test injections and the same thresholds on the validation noise: (i) does a structure designed for sequences --- a recurrent network or a Transformer~\cite{Vaswani} --- detect bursts better than the CNN, and why or why not; (ii) for a signal that is above the detection threshold and incompatible with the noise, which method can tell \emph{which morphology} produced it?
+Because the AUC of the CNN ensemble is already $\approx0.99$, the detectors are judged by the efficiency at a fixed low false-alarm probability ($\snr_{50}$, $\snr_{90}$ at FAP $10^{-2}$ and $10^{-3}$) and by their behaviour on glitches, not by the AUC.
+
+\subsection{Transformer and GRU against the CNN}
+\paragraph{Architectures.} The 1024 samples are cut into 64 non-overlapping patches of 16 samples (15.6\,ms)~\cite{ViT} and embedded linearly ($d=64$). The \emph{Transformer} has a learned positional embedding, three pre-norm blocks (4 heads, MLP 128, dropout $0.1$) and a head that concatenates max- and average-pooling over the tokens ($1.1\times10^5$ parameters). The \emph{GRU}~\cite{GRU} has the same patch embedding and head, and two stacked bidirectional GRU layers of 48 units ($8.8\times10^4$ parameters): it isolates the sequence mixer (recurrence against attention). The CNN of Section~\ref{sec:ml} has $1.8\times10^4$ parameters.
+All are trained with AdamW~\cite{AdamW}, two epochs of warm-up and cosine decay, batch 128, early stopping on the validation loss, at most 12 epochs (CPU budget); the first seed of the Transformer was also trained for 25 epochs and ends with the same validation loss ($0.312$ against $0.310$).
+\paragraph{Pre-training.} A masked-patch self-supervised pre-training~\cite{MAE} (40\,\% of the patch embeddings replaced by a mask token, a linear decoder reconstructs the raw samples) on the \emph{noise-only} training windows is tested as a way to save labelled injections.
+
+\paragraph{Results.} Table~\ref{tab:seq} and Fig.~\ref{fig:seqeff} give the efficiency. The CNN ensemble and the Bayes factor of the three families are the best at FAP $10^{-2}$; the GRU and the Transformer are behind the CNN by $0.7$ to $2.1$ SNR units (the smallest gap is on pulses, the largest on chirps for the Transformer); at FAP $10^{-3}$ the ranking is unchanged and the gap grows (on chirps the Transformer needs $\snr_{50}=8.8$ against $6.2$). Four further observations:
+\begin{itemize}[nosep]
+\item \textbf{The number of parameters is not the explanation.} The Transformer has six times the parameters of the CNN. The CNN's local filters followed by a global max-pool encode the two facts the task needs --- a burst is localised and can be anywhere in the window --- and at this training-set size ($\sim1.6\times10^4$ windows per class) that prior is worth more than the flexibility of attention. The label-efficiency curve (Fig.~\ref{fig:label}) agrees: with 1000 labelled windows per class the CNN is at AUC $0.91$ and the Transformer at $0.54$.
+\item \textbf{Pre-training learns almost nothing.} The masked-patch error is $0.995$ of the error of the trivial predictor ``zero'': after whitening the noise is nearly white, so there is little to predict from the neighbours (the same reason why the autoencoder of Section~\ref{sec:ml} does not beat excess power). The pre-trained encoder is a better starting point only with 1000 labels per class (AUC $0.76$ against $0.54$) and equal to the random start with 4000 labels or the full set; at the level of $\snr_{50}$ it changes nothing ($6.29/4.87/7.29$ against $6.38/4.88/7.35$).
+\item \textbf{The attention is informative} (Fig.~\ref{fig:att}). The most attended patch is within $\pm1$ patch of the burst time in $48\,\%$ (sine-Gaussian), $61\,\%$ (pulse) and $44\,\%$ (chirp) of the windows, against $4.7\,\%$ by chance; chirps, which last 0.1--0.2\,s, are the least localised and are where the Transformer is weakest.
+\item \textbf{Glitch rejection is not better.} Taking the $5\,\%$ of test noise windows with the largest $\max|v|$, the alarm rate inside this subset at the threshold of FAP $10^{-2}$ is $2.7\,\%$ (CNN ensemble), $4.9\,\%$ (Transformer), $5.2\,\%$ (GRU), $5.7\,\%$ (Bayes) and $6.9\,\%$ (bank); the efficiency for $\snr=8$ injections is $0.96$--$0.98$ (CNN), $0.83$ (Transformer), $0.995$ (Bayes). A glitch does not hide a $\snr=8$ signal for any method (the efficiency inside the glitchy windows equals the overall one).
+\end{itemize}
+
+\begin{table}[h]\centering\small
+\begin{tabular}{lrrrrrr}
+\toprule
+& \multicolumn{3}{c}{FAP $10^{-2}$: $\snr_{50}$} & \multicolumn{3}{c}{FAP $10^{-3}$: $\snr_{50}$}\\
+statistic & SG & pulse & chirp & SG & pulse & chirp\\
+\midrule
+matched-filter bank (SG templates) & 4.87 & 5.34 & 6.28 & 6.80 & 7.37 & 9.01\\
+Bayes factor (3 families) & 5.21 & 4.78 & 5.34 & 7.56 & 7.24 & 7.72\\
+CNN ensemble (5) & \textbf{5.05} & \textbf{4.21} & \textbf{5.28} & \textbf{6.09} & \textbf{5.04} & \textbf{6.24}\\
+Transformer (2 seeds) & 6.38 & 4.88 & 7.35 & 7.46 & 5.73 & 8.78\\
+Transformer, pre-trained encoder & 6.29 & 4.87 & 7.29 & 7.26 & 5.73 & 8.77\\
+GRU & 6.27 & 5.16 & 6.36 & 7.44 & 6.05 & 7.70\\
+\bottomrule
+\end{tabular}
+\caption{Optimal SNR at 50\,\% efficiency of the sequence models, the CNN and the model-based statistics (thresholds on the validation noise; test injections). Bold: best neural network in each column.}\label{tab:seq}
+\end{table}
+
+\begin{figure}[h]\centering
+\includegraphics[width=0.95\textwidth]{fig06_efficiency.pdf}
+\caption{Efficiency against optimal SNR at FAP $10^{-2}$ (top) and $10^{-3}$ (bottom) for the model-based statistics, the CNN ensemble, the Transformer (with and without the pre-trained encoder) and the GRU.}\label{fig:seqeff}
+\end{figure}
+
+\begin{figure}[h]\centering
+\includegraphics[width=0.55\textwidth]{fig06_label_efficiency.pdf}
+\caption{Test AUC against the number of labelled windows per class for the CNN, the Transformer and the Transformer with the pre-trained encoder.}\label{fig:label}
+\end{figure}
+
+\begin{figure}[h]\centering
+\includegraphics[width=0.95\textwidth]{fig06_attention.pdf}
+\caption{Attention received by each patch (green) in the last block of the Transformer for one $\snr=10$ injection of each morphology; dashed: burst time.}\label{fig:att}
+\end{figure}
+
+\subsection{Signal hypothesis testing: which morphology?}
+Given a signal above threshold, the decision among the three families is compared across methods (Fig.~\ref{fig:morph}). The frequentist rules use the maximum matched-filter statistic of each family (a bank of 160 sine-Gaussian, 14 pulse and 120 chirp templates), either raw or converted into a background p-value to take the different trial factors into account; the Bayesian rule uses the marginal likelihood (Bayes factor) of each family with $\sigma_\rho=10$ and a uniform prior over the templates, so that the Occam factor penalises the larger families; the networks are trained as four-class classifiers (noise, sine-Gaussian, pulse, chirp) on the same data as Section~\ref{sec:ml}.
+All methods use the same rule for the four-class decision: a window is called noise if its own detection statistic is below the FAP $10^{-2}$ threshold of the validation noise, otherwise the family with the largest score is chosen.
+
+\begin{table}[h]\centering\small
+\begin{tabular}{lrrrrr}
+\toprule
+3-way accuracy at $\snr=$ & 5 & 6 & 8 & 10 & 14\\
+\midrule
+Bayes (3 families) & 0.771 & \textbf{0.906} & \textbf{0.969} & 0.977 & 0.989\\
+frequentist, max $\rho^2$ & 0.724 & 0.837 & 0.921 & 0.948 & 0.981\\
+frequentist, background p-value & \textbf{0.825} & 0.900 & 0.913 & 0.889 & 0.816\\
+CNN 4-class (2 seeds) & 0.725 & 0.863 & 0.960 & \textbf{0.980} & \textbf{0.991}\\
+GRU 4-class & 0.665 & 0.813 & 0.925 & 0.969 & 0.989\\
+Transformer 4-class & 0.643 & 0.759 & 0.867 & 0.925 & 0.955\\
+Transformer 4-class, pre-trained & 0.665 & 0.765 & 0.873 & 0.924 & 0.955\\
+\bottomrule
+\end{tabular}
+\caption{Accuracy of the choice among the three families for injections of each SNR (chance: 0.333). The p-value row is plotted in Fig.~\ref{fig:morph}; bold: best in each column (at $\snr=10$ and 14 the CNN and the Bayes factor differ by less than the statistical error, $\approx0.01$).}\label{tab:morph}
+\end{table}
+
+\begin{itemize}[nosep]
+\item \textbf{Bayesian model comparison is the best classifier from $\snr\approx6$ (tied with the CNN above $\snr\approx10$)} ($0.969$ at $\snr=8$) and has the best four-class balanced accuracy in both SNR ranges ($0.778$ for $\snr=4$--7, $0.988$ for $\snr=8$--16). The CNN is close at high SNR ($0.960$ at $\snr=8$) and $0.04$--$0.05$ behind at $\snr=5$--6; then come the GRU, and last the Transformer ($0.867$--$0.873$), pre-trained or not. The answer to the question is therefore: among the networks the convolutional structure (local filters plus global pooling) does best, a bidirectional recurrent encoder is second and attention on 16-sample patches third; none beats the Bayesian comparison, which uses the exact likelihood of each family.
+\item \textbf{The frequentist rule depends on how the trial factors are treated.} The largest raw $\rho^2_f$ is $0.05$ worse than the Bayes factor at $\snr=8$; converting each into a background p-value is the best rule at $\snr\le5$ but its accuracy \emph{falls} with SNR beyond $\snr\approx9$ ($0.82$ at 14) because the empirical p-values of loud signals saturate at $1/(N+1)$ for every family and the tie is broken by the raw $\rho^2$, which favours the families with more templates. This is a limit of the $8112$-window background, not of the method.
+\item \textbf{Detection comes first.} Only $\approx46\,\%$ of the $\snr=5$ injections and $97\,\%$ of those at $\snr=7$ pass the common Bayesian gate, so the morphology can be discussed only for signals loud enough to be detected. In the range $\snr=4$--7 the fraction of signals called noise is $0.40$ (Bayes, frequentist), $0.51$ (CNN), $0.54$ (GRU), $0.60$ (Transformer).
+\item \textbf{A signal incompatible with every hypothesis.} A Gaussian-enveloped burst of band-limited stochastic noise ($\sigma_t=15$\,ms) belongs to none of the families. It is detected when loud ($94$--$98\,\%$ at $\snr=12$) and every method gives it a family, mostly sine-Gaussian ($0.93$ max-$\rho^2$, $0.95$ CNN, $0.80$ Bayes, $0.82$--$0.85$ Transformers, $0.90$ GRU) and then pulse. No method can say ``none of the above'': a softmax is normalised over the classes it knows and the Bayesian posterior over the families it contains. Flagging such signals would need an explicit goodness-of-fit (the residual after subtracting the best template) or an open-set head; neither was tried.
+\end{itemize}
+
+\begin{figure}[h]\centering
+\includegraphics[width=0.95\textwidth]{fig06_morphology_accuracy.pdf}
+\caption{Accuracy of the morphology choice against SNR: all injections (left), injections above the common Bayesian detection threshold (centre) and the fraction passing it (right).}\label{fig:morph}
+\end{figure}
+
+\subsection{Is the Transformer's loss to the CNN real? A tuning study}\label{sec:tuning}
+The comparison above used a small budget (at most 12 epochs, two seeds, no tuning of depth, width or patch size), so ``the Transformer loses'' is a statement about that budget. It is stress-tested by changing \emph{one lever at a time}, with the same data, thresholds and test injections (verified identical to those of the previous sections), and by giving the CNN the same levers so that the comparison stays fair.
+
+\paragraph{Diagnosis.} At the best-validation epoch every model has a small train--validation gap ($0.01$--$0.03$), but the \emph{level} of the loss differs: $0.15$--$0.17$ for the CNN of Section~\ref{sec:ml}, $0.29$--$0.31$ for the Transformers and $0.29$ for the GRU (Fig.~\ref{fig:tuning}, left). The sequence models are limited by what they can fit, not by over-fitting. The CNN trained with the same loop on the static data does the opposite: it over-fits (training loss $0.07$--$0.09$, validation $0.17$--$0.19$, and a validation loss that rises again after epoch 15). So the CNN is \emph{data-limited}, the patch Transformer is \emph{capacity/bias-limited}.
+
+\paragraph{Levers.} (i) \emph{Data}: fresh injections --- new morphology, SNR, parameters and phase --- at every epoch, for the CNN, the Transformer and the hybrid; (ii) \emph{optimisation}: peak learning rate $3\times10^{-3}$ instead of $10^{-3}$, and the 25-epoch run; (iii) \emph{resolution}: patches of 8 samples (128 tokens); (iv) \emph{inductive bias}: a \emph{convolutional stem} (the backbone of the CNN, down-sampling by 8) followed by two Transformer blocks on 128 tokens (the ``hybrid''). Budget: 12 epochs for the sequence models, 20 for the CNN; the Transformer variants take 23--81\,min each on a laptop.
+
+\begin{table}[h]\centering\small
+\begin{tabular}{lrrrr}
+\toprule
+model & train loss & val.\ loss & $\overline{\snr_{50}}$ @$10^{-2}$ & $\overline{\snr_{50}}$ @$10^{-3}$\\
+\midrule
+Transformer (Sec.~\ref{sec:seq}, 2 seeds) & 0.30 & 0.31 & 6.20 & 7.32\\
+\quad + fresh injections & 0.30 & 0.30 & 6.29 & 7.25\\
+\quad + learning rate $3\times10^{-3}$ & 0.30 & 0.32 & 6.36 & 7.68\\
+\quad + patches of 8 samples & 0.31 & 0.31 & 6.59 & 7.58\\
+\midrule
+hybrid (conv.\ stem + 2 blocks), static & 0.24 & 0.27 & 5.66 & 6.60\\
+hybrid, fresh injections & 0.23 & 0.25 & 5.36 & 6.14\\
+\midrule
+CNN, static data (2 seeds) & 0.08 & 0.18 & 5.22 & 6.26\\
+CNN, fresh injections (2 seeds) & 0.09 & \textbf{0.117} & \textbf{4.60} & \textbf{5.65}\\
+CNN ensemble of Sec.~\ref{sec:ml} (5, static) & -- & -- & 4.85 & 5.79\\
+\bottomrule
+\end{tabular}
+\caption{Tuning study: training and validation loss at the best epoch and mean over the three morphologies of $\snr_{50}$ at FAP $10^{-2}$ and $10^{-3}$ (thresholds on the validation noise). Differences below $\approx0.3$ are not significant: the seed-to-seed difference of the same configuration is $0.23$ and $0.14$ (static CNN) and $0.06$ and $0.02$ (fresh CNN); most variants have a single seed.}\label{tab:tuning}
+\end{table}
+
+\begin{figure}[h]\centering
+\includegraphics[width=0.95\textwidth]{fig07_training_curves.pdf}\\[0.3em]
+\includegraphics[width=0.95\textwidth]{fig07_levers.pdf}
+\caption{Top: training and validation loss of the variants. Bottom: mean $\snr_{50}$ over the three morphologies for every model, at FAP $10^{-2}$ and $10^{-3}$ (dotted: the Transformer of Section~\ref{sec:seq}).}\label{fig:tuning}\label{fig:levers}
+\end{figure}
+
+\paragraph{Findings.}
+\begin{enumerate}[nosep]
+\item \textbf{The patch Transformer does not recover with any single lever.} Fresh injections, a three times higher learning rate, smaller patches (four times the cost) and the 25-epoch run leave $\overline{\snr_{50}}$ at $6.3$--$6.6$ and the validation loss at $0.30$--$0.32$: the limitation is the embedding, not the data or the optimisation time. Chirps are the worst case ($\snr_{50}\approx7.4$--$8.0$ against $5.5$--$5.8$ for the CNN): a 30--80\,ms oscillation needs frequency-selective filters, which a linear map of 16 raw samples does not provide.
+\item \textbf{A convolutional stem is the lever that works.} The hybrid reaches $5.66$ (static) and $5.36$ (fresh), $0.5$--$0.9$ better than the patch Transformer, well above the seed scatter, and a validation loss of $0.27$/$0.25$; it is the only sequence model competitive at FAP $10^{-3}$ ($6.14$ against $7.3$--$7.7$).
+\item \textbf{But the CNN stays ahead with the same data.} Static data: hybrid $5.66$ against CNN $5.1$--$5.3$; fresh data: $5.36$ against $4.6$. Attention on top of a good convolutional front-end does not add detection power on one-second windows with a localised burst.
+\item \textbf{The CNN of Section~\ref{sec:ml} was data-limited, and fresh injections are the best lever of the whole study.} A \emph{single} CNN trained with fresh injections reaches $\overline{\snr_{50}}=4.6$ at FAP $10^{-2}$ and $5.65$ at $10^{-3}$, better than the five-member static ensemble ($4.85$, $5.79$), with the same $\snr_{90}$ ($6.6$); its validation loss falls from $0.17$--$0.19$ to $0.117$. This is the reference CNN for any future comparison; the numbers of Section~\ref{sec:ml} are unchanged but should be read as those of a data-limited network.
+\item \textbf{The comparison does not favour the CNN.} At a nominal FAP of $1\,\%$ the observed false-alarm probability on the test chunks is $0.4$--$0.5\,\%$ for the fresh CNN and $0.97$--$0.99\,\%$ for the hybrids: the CNN threshold is the more conservative one, so at equal observed FAP the gap would be larger.
+\end{enumerate}
+
+\paragraph{Intuition (interpretation, not tested separately).} The burst is a short, localised oscillation in white noise; seeing it requires a filter tuned to its frequency, which is what a convolution does (a learned matched filter). A patch Transformer first mixes 16 raw samples with a single linear map, which cannot build such filters, and nothing downstream recovers what is lost: this is consistent with the high training loss. Once the filters are provided by a convolutional stem the Transformer improves a lot, but a burst that sits in one place of a one-second window leaves little long-range structure for attention to exploit, and recurrence, whose strength is remembering distant context, is similarly wasted.
+
+\paragraph{Caveats.} A single seed for the Transformer, GRU and hybrid variants; a budget of 12 epochs (the hybrid reaches its best validation epoch at 7 with static and 11 with fresh data, so the longer fresh-data runs might gain a little more); depth, width, number of heads and the pre-training were not swept; the multiclass networks of the previous subsection were trained on static data and probably under-estimate what a CNN trained with fresh injections would do; the unit tested is one second of whitened data with one localised burst --- longer windows, or several overlapping signals, are the setting where attention could be expected to matter.
