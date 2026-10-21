@@ -1,0 +1,1976 @@
+{
+ "params": {
+  "transformer": 114049,
+  "gru": 88385,
+  "cnn": 17761
+ },
+ "pretraining": {
+  "final_ratio": 0.9950711562948749,
+  "epochs": 30
+ },
+ "label_efficiency": [
+  {
+   "n_per_class": 250,
+   "model": "CNN",
+   "AUC": 0.41370942407867756,
+   "AUC_spread": 0.0
+  },
+  {
+   "n_per_class": 250,
+   "model": "Transformer",
+   "AUC": 0.5192626667240487,
+   "AUC_spread": 0.0
+  },
+  {
+   "n_per_class": 250,
+   "model": "Transformer + MAE",
+   "AUC": 0.565267149332423,
+   "AUC_spread": 0.0
+  },
+  {
+   "n_per_class": 1000,
+   "model": "CNN",
+   "AUC": 0.9137580833323609,
+   "AUC_spread": 0.0
+  },
+  {
+   "n_per_class": 1000,
+   "model": "Transformer",
+   "AUC": 0.5431652865796016,
+   "AUC_spread": 0.0
+  },
+  {
+   "n_per_class": 1000,
+   "model": "Transformer + MAE",
+   "AUC": 0.7561766555209317,
+   "AUC_spread": 0.0
+  },
+  {
+   "n_per_class": 4000,
+   "model": "CNN",
+   "AUC": 0.9256102359739777,
+   "AUC_spread": 0.0
+  },
+  {
+   "n_per_class": 4000,
+   "model": "Transformer",
+   "AUC": 0.9130608442480811,
+   "AUC_spread": 0.0
+  },
+  {
+   "n_per_class": 4000,
+   "model": "Transformer + MAE",
+   "AUC": 0.902919135797066,
+   "AUC_spread": 0.0
+  },
+  {
+   "n_per_class": 16224,
+   "model": "CNN",
+   "AUC": 0.9915184656548945,
+   "AUC_spread": 0.0006132631205528205
+  },
+  {
+   "n_per_class": 16224,
+   "model": "Transformer",
+   "AUC": 0.9359241893690503,
+   "AUC_spread": 0.0006115155208733514
+  },
+  {
+   "n_per_class": 16224,
+   "model": "Transformer + MAE",
+   "AUC": 0.937003108022449,
+   "AUC_spread": 0.0005563255631708675
+  }
+ ],
+ "detection": [
+  {
+   "FAP": 0.01,
+   "statistic": "matched-filter bank (SG)",
+   "morphology": "sg",
+   "rho50": 4.873626373626373,
+   "rho90": 6.53225806451613,
+   "eff_rho8": 1.0,
+   "observed_test_FAP": 0.008505917159763314
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "matched-filter bank (SG)",
+   "morphology": "pulse",
+   "rho50": 5.343373493975903,
+   "rho90": 6.81981981981982,
+   "eff_rho8": 0.992,
+   "observed_test_FAP": 0.008505917159763314
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "matched-filter bank (SG)",
+   "morphology": "chirp",
+   "rho50": 6.279411764705882,
+   "rho90": 8.209302325581396,
+   "eff_rho8": 0.882,
+   "observed_test_FAP": 0.008505917159763314
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "Freq. (max \u03c1\u00b2)",
+   "morphology": "sg",
+   "rho50": 4.976608187134503,
+   "rho90": 6.606060606060606,
+   "eff_rho8": 0.998,
+   "observed_test_FAP": 0.008259368836291914
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "Freq. (max \u03c1\u00b2)",
+   "morphology": "pulse",
+   "rho50": 5.261111111111111,
+   "rho90": 6.6380952380952385,
+   "eff_rho8": 0.996,
+   "observed_test_FAP": 0.008259368836291914
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "Freq. (max \u03c1\u00b2)",
+   "morphology": "chirp",
+   "rho50": 5.230366492146596,
+   "rho90": 6.616279069767442,
+   "eff_rho8": 1.0,
+   "observed_test_FAP": 0.008259368836291914
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "Freq. (p-value)",
+   "morphology": "sg",
+   "rho50": 5.15625,
+   "rho90": 6.74712643678161,
+   "eff_rho8": 0.996,
+   "observed_test_FAP": 0.0070266272189349116
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "Freq. (p-value)",
+   "morphology": "pulse",
+   "rho50": 4.822485207100591,
+   "rho90": 6.328571428571429,
+   "eff_rho8": 1.0,
+   "observed_test_FAP": 0.0070266272189349116
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "Freq. (p-value)",
+   "morphology": "chirp",
+   "rho50": 5.2894736842105265,
+   "rho90": 6.670103092783505,
+   "eff_rho8": 0.998,
+   "observed_test_FAP": 0.0070266272189349116
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "Bayes (3 families)",
+   "morphology": "sg",
+   "rho50": 5.209876543209877,
+   "rho90": 6.765957446808511,
+   "eff_rho8": 0.994,
+   "observed_test_FAP": 0.0071499013806706115
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "Bayes (3 families)",
+   "morphology": "pulse",
+   "rho50": 4.775147928994083,
+   "rho90": 6.241935483870968,
+   "eff_rho8": 1.0,
+   "observed_test_FAP": 0.0071499013806706115
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "Bayes (3 families)",
+   "morphology": "chirp",
+   "rho50": 5.338541666666667,
+   "rho90": 6.70873786407767,
+   "eff_rho8": 1.0,
+   "observed_test_FAP": 0.0071499013806706115
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "CNN",
+   "morphology": "sg",
+   "rho50": 5.052631578947368,
+   "rho90": 7.054054054054054,
+   "eff_rho8": 0.97,
+   "observed_test_FAP": 0.005300788954635109
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "CNN",
+   "morphology": "pulse",
+   "rho50": 4.212328767123288,
+   "rho90": 5.904255319148936,
+   "eff_rho8": 1.0,
+   "observed_test_FAP": 0.005300788954635109
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "CNN",
+   "morphology": "chirp",
+   "rho50": 5.281690140845071,
+   "rho90": 6.9245283018867925,
+   "eff_rho8": 0.972,
+   "observed_test_FAP": 0.005300788954635109
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "CNN (single)",
+   "morphology": "sg",
+   "rho50": 5.5588235294117645,
+   "rho90": 7.796610169491525,
+   "eff_rho8": 0.924,
+   "observed_test_FAP": 0.0034516765285996054
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "CNN (single)",
+   "morphology": "pulse",
+   "rho50": 4.62043795620438,
+   "rho90": 6.5166666666666675,
+   "eff_rho8": 0.994,
+   "observed_test_FAP": 0.0034516765285996054
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "CNN (single)",
+   "morphology": "chirp",
+   "rho50": 5.713333333333334,
+   "rho90": 7.638888888888889,
+   "eff_rho8": 0.952,
+   "observed_test_FAP": 0.0034516765285996054
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "Transformer",
+   "morphology": "sg",
+   "rho50": 6.383333333333334,
+   "rho90": 8.774193548387096,
+   "eff_rho8": 0.852,
+   "observed_test_FAP": 0.008259368836291914
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "Transformer",
+   "morphology": "pulse",
+   "rho50": 4.883561643835616,
+   "rho90": 6.6000000000000005,
+   "eff_rho8": 0.996,
+   "observed_test_FAP": 0.008259368836291914
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "Transformer",
+   "morphology": "chirp",
+   "rho50": 7.345794392523365,
+   "rho90": 9.573529411764707,
+   "eff_rho8": 0.64,
+   "observed_test_FAP": 0.008259368836291914
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "Transformer (single)",
+   "morphology": "sg",
+   "rho50": 6.486725663716814,
+   "rho90": 8.883720930232558,
+   "eff_rho8": 0.824,
+   "observed_test_FAP": 0.008752465483234714
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "Transformer (single)",
+   "morphology": "pulse",
+   "rho50": 5.090909090909091,
+   "rho90": 6.752688172043011,
+   "eff_rho8": 0.992,
+   "observed_test_FAP": 0.008752465483234714
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "Transformer (single)",
+   "morphology": "chirp",
+   "rho50": 7.443396226415095,
+   "rho90": 9.671641791044776,
+   "eff_rho8": 0.618,
+   "observed_test_FAP": 0.008752465483234714
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "Transformer + MAE",
+   "morphology": "sg",
+   "rho50": 6.285714285714286,
+   "rho90": 8.379310344827585,
+   "eff_rho8": 0.878,
+   "observed_test_FAP": 0.009245562130177515
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "Transformer + MAE",
+   "morphology": "pulse",
+   "rho50": 4.868421052631579,
+   "rho90": 6.480519480519481,
+   "eff_rho8": 0.998,
+   "observed_test_FAP": 0.009245562130177515
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "Transformer + MAE",
+   "morphology": "chirp",
+   "rho50": 7.285714285714286,
+   "rho90": 9.431818181818182,
+   "eff_rho8": 0.65,
+   "observed_test_FAP": 0.009245562130177515
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "Transformer + MAE (single)",
+   "morphology": "sg",
+   "rho50": 6.378378378378378,
+   "rho90": 8.682926829268293,
+   "eff_rho8": 0.844,
+   "observed_test_FAP": 0.008752465483234714
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "Transformer + MAE (single)",
+   "morphology": "pulse",
+   "rho50": 4.95945945945946,
+   "rho90": 6.573033707865169,
+   "eff_rho8": 0.998,
+   "observed_test_FAP": 0.008752465483234714
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "Transformer + MAE (single)",
+   "morphology": "chirp",
+   "rho50": 7.28,
+   "rho90": 9.625,
+   "eff_rho8": 0.644,
+   "observed_test_FAP": 0.008752465483234714
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "GRU",
+   "morphology": "sg",
+   "rho50": 6.270833333333333,
+   "rho90": 9.11111111111111,
+   "eff_rho8": 0.802,
+   "observed_test_FAP": 0.009738658777120315
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "GRU",
+   "morphology": "pulse",
+   "rho50": 5.157894736842105,
+   "rho90": 6.705882352941177,
+   "eff_rho8": 0.994,
+   "observed_test_FAP": 0.009738658777120315
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "GRU",
+   "morphology": "chirp",
+   "rho50": 6.364779874213837,
+   "rho90": 8.155555555555555,
+   "eff_rho8": 0.886,
+   "observed_test_FAP": 0.009738658777120315
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "GRU (single)",
+   "morphology": "sg",
+   "rho50": 6.270833333333333,
+   "rho90": 9.11111111111111,
+   "eff_rho8": 0.802,
+   "observed_test_FAP": 0.009738658777120315
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "GRU (single)",
+   "morphology": "pulse",
+   "rho50": 5.157894736842105,
+   "rho90": 6.705882352941177,
+   "eff_rho8": 0.994,
+   "observed_test_FAP": 0.009738658777120315
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "GRU (single)",
+   "morphology": "chirp",
+   "rho50": 6.364779874213837,
+   "rho90": 8.155555555555555,
+   "eff_rho8": 0.886,
+   "observed_test_FAP": 0.009738658777120315
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "CNN 4-class",
+   "morphology": "sg",
+   "rho50": 5.801470588235294,
+   "rho90": 7.666666666666667,
+   "eff_rho8": 0.946,
+   "observed_test_FAP": 0.0072731755424063115
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "CNN 4-class",
+   "morphology": "pulse",
+   "rho50": 4.863636363636363,
+   "rho90": 6.447368421052632,
+   "eff_rho8": 1.0,
+   "observed_test_FAP": 0.0072731755424063115
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "CNN 4-class",
+   "morphology": "chirp",
+   "rho50": 5.965986394557823,
+   "rho90": 7.736842105263158,
+   "eff_rho8": 0.94,
+   "observed_test_FAP": 0.0072731755424063115
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "CNN 4-class (single)",
+   "morphology": "sg",
+   "rho50": 6.024793388429752,
+   "rho90": 7.891304347826087,
+   "eff_rho8": 0.92,
+   "observed_test_FAP": 0.0072731755424063115
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "CNN 4-class (single)",
+   "morphology": "pulse",
+   "rho50": 5.013888888888889,
+   "rho90": 6.604166666666667,
+   "eff_rho8": 1.0,
+   "observed_test_FAP": 0.0072731755424063115
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "CNN 4-class (single)",
+   "morphology": "chirp",
+   "rho50": 6.300653594771242,
+   "rho90": 7.978947368421053,
+   "eff_rho8": 0.904,
+   "observed_test_FAP": 0.0072731755424063115
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "Transformer 4-class",
+   "morphology": "sg",
+   "rho50": 6.27906976744186,
+   "rho90": 8.372093023255815,
+   "eff_rho8": 0.868,
+   "observed_test_FAP": 0.008136094674556213
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "Transformer 4-class",
+   "morphology": "pulse",
+   "rho50": 4.871621621621622,
+   "rho90": 6.5125,
+   "eff_rho8": 0.998,
+   "observed_test_FAP": 0.008136094674556213
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "Transformer 4-class",
+   "morphology": "chirp",
+   "rho50": 7.076271186440678,
+   "rho90": 9.162790697674419,
+   "eff_rho8": 0.718,
+   "observed_test_FAP": 0.008136094674556213
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "Transformer 4-class (single)",
+   "morphology": "sg",
+   "rho50": 6.186440677966102,
+   "rho90": 8.48936170212766,
+   "eff_rho8": 0.854,
+   "observed_test_FAP": 0.010601577909270217
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "Transformer 4-class (single)",
+   "morphology": "pulse",
+   "rho50": 4.857142857142857,
+   "rho90": 6.447368421052632,
+   "eff_rho8": 0.998,
+   "observed_test_FAP": 0.010601577909270217
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "Transformer 4-class (single)",
+   "morphology": "chirp",
+   "rho50": 7.238532110091743,
+   "rho90": 9.54761904761905,
+   "eff_rho8": 0.666,
+   "observed_test_FAP": 0.010601577909270217
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "Transformer + MAE 4-class",
+   "morphology": "sg",
+   "rho50": 6.10077519379845,
+   "rho90": 8.135135135135135,
+   "eff_rho8": 0.89,
+   "observed_test_FAP": 0.006780078895463511
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "Transformer + MAE 4-class",
+   "morphology": "pulse",
+   "rho50": 5.032894736842105,
+   "rho90": 6.616279069767442,
+   "eff_rho8": 0.998,
+   "observed_test_FAP": 0.006780078895463511
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "Transformer + MAE 4-class",
+   "morphology": "chirp",
+   "rho50": 6.95,
+   "rho90": 9.076923076923077,
+   "eff_rho8": 0.738,
+   "observed_test_FAP": 0.006780078895463511
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "Transformer + MAE 4-class (single)",
+   "morphology": "sg",
+   "rho50": 6.285714285714286,
+   "rho90": 8.511111111111111,
+   "eff_rho8": 0.854,
+   "observed_test_FAP": 0.007642998027613412
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "Transformer + MAE 4-class (single)",
+   "morphology": "pulse",
+   "rho50": 5.063694267515924,
+   "rho90": 6.623529411764706,
+   "eff_rho8": 1.0,
+   "observed_test_FAP": 0.007642998027613412
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "Transformer + MAE 4-class (single)",
+   "morphology": "chirp",
+   "rho50": 7.176991150442478,
+   "rho90": 9.347826086956522,
+   "eff_rho8": 0.686,
+   "observed_test_FAP": 0.007642998027613412
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "GRU 4-class",
+   "morphology": "sg",
+   "rho50": 6.3052631578947365,
+   "rho90": 9.375,
+   "eff_rho8": 0.792,
+   "observed_test_FAP": 0.008875739644970414
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "GRU 4-class",
+   "morphology": "pulse",
+   "rho50": 4.917197452229299,
+   "rho90": 6.585365853658537,
+   "eff_rho8": 0.998,
+   "observed_test_FAP": 0.008875739644970414
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "GRU 4-class",
+   "morphology": "chirp",
+   "rho50": 5.903225806451613,
+   "rho90": 7.776119402985074,
+   "eff_rho8": 0.93,
+   "observed_test_FAP": 0.008875739644970414
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "GRU 4-class (single)",
+   "morphology": "sg",
+   "rho50": 6.3052631578947365,
+   "rho90": 9.375,
+   "eff_rho8": 0.792,
+   "observed_test_FAP": 0.008875739644970414
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "GRU 4-class (single)",
+   "morphology": "pulse",
+   "rho50": 4.917197452229299,
+   "rho90": 6.585365853658537,
+   "eff_rho8": 0.998,
+   "observed_test_FAP": 0.008875739644970414
+  },
+  {
+   "FAP": 0.01,
+   "statistic": "GRU 4-class (single)",
+   "morphology": "chirp",
+   "rho50": 5.903225806451613,
+   "rho90": 7.776119402985074,
+   "eff_rho8": 0.93,
+   "observed_test_FAP": 0.008875739644970414
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "matched-filter bank (SG)",
+   "morphology": "sg",
+   "rho50": 6.8040201005025125,
+   "rho90": 8.25,
+   "eff_rho8": 0.874,
+   "observed_test_FAP": 0.0014792899408284023
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "matched-filter bank (SG)",
+   "morphology": "pulse",
+   "rho50": 7.370588235294118,
+   "rho90": 8.86111111111111,
+   "eff_rho8": 0.714,
+   "observed_test_FAP": 0.0014792899408284023
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "matched-filter bank (SG)",
+   "morphology": "chirp",
+   "rho50": 9.008849557522124,
+   "rho90": 11.43089430894309,
+   "eff_rho8": 0.282,
+   "observed_test_FAP": 0.0014792899408284023
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "Freq. (max \u03c1\u00b2)",
+   "morphology": "sg",
+   "rho50": 7.497267759562842,
+   "rho90": 8.981818181818182,
+   "eff_rho8": 0.684,
+   "observed_test_FAP": 0.0016025641025641025
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "Freq. (max \u03c1\u00b2)",
+   "morphology": "pulse",
+   "rho50": 7.6477272727272725,
+   "rho90": 9.048780487804878,
+   "eff_rho8": 0.624,
+   "observed_test_FAP": 0.0016025641025641025
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "Freq. (max \u03c1\u00b2)",
+   "morphology": "chirp",
+   "rho50": 7.721311475409836,
+   "rho90": 9.20754716981132,
+   "eff_rho8": 0.602,
+   "observed_test_FAP": 0.0016025641025641025
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "Freq. (p-value)",
+   "morphology": "sg",
+   "rho50": 7.126506024096385,
+   "rho90": 8.705128205128206,
+   "eff_rho8": 0.79,
+   "observed_test_FAP": 0.0019723865877712033
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "Freq. (p-value)",
+   "morphology": "pulse",
+   "rho50": 5.683333333333334,
+   "rho90": 6.9727891156462585,
+   "eff_rho8": 0.982,
+   "observed_test_FAP": 0.0019723865877712033
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "Freq. (p-value)",
+   "morphology": "chirp",
+   "rho50": 6.9447852760736195,
+   "rho90": 8.43939393939394,
+   "eff_rho8": 0.842,
+   "observed_test_FAP": 0.0019723865877712033
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "Bayes (3 families)",
+   "morphology": "sg",
+   "rho50": 7.56043956043956,
+   "rho90": 9.0625,
+   "eff_rho8": 0.66,
+   "observed_test_FAP": 0.0016025641025641025
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "Bayes (3 families)",
+   "morphology": "pulse",
+   "rho50": 7.244565217391305,
+   "rho90": 8.74390243902439,
+   "eff_rho8": 0.778,
+   "observed_test_FAP": 0.0016025641025641025
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "Bayes (3 families)",
+   "morphology": "chirp",
+   "rho50": 7.72,
+   "rho90": 9.192307692307692,
+   "eff_rho8": 0.598,
+   "observed_test_FAP": 0.0016025641025641025
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "CNN",
+   "morphology": "sg",
+   "rho50": 6.091549295774648,
+   "rho90": 7.922077922077922,
+   "eff_rho8": 0.912,
+   "observed_test_FAP": 0.0009861932938856016
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "CNN",
+   "morphology": "pulse",
+   "rho50": 5.037735849056604,
+   "rho90": 6.635135135135135,
+   "eff_rho8": 0.996,
+   "observed_test_FAP": 0.0009861932938856016
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "CNN",
+   "morphology": "chirp",
+   "rho50": 6.239726027397261,
+   "rho90": 8.175,
+   "eff_rho8": 0.886,
+   "observed_test_FAP": 0.0009861932938856016
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "CNN (single)",
+   "morphology": "sg",
+   "rho50": 6.510489510489511,
+   "rho90": 8.75,
+   "eff_rho8": 0.828,
+   "observed_test_FAP": 0.000616370808678501
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "CNN (single)",
+   "morphology": "pulse",
+   "rho50": 5.394366197183099,
+   "rho90": 7.0,
+   "eff_rho8": 0.974,
+   "observed_test_FAP": 0.000616370808678501
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "CNN (single)",
+   "morphology": "chirp",
+   "rho50": 6.708661417322835,
+   "rho90": 8.770833333333334,
+   "eff_rho8": 0.826,
+   "observed_test_FAP": 0.000616370808678501
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "Transformer",
+   "morphology": "sg",
+   "rho50": 7.464285714285714,
+   "rho90": 9.68421052631579,
+   "eff_rho8": 0.65,
+   "observed_test_FAP": 0.0018491124260355029
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "Transformer",
+   "morphology": "pulse",
+   "rho50": 5.726027397260274,
+   "rho90": 7.315789473684211,
+   "eff_rho8": 0.978,
+   "observed_test_FAP": 0.0018491124260355029
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "Transformer",
+   "morphology": "chirp",
+   "rho50": 8.778688524590164,
+   "rho90": 11.738317757009346,
+   "eff_rho8": 0.31,
+   "observed_test_FAP": 0.0018491124260355029
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "Transformer (single)",
+   "morphology": "sg",
+   "rho50": 7.723076923076923,
+   "rho90": 9.897058823529411,
+   "eff_rho8": 0.572,
+   "observed_test_FAP": 0.0023422090729783036
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "Transformer (single)",
+   "morphology": "pulse",
+   "rho50": 5.948529411764706,
+   "rho90": 7.666666666666667,
+   "eff_rho8": 0.952,
+   "observed_test_FAP": 0.0023422090729783036
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "Transformer (single)",
+   "morphology": "chirp",
+   "rho50": 8.916666666666666,
+   "rho90": 11.844827586206897,
+   "eff_rho8": 0.28,
+   "observed_test_FAP": 0.0023422090729783036
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "Transformer + MAE",
+   "morphology": "sg",
+   "rho50": 7.260504201680672,
+   "rho90": 9.653061224489797,
+   "eff_rho8": 0.676,
+   "observed_test_FAP": 0.0019723865877712033
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "Transformer + MAE",
+   "morphology": "pulse",
+   "rho50": 5.728476821192053,
+   "rho90": 7.155555555555556,
+   "eff_rho8": 0.976,
+   "observed_test_FAP": 0.0019723865877712033
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "Transformer + MAE",
+   "morphology": "chirp",
+   "rho50": 8.769911504424778,
+   "rho90": 11.571428571428573,
+   "eff_rho8": 0.326,
+   "observed_test_FAP": 0.0019723865877712033
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "Transformer + MAE (single)",
+   "morphology": "sg",
+   "rho50": 7.299145299145299,
+   "rho90": 9.837837837837839,
+   "eff_rho8": 0.664,
+   "observed_test_FAP": 0.0023422090729783036
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "Transformer + MAE (single)",
+   "morphology": "pulse",
+   "rho50": 5.657534246575342,
+   "rho90": 7.051282051282051,
+   "eff_rho8": 0.974,
+   "observed_test_FAP": 0.0023422090729783036
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "Transformer + MAE (single)",
+   "morphology": "chirp",
+   "rho50": 8.644859813084112,
+   "rho90": 11.448979591836736,
+   "eff_rho8": 0.362,
+   "observed_test_FAP": 0.0023422090729783036
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "GRU",
+   "morphology": "sg",
+   "rho50": 7.441441441441441,
+   "rho90": 10.4,
+   "eff_rho8": 0.624,
+   "observed_test_FAP": 0.0019723865877712033
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "GRU",
+   "morphology": "pulse",
+   "rho50": 6.048780487804878,
+   "rho90": 7.602739726027397,
+   "eff_rho8": 0.958,
+   "observed_test_FAP": 0.0019723865877712033
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "GRU",
+   "morphology": "chirp",
+   "rho50": 7.698275862068965,
+   "rho90": 9.864406779661017,
+   "eff_rho8": 0.57,
+   "observed_test_FAP": 0.0019723865877712033
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "GRU (single)",
+   "morphology": "sg",
+   "rho50": 7.441441441441441,
+   "rho90": 10.4,
+   "eff_rho8": 0.624,
+   "observed_test_FAP": 0.0019723865877712033
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "GRU (single)",
+   "morphology": "pulse",
+   "rho50": 6.048780487804878,
+   "rho90": 7.602739726027397,
+   "eff_rho8": 0.958,
+   "observed_test_FAP": 0.0019723865877712033
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "GRU (single)",
+   "morphology": "chirp",
+   "rho50": 7.698275862068965,
+   "rho90": 9.864406779661017,
+   "eff_rho8": 0.57,
+   "observed_test_FAP": 0.0019723865877712033
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "CNN 4-class",
+   "morphology": "sg",
+   "rho50": 7.167785234899329,
+   "rho90": 9.071428571428571,
+   "eff_rho8": 0.748,
+   "observed_test_FAP": 0.0017258382642998027
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "CNN 4-class",
+   "morphology": "pulse",
+   "rho50": 5.869047619047619,
+   "rho90": 7.53968253968254,
+   "eff_rho8": 0.958,
+   "observed_test_FAP": 0.0017258382642998027
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "CNN 4-class",
+   "morphology": "chirp",
+   "rho50": 7.4222222222222225,
+   "rho90": 9.204545454545455,
+   "eff_rho8": 0.656,
+   "observed_test_FAP": 0.0017258382642998027
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "CNN 4-class (single)",
+   "morphology": "sg",
+   "rho50": 7.325757575757576,
+   "rho90": 9.4,
+   "eff_rho8": 0.678,
+   "observed_test_FAP": 0.0017258382642998027
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "CNN 4-class (single)",
+   "morphology": "pulse",
+   "rho50": 5.808139534883721,
+   "rho90": 7.53968253968254,
+   "eff_rho8": 0.958,
+   "observed_test_FAP": 0.0017258382642998027
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "CNN 4-class (single)",
+   "morphology": "chirp",
+   "rho50": 7.6879432624113475,
+   "rho90": 9.64,
+   "eff_rho8": 0.588,
+   "observed_test_FAP": 0.0017258382642998027
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "Transformer 4-class",
+   "morphology": "sg",
+   "rho50": 7.161538461538462,
+   "rho90": 9.32608695652174,
+   "eff_rho8": 0.718,
+   "observed_test_FAP": 0.0017258382642998027
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "Transformer 4-class",
+   "morphology": "pulse",
+   "rho50": 5.64625850340136,
+   "rho90": 7.229166666666667,
+   "eff_rho8": 0.974,
+   "observed_test_FAP": 0.0017258382642998027
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "Transformer 4-class",
+   "morphology": "chirp",
+   "rho50": 8.803921568627452,
+   "rho90": 11.631578947368421,
+   "eff_rho8": 0.336,
+   "observed_test_FAP": 0.0017258382642998027
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "Transformer 4-class (single)",
+   "morphology": "sg",
+   "rho50": 7.512605042016807,
+   "rho90": 9.666666666666668,
+   "eff_rho8": 0.616,
+   "observed_test_FAP": 0.0017258382642998027
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "Transformer 4-class (single)",
+   "morphology": "pulse",
+   "rho50": 5.964788732394366,
+   "rho90": 7.657534246575342,
+   "eff_rho8": 0.95,
+   "observed_test_FAP": 0.0017258382642998027
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "Transformer 4-class (single)",
+   "morphology": "chirp",
+   "rho50": 9.314606741573034,
+   "rho90": NaN,
+   "eff_rho8": 0.218,
+   "observed_test_FAP": 0.0017258382642998027
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "Transformer + MAE 4-class",
+   "morphology": "sg",
+   "rho50": 6.925925925925926,
+   "rho90": 9.025641025641026,
+   "eff_rho8": 0.764,
+   "observed_test_FAP": 0.0019723865877712033
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "Transformer + MAE 4-class",
+   "morphology": "pulse",
+   "rho50": 5.731543624161074,
+   "rho90": 7.288461538461538,
+   "eff_rho8": 0.974,
+   "observed_test_FAP": 0.0019723865877712033
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "Transformer + MAE 4-class",
+   "morphology": "chirp",
+   "rho50": 8.325203252032521,
+   "rho90": 10.711111111111112,
+   "eff_rho8": 0.42,
+   "observed_test_FAP": 0.0019723865877712033
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "Transformer + MAE 4-class (single)",
+   "morphology": "sg",
+   "rho50": 7.121951219512195,
+   "rho90": 9.390243902439025,
+   "eff_rho8": 0.716,
+   "observed_test_FAP": 0.0022189349112426036
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "Transformer + MAE 4-class (single)",
+   "morphology": "pulse",
+   "rho50": 5.751515151515152,
+   "rho90": 7.500000000000001,
+   "eff_rho8": 0.952,
+   "observed_test_FAP": 0.0022189349112426036
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "Transformer + MAE 4-class (single)",
+   "morphology": "chirp",
+   "rho50": 8.415094339622641,
+   "rho90": 11.03225806451613,
+   "eff_rho8": 0.412,
+   "observed_test_FAP": 0.0022189349112426036
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "GRU 4-class",
+   "morphology": "sg",
+   "rho50": 7.216216216216216,
+   "rho90": 10.540540540540542,
+   "eff_rho8": 0.674,
+   "observed_test_FAP": 0.0023422090729783036
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "GRU 4-class",
+   "morphology": "pulse",
+   "rho50": 5.5777777777777775,
+   "rho90": 6.984126984126984,
+   "eff_rho8": 0.98,
+   "observed_test_FAP": 0.0023422090729783036
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "GRU 4-class",
+   "morphology": "chirp",
+   "rho50": 6.683098591549296,
+   "rho90": 8.728813559322035,
+   "eff_rho8": 0.814,
+   "observed_test_FAP": 0.0023422090729783036
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "GRU 4-class (single)",
+   "morphology": "sg",
+   "rho50": 7.216216216216216,
+   "rho90": 10.540540540540542,
+   "eff_rho8": 0.674,
+   "observed_test_FAP": 0.0023422090729783036
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "GRU 4-class (single)",
+   "morphology": "pulse",
+   "rho50": 5.5777777777777775,
+   "rho90": 6.984126984126984,
+   "eff_rho8": 0.98,
+   "observed_test_FAP": 0.0023422090729783036
+  },
+  {
+   "FAP": 0.001,
+   "statistic": "GRU 4-class (single)",
+   "morphology": "chirp",
+   "rho50": 6.683098591549296,
+   "rho90": 8.728813559322035,
+   "eff_rho8": 0.814,
+   "observed_test_FAP": 0.0023422090729783036
+  }
+ ],
+ "glitches": [
+  {
+   "statistic": "matched-filter bank (SG)",
+   "alarm_rate_glitchy": 0.06896551724137931,
+   "alarm_rate_rest": 0.005320529457565533,
+   "share_of_false_alarms_from_glitchy": 0.4057971014492754,
+   "eff_rho8_in_glitchy": 0.9548440065681444,
+   "eff_rho8_all": 0.9580000000000001
+  },
+  {
+   "statistic": "Bayes (3 families)",
+   "alarm_rate_glitchy": 0.05665024630541872,
+   "alarm_rate_rest": 0.004541915390604724,
+   "share_of_false_alarms_from_glitchy": 0.39655172413793105,
+   "eff_rho8_in_glitchy": 0.9950738916256157,
+   "eff_rho8_all": 0.9979999999999999
+  },
+  {
+   "statistic": "CNN",
+   "alarm_rate_glitchy": 0.027093596059113302,
+   "alarm_rate_rest": 0.004152608357124318,
+   "share_of_false_alarms_from_glitchy": 0.2558139534883721,
+   "eff_rho8_in_glitchy": 0.9630541871921182,
+   "eff_rho8_all": 0.9806666666666667
+  },
+  {
+   "statistic": "Transformer",
+   "alarm_rate_glitchy": 0.04926108374384237,
+   "alarm_rate_rest": 0.006099143524526343,
+   "share_of_false_alarms_from_glitchy": 0.29850746268656714,
+   "eff_rho8_in_glitchy": 0.8284072249589491,
+   "eff_rho8_all": 0.8293333333333334
+  },
+  {
+   "statistic": "Transformer + MAE",
+   "alarm_rate_glitchy": 0.046798029556650245,
+   "alarm_rate_rest": 0.007267064624967558,
+   "share_of_false_alarms_from_glitchy": 0.25333333333333335,
+   "eff_rho8_in_glitchy": 0.8440065681444993,
+   "eff_rho8_all": 0.842
+  },
+  {
+   "statistic": "GRU",
+   "alarm_rate_glitchy": 0.05172413793103448,
+   "alarm_rate_rest": 0.007526602647287828,
+   "share_of_false_alarms_from_glitchy": 0.26582278481012656,
+   "eff_rho8_in_glitchy": 0.8949096880131363,
+   "eff_rho8_all": 0.894
+  },
+  {
+   "statistic": "Transformer 4-class",
+   "alarm_rate_glitchy": 0.04187192118226601,
+   "alarm_rate_rest": 0.006358681546846613,
+   "share_of_false_alarms_from_glitchy": 0.25757575757575757,
+   "eff_rho8_in_glitchy": 0.8505747126436781,
+   "eff_rho8_all": 0.8613333333333334
+  },
+  {
+   "statistic": "CNN 4-class",
+   "alarm_rate_glitchy": 0.05172413793103448,
+   "alarm_rate_rest": 0.004931222424085129,
+   "share_of_false_alarms_from_glitchy": 0.3559322033898305,
+   "eff_rho8_in_glitchy": 0.9614121510673236,
+   "eff_rho8_all": 0.9620000000000001
+  },
+  {
+   "statistic": "CNN (single)",
+   "alarm_rate_glitchy": 0.019704433497536946,
+   "alarm_rate_rest": 0.0025953802232026994,
+   "share_of_false_alarms_from_glitchy": 0.2857142857142857,
+   "eff_rho8_in_glitchy": 0.9269293924466339,
+   "eff_rho8_all": 0.9566666666666667
+  },
+  {
+   "statistic": "Transformer (single)",
+   "alarm_rate_glitchy": 0.054187192118226604,
+   "alarm_rate_rest": 0.006358681546846613,
+   "share_of_false_alarms_from_glitchy": 0.30985915492957744,
+   "eff_rho8_in_glitchy": 0.8251231527093595,
+   "eff_rho8_all": 0.8113333333333332
+  }
+ ],
+ "attention_localisation": {
+  "sg": 0.4766666666666667,
+  "pulse": 0.61,
+  "chirp": 0.44
+ },
+ "morphology_accuracy": {
+  "snr": [
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   12,
+   14,
+   16
+  ],
+  "all": {
+   "Freq. (max \u03c1\u00b2)": [
+    0.40399999999999997,
+    0.5720000000000001,
+    0.7240000000000001,
+    0.8366666666666668,
+    0.8886666666666666,
+    0.9213333333333334,
+    0.9359999999999999,
+    0.948,
+    0.9766666666666666,
+    0.9806666666666667,
+    0.9866666666666667
+   ],
+   "Freq. (p-value)": [
+    0.46466666666666673,
+    0.6406666666666667,
+    0.8246666666666668,
+    0.9,
+    0.9199999999999999,
+    0.9133333333333332,
+    0.914,
+    0.8886666666666666,
+    0.8366666666666666,
+    0.816,
+    0.7753333333333333
+   ],
+   "Bayes (3 families)": [
+    0.39199999999999996,
+    0.5513333333333333,
+    0.7706666666666667,
+    0.906,
+    0.9493333333333333,
+    0.9686666666666666,
+    0.9819999999999999,
+    0.9773333333333333,
+    0.988,
+    0.9893333333333333,
+    0.9899999999999999
+   ],
+   "CNN 4-class": [
+    0.432,
+    0.5613333333333334,
+    0.7246666666666667,
+    0.8626666666666667,
+    0.926,
+    0.96,
+    0.9726666666666667,
+    0.98,
+    0.988,
+    0.9906666666666667,
+    0.9906666666666667
+   ],
+   "Transformer 4-class": [
+    0.38599999999999995,
+    0.5166666666666666,
+    0.6433333333333334,
+    0.7586666666666666,
+    0.8346666666666667,
+    0.8673333333333333,
+    0.9,
+    0.9246666666666666,
+    0.948,
+    0.9553333333333333,
+    0.9573333333333333
+   ],
+   "Transformer + MAE 4-class": [
+    0.412,
+    0.5413333333333333,
+    0.6653333333333333,
+    0.7646666666666667,
+    0.8426666666666667,
+    0.8726666666666666,
+    0.906,
+    0.9239999999999999,
+    0.944,
+    0.9553333333333334,
+    0.9659999999999999
+   ],
+   "GRU 4-class": [
+    0.4146666666666667,
+    0.5346666666666667,
+    0.6653333333333333,
+    0.8126666666666668,
+    0.8926666666666666,
+    0.9253333333333335,
+    0.9466666666666667,
+    0.9686666666666666,
+    0.9806666666666667,
+    0.9893333333333333,
+    0.9860000000000001
+   ]
+  },
+  "gated": {
+   "Freq. (max \u03c1\u00b2)": [
+    0.5833333333333334,
+    0.7364341085271318,
+    0.8011611030478955,
+    0.8495798319327731,
+    0.8895790200138026,
+    0.9211756847027388,
+    0.936,
+    0.948,
+    0.9766666666666667,
+    0.9806666666666667,
+    0.9866666666666667
+   ],
+   "Freq. (p-value)": [
+    0.75,
+    0.8953488372093024,
+    0.9085631349782293,
+    0.9184873949579831,
+    0.9220151828847482,
+    0.9131596526386105,
+    0.914,
+    0.8886666666666667,
+    0.8366666666666667,
+    0.816,
+    0.7753333333333333
+   ],
+   "Bayes (3 families)": [
+    0.7708333333333334,
+    0.8953488372093024,
+    0.9288824383164006,
+    0.9445378151260504,
+    0.9565217391304348,
+    0.9686038744154977,
+    0.982,
+    0.9773333333333334,
+    0.988,
+    0.9893333333333333,
+    0.99
+   ],
+   "CNN 4-class": [
+    0.6458333333333334,
+    0.8023255813953488,
+    0.8374455732946299,
+    0.9016806722689076,
+    0.9337474120082816,
+    0.9605878423513694,
+    0.9726666666666667,
+    0.98,
+    0.988,
+    0.9906666666666667,
+    0.9906666666666667
+   ],
+   "Transformer 4-class": [
+    0.5416666666666666,
+    0.7325581395348837,
+    0.7227866473149492,
+    0.7899159663865546,
+    0.8474810213940649,
+    0.8684034736138945,
+    0.9,
+    0.9246666666666666,
+    0.948,
+    0.9553333333333334,
+    0.9573333333333334
+   ],
+   "Transformer + MAE 4-class": [
+    0.5,
+    0.7170542635658915,
+    0.7431059506531205,
+    0.8,
+    0.852311939268461,
+    0.8730794923179692,
+    0.906,
+    0.924,
+    0.944,
+    0.9553333333333334,
+    0.966
+   ],
+   "GRU 4-class": [
+    0.6458333333333334,
+    0.748062015503876,
+    0.7692307692307693,
+    0.8554621848739495,
+    0.9033816425120773,
+    0.927187708750835,
+    0.9466666666666667,
+    0.9686666666666667,
+    0.9806666666666667,
+    0.9893333333333333,
+    0.986
+   ]
+  },
+  "gate_fraction": [
+   0.032,
+   0.172,
+   0.4593333333333333,
+   0.7933333333333333,
+   0.966,
+   0.998,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ]
+ },
+ "confusion_rho8": {
+  "Freq. (max \u03c1\u00b2)": [
+   [
+    0.9917406311637081,
+    0.0040680473372781065,
+    0.0016025641025641025,
+    0.0025887573964497044
+   ],
+   [
+    0.002,
+    0.992,
+    0.002,
+    0.004
+   ],
+   [
+    0.004,
+    0.172,
+    0.824,
+    0.0
+   ],
+   [
+    0.0,
+    0.058,
+    0.0,
+    0.942
+   ]
+  ],
+  "Freq. (p-value)": [
+   [
+    0.9929733727810651,
+    0.0014792899408284023,
+    0.003081854043392505,
+    0.002465483234714004
+   ],
+   [
+    0.004,
+    0.838,
+    0.136,
+    0.022
+   ],
+   [
+    0.0,
+    0.032,
+    0.966,
+    0.002
+   ],
+   [
+    0.002,
+    0.046,
+    0.022,
+    0.93
+   ]
+  ],
+  "Bayes (3 families)": [
+   [
+    0.9928500986193294,
+    0.0017258382642998027,
+    0.0033284023668639054,
+    0.002095660749506903
+   ],
+   [
+    0.006,
+    0.982,
+    0.002,
+    0.01
+   ],
+   [
+    0.0,
+    0.028,
+    0.972,
+    0.0
+   ],
+   [
+    0.0,
+    0.054,
+    0.0,
+    0.946
+   ]
+  ],
+  "CNN 4-class": [
+   [
+    0.9927268244575936,
+    0.003205128205128205,
+    0.0027120315581854043,
+    0.0013560157790927022
+   ],
+   [
+    0.054,
+    0.908,
+    0.014,
+    0.024
+   ],
+   [
+    0.0,
+    0.006,
+    0.994,
+    0.0
+   ],
+   [
+    0.06,
+    0.058,
+    0.0,
+    0.882
+   ]
+  ],
+  "Transformer 4-class": [
+   [
+    0.9918639053254438,
+    0.0014792899408284023,
+    0.0023422090729783036,
+    0.004314595660749507
+   ],
+   [
+    0.132,
+    0.598,
+    0.032,
+    0.238
+   ],
+   [
+    0.002,
+    0.018,
+    0.976,
+    0.004
+   ],
+   [
+    0.282,
+    0.044,
+    0.01,
+    0.664
+   ]
+  ],
+  "Transformer + MAE 4-class": [
+   [
+    0.9932199211045365,
+    0.0016025641025641025,
+    0.0018491124260355029,
+    0.0033284023668639054
+   ],
+   [
+    0.11,
+    0.676,
+    0.024,
+    0.19
+   ],
+   [
+    0.002,
+    0.022,
+    0.974,
+    0.002
+   ],
+   [
+    0.262,
+    0.084,
+    0.008,
+    0.646
+   ]
+  ],
+  "GRU 4-class": [
+   [
+    0.9911242603550295,
+    0.003821499013806706,
+    0.0028353057199211047,
+    0.0022189349112426036
+   ],
+   [
+    0.208,
+    0.69,
+    0.024,
+    0.078
+   ],
+   [
+    0.002,
+    0.012,
+    0.984,
+    0.002
+   ],
+   [
+    0.07,
+    0.066,
+    0.0,
+    0.864
+   ]
+  ]
+ },
+ "accuracy_4class": [
+  {
+   "method": "Freq. (max \u03c1\u00b2)",
+   "snr_range": "4-7",
+   "signal_class_accuracy": 0.5091666666666667,
+   "noise_correct": 0.9917406311637081,
+   "balanced_accuracy": 0.7504536489151874,
+   "missed": 0.4116666666666667
+  },
+  {
+   "method": "Freq. (max \u03c1\u00b2)",
+   "snr_range": "8-16",
+   "signal_class_accuracy": 0.9578888888888889,
+   "noise_correct": 0.9917406311637081,
+   "balanced_accuracy": 0.9748147600262985,
+   "missed": 0.0003333333333333333
+  },
+  {
+   "method": "Freq. (p-value)",
+   "snr_range": "4-7",
+   "signal_class_accuracy": 0.5521666666666667,
+   "noise_correct": 0.9929733727810651,
+   "balanced_accuracy": 0.7725700197238659,
+   "missed": 0.40116666666666667
+  },
+  {
+   "method": "Freq. (p-value)",
+   "snr_range": "8-16",
+   "signal_class_accuracy": 0.857,
+   "noise_correct": 0.9929733727810651,
+   "balanced_accuracy": 0.9249866863905325,
+   "missed": 0.0003333333333333333
+  },
+  {
+   "method": "Bayes (3 families)",
+   "snr_range": "4-7",
+   "signal_class_accuracy": 0.5635,
+   "noise_correct": 0.9928500986193294,
+   "balanced_accuracy": 0.7781750493096646,
+   "missed": 0.4023333333333333
+  },
+  {
+   "method": "Bayes (3 families)",
+   "snr_range": "8-16",
+   "signal_class_accuracy": 0.9822222222222222,
+   "noise_correct": 0.9928500986193294,
+   "balanced_accuracy": 0.9875361604207757,
+   "missed": 0.0003333333333333333
+  },
+  {
+   "method": "CNN 4-class",
+   "snr_range": "4-7",
+   "signal_class_accuracy": 0.4518333333333333,
+   "noise_correct": 0.9927268244575936,
+   "balanced_accuracy": 0.7222800788954635,
+   "missed": 0.5066666666666667
+  },
+  {
+   "method": "CNN 4-class",
+   "snr_range": "8-16",
+   "signal_class_accuracy": 0.9723333333333334,
+   "noise_correct": 0.9927268244575936,
+   "balanced_accuracy": 0.9825300788954635,
+   "missed": 0.009
+  },
+  {
+   "method": "Transformer 4-class",
+   "snr_range": "4-7",
+   "signal_class_accuracy": 0.32916666666666666,
+   "noise_correct": 0.9918639053254438,
+   "balanced_accuracy": 0.6605152859960552,
+   "missed": 0.602
+  },
+  {
+   "method": "Transformer 4-class",
+   "snr_range": "8-16",
+   "signal_class_accuracy": 0.8952222222222223,
+   "noise_correct": 0.9918639053254438,
+   "balanced_accuracy": 0.943543063773833,
+   "missed": 0.034666666666666665
+  },
+  {
+   "method": "Transformer + MAE 4-class",
+   "snr_range": "4-7",
+   "signal_class_accuracy": 0.3358333333333333,
+   "noise_correct": 0.9932199211045365,
+   "balanced_accuracy": 0.664526627218935,
+   "missed": 0.5986666666666667
+  },
+  {
+   "method": "Transformer + MAE 4-class",
+   "snr_range": "8-16",
+   "signal_class_accuracy": 0.9011111111111111,
+   "noise_correct": 0.9932199211045365,
+   "balanced_accuracy": 0.9471655161078238,
+   "missed": 0.03122222222222222
+  },
+  {
+   "method": "GRU 4-class",
+   "snr_range": "4-7",
+   "signal_class_accuracy": 0.4086666666666667,
+   "noise_correct": 0.9911242603550295,
+   "balanced_accuracy": 0.6998954635108481,
+   "missed": 0.5383333333333333
+  },
+  {
+   "method": "GRU 4-class",
+   "snr_range": "8-16",
+   "signal_class_accuracy": 0.94,
+   "noise_correct": 0.9911242603550295,
+   "balanced_accuracy": 0.9655621301775148,
+   "missed": 0.030111111111111113
+  },
+  {
+   "method": "CNN 4-class (single)",
+   "snr_range": "4-7",
+   "signal_class_accuracy": 0.3993333333333333,
+   "noise_correct": 0.9927268244575936,
+   "balanced_accuracy": 0.6960300788954634,
+   "missed": 0.5573333333333333
+  },
+  {
+   "method": "CNN 4-class (single)",
+   "snr_range": "8-16",
+   "signal_class_accuracy": 0.96,
+   "noise_correct": 0.9927268244575936,
+   "balanced_accuracy": 0.9763634122287967,
+   "missed": 0.013333333333333334
+  },
+  {
+   "method": "Transformer 4-class (single)",
+   "snr_range": "4-7",
+   "signal_class_accuracy": 0.3328333333333333,
+   "noise_correct": 0.9893984220907298,
+   "balanced_accuracy": 0.6611158777120316,
+   "missed": 0.5978333333333333
+  },
+  {
+   "method": "Transformer 4-class (single)",
+   "snr_range": "8-16",
+   "signal_class_accuracy": 0.8811111111111111,
+   "noise_correct": 0.9893984220907298,
+   "balanced_accuracy": 0.9352547666009204,
+   "missed": 0.043444444444444445
+  },
+  {
+   "method": "Transformer + MAE 4-class (single)",
+   "snr_range": "4-7",
+   "signal_class_accuracy": 0.32183333333333336,
+   "noise_correct": 0.9923570019723866,
+   "balanced_accuracy": 0.65709516765286,
+   "missed": 0.6143333333333333
+  },
+  {
+   "method": "Transformer + MAE 4-class (single)",
+   "snr_range": "8-16",
+   "signal_class_accuracy": 0.8855555555555555,
+   "noise_correct": 0.9923570019723866,
+   "balanced_accuracy": 0.9389562787639711,
+   "missed": 0.04033333333333333
+  }
+ ],
+ "ood": [
+  {
+   "snr": 8,
+   "method": "Freq. (max \u03c1\u00b2)",
+   "detected": 0.39125,
+   "called_SG": 0.9424920127795527,
+   "called_pulse": 0.04153354632587859,
+   "called_chirp": 0.01597444089456869
+  },
+  {
+   "snr": 8,
+   "method": "Freq. (p-value)",
+   "detected": 0.35375,
+   "called_SG": 0.7031802120141343,
+   "called_pulse": 0.28975265017667845,
+   "called_chirp": 0.007067137809187279
+  },
+  {
+   "snr": 8,
+   "method": "Bayes (3 families)",
+   "detected": 0.3025,
+   "called_SG": 0.6942148760330579,
+   "called_pulse": 0.29338842975206614,
+   "called_chirp": 0.012396694214876033
+  },
+  {
+   "snr": 8,
+   "method": "CNN 4-class",
+   "detected": 0.4475,
+   "called_SG": 0.8938547486033519,
+   "called_pulse": 0.1005586592178771,
+   "called_chirp": 0.00558659217877095
+  },
+  {
+   "snr": 8,
+   "method": "Transformer 4-class",
+   "detected": 0.3625,
+   "called_SG": 0.603448275862069,
+   "called_pulse": 0.2655172413793103,
+   "called_chirp": 0.1310344827586207
+  },
+  {
+   "snr": 8,
+   "method": "Transformer + MAE 4-class",
+   "detected": 0.37625,
+   "called_SG": 0.6877076411960132,
+   "called_pulse": 0.20930232558139536,
+   "called_chirp": 0.10299003322259136
+  },
+  {
+   "snr": 8,
+   "method": "GRU 4-class",
+   "detected": 0.36,
+   "called_SG": 0.7881944444444444,
+   "called_pulse": 0.1909722222222222,
+   "called_chirp": 0.020833333333333332
+  },
+  {
+   "snr": 12,
+   "method": "Freq. (max \u03c1\u00b2)",
+   "detected": 0.97875,
+   "called_SG": 0.929757343550447,
+   "called_pulse": 0.06130268199233716,
+   "called_chirp": 0.008939974457215836
+  },
+  {
+   "snr": 12,
+   "method": "Freq. (p-value)",
+   "detected": 0.9775,
+   "called_SG": 0.592071611253197,
+   "called_pulse": 0.4040920716112532,
+   "called_chirp": 0.0038363171355498722
+  },
+  {
+   "snr": 12,
+   "method": "Bayes (3 families)",
+   "detected": 0.97625,
+   "called_SG": 0.7964148527528809,
+   "called_pulse": 0.19846350832266324,
+   "called_chirp": 0.005121638924455826
+  },
+  {
+   "snr": 12,
+   "method": "CNN 4-class",
+   "detected": 0.98125,
+   "called_SG": 0.9464968152866242,
+   "called_pulse": 0.0535031847133758,
+   "called_chirp": 0.0
+  },
+  {
+   "snr": 12,
+   "method": "Transformer 4-class",
+   "detected": 0.95875,
+   "called_SG": 0.8226857887874837,
+   "called_pulse": 0.16036505867014342,
+   "called_chirp": 0.01694915254237288
+  },
+  {
+   "snr": 12,
+   "method": "Transformer + MAE 4-class",
+   "detected": 0.95375,
+   "called_SG": 0.8453473132372215,
+   "called_pulse": 0.13892529488859764,
+   "called_chirp": 0.015727391874180863
+  },
+  {
+   "snr": 12,
+   "method": "GRU 4-class",
+   "detected": 0.935,
+   "called_SG": 0.8970588235294118,
+   "called_pulse": 0.09491978609625669,
+   "called_chirp": 0.008021390374331552
+  }
+ ],
+ "chunks_split": {
+  "train": [
+   0,
+   2,
+   4,
+   6
+  ],
+  "val": [
+   1,
+   5
+  ],
+  "test": [
+   3,
+   7
+  ]
+ },
+ "epochs": {
+  "tf_bin": [
+   25,
+   12
+  ],
+  "tfp_bin": [
+   12,
+   12
+  ],
+  "gru_bin": [
+   12
+  ],
+  "tf_mc": [
+   12,
+   12
+  ],
+  "tfp_mc": [
+   12,
+   12
+  ],
+  "gru_mc": [
+   12
+  ],
+  "cnn_mc": [
+   12,
+   12
+  ]
+ },
+ "n_background": {
+  "val": 8112,
+  "test": 8112
+ }
+}

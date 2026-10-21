@@ -24,6 +24,7 @@ Code_General/
   03_frequentist_analysis.ipynb          matched-filter bank, calibration, efficiency / ROC, MLE + Fisher, toy MC, systematics
   04_bayesian_analysis.ipynb             exact grid posterior + emcee, Bayes factors, prior dependence, SBC, credible vs confidence
   05_ml_detection.ipynb                  features + Ridge/Lasso/RF/GBT, 1-D CNN, ensemble, MC dropout, autoencoder, calibration
+  06_sequence_models_hypothesis_testing.ipynb   Transformer / GRU detectors, masked-patch pre-training, 4-class morphology vs frequentist and Bayesian model comparison
   gwosc_tools.py                         functions shared by notebooks 01-05
   download_data.py                       downloads the 8 raw chunks (cache/raw/) and writes results/chunks.json
   results/                               summary JSON of every notebook (tracked)
@@ -51,7 +52,7 @@ All notebooks use the kernel `cern`. Then, from `Code_General/`:
 
 ```
 python download_data.py
-jupyter nbconvert --to notebook --execute --inplace --ExecutePreprocessor.kernel_name=cern 0N_*.ipynb    # N = 1 ... 5, in order
+jupyter nbconvert --to notebook --execute --inplace --ExecutePreprocessor.kernel_name=cern 0N_*.ipynb    # N = 1 ... 6, in order
 ```
 
 Run times on a 10-core laptop: 01 ≈ 1 min, 02 ≈ 1 min, 03 ≈ 10–15 min, 04 ≈ 20 min, 05 ≈ 30–40 min with training from scratch (a few minutes
@@ -69,6 +70,7 @@ The report is compiled with `tectonic -X compile main.tex` from `Docs/report/`.
 | `03` | 160-template bank, profile-likelihood statistic, look-elsewhere (N_eff), calibration on unseen epochs, efficiency vs oracle and excess power, `iminuit` MLE vs Fisher, Rician toy MC with Neyman/Feldman–Cousins belts, Barlow systematics | `results/03_summary.json` |
 | `04` | analytic amplitude marginalisation, exact grid posterior, `emcee` cross-check, Bayes factors and prior dependence, simulation-based calibration, credible vs confidence intervals | `results/04_summary.json` |
 | `05` | 22 features with Ridge/Lasso/RF/GBT (bias–variance, importance, PCA), 1-D CNN, 5-member ensemble, MC dropout, autoencoder, calibration, comparison on the same injections | `results/05_summary.json` |
+| `06` | patch Transformer and GRU against the CNN (efficiency at FAP 10⁻², 10⁻³, glitches, attention), masked-patch pre-training and label efficiency, 4-class (noise / sg / pulse / chirp) detectors against frequentist and Bayesian model comparison, an out-of-family burst | `results/06_summary.json`, `figures/fig06_*` |
 
 ## Main results
 
@@ -97,6 +99,10 @@ All SNRs are **optimal SNRs**; the false-alarm probability (FAP) is per one-seco
 - **Machine learning.** The CNN ensemble matches the bank on sine-Gaussians and is ≈1 SNR unit better on the pulses and chirps it was trained on; a CNN
   trained on one morphology loses efficiency on the others; an autoencoder trained on noise adds nothing to an energy statistic. Calibration is good
   (ECE ≲ 3 %), the ensemble is better than a single network in every proper score, and rejecting the 20 % most uncertain windows raises the AUC from 0.992 to 0.9997.
+- **Sequence models and hypothesis testing.** With the same data and budget a patch Transformer (114 k parameters) and a bidirectional GRU are *worse* than the 17.8 k-parameter CNN
+  (ρ₅₀ at FAP 10⁻² on sine-Gaussian / pulse / chirp: CNN ensemble 5.05 / 4.21 / 5.28, GRU 6.27 / 5.16 / 6.36, Transformer 6.38 / 4.88 / 7.35) and do not reject glitches better; masked-patch
+  pre-training on whitened noise learns almost nothing (it helps only at ≈1000 labels per class). For the morphology, Bayesian model comparison is the best classifier
+  (3-way accuracy 0.97 at ρ = 8), the CNN is close at high SNR, the Transformer last; no method flags a burst that belongs to none of the three families. The sequence models were trained for ≤ 12 epochs and not tuned.
 
 ## Limits
 
