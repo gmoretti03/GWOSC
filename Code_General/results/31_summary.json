@@ -1,0 +1,118 @@
+{
+ "n_pairs": 163862400.0,
+ "background_chunks": [
+  "o0",
+  "o1",
+  "o3",
+  "o4",
+  "x0",
+  "x1",
+  "x2",
+  "x3",
+  "x4",
+  "x5"
+ ],
+ "network_rho": [
+  {
+   "statistic": "coherent \u03bb\u2081",
+   "FAP": 0.01,
+   "rho50": NaN,
+   "rho90": NaN,
+   "eff_at_10": 0.0,
+   "eff_at_12": 0.0
+  },
+  {
+   "statistic": "coherent \u03bb\u2081",
+   "FAP": 0.0001,
+   "rho50": 10.195652173913043,
+   "rho90": NaN,
+   "eff_at_10": 0.4775,
+   "eff_at_12": 0.7075
+  },
+  {
+   "statistic": "coherent \u03bb\u2081",
+   "FAP": 1e-06,
+   "rho50": NaN,
+   "rho90": NaN,
+   "eff_at_10": 0.0025,
+   "eff_at_12": 0.0
+  },
+  {
+   "statistic": "incoherent sum",
+   "FAP": 0.01,
+   "rho50": NaN,
+   "rho90": NaN,
+   "eff_at_10": 0.0,
+   "eff_at_12": 0.0
+  },
+  {
+   "statistic": "incoherent sum",
+   "FAP": 0.0001,
+   "rho50": 9.771084337349398,
+   "rho90": 20.0,
+   "eff_at_10": 0.5475,
+   "eff_at_12": 0.74
+  },
+  {
+   "statistic": "incoherent sum",
+   "FAP": 1e-06,
+   "rho50": NaN,
+   "rho90": NaN,
+   "eff_at_10": 0.0025,
+   "eff_at_12": 0.0
+  },
+  {
+   "statistic": "Fisher (nb09)",
+   "FAP": 0.01,
+   "rho50": NaN,
+   "rho90": NaN,
+   "eff_at_10": 0.0,
+   "eff_at_12": 0.0
+  },
+  {
+   "statistic": "Fisher (nb09)",
+   "FAP": 0.0001,
+   "rho50": 9.358778625954198,
+   "rho90": NaN,
+   "eff_at_10": 0.605,
+   "eff_at_12": 0.7425
+  },
+  {
+   "statistic": "Fisher (nb09)",
+   "FAP": 1e-06,
+   "rho50": 14.989473684210527,
+   "rho90": NaN,
+   "eff_at_10": 0.0,
+   "eff_at_12": 0.0825
+  }
+ ],
+ "thresholds": [
+  {
+   "statistic": "Fisher (nb09)",
+   "1e-07": 15.098630905151367,
+   "1e-06": 12.943204879760742,
+   "1e-05": 10.543370246887207,
+   "0.0001": 8.153801918029785,
+   "0.001": Infinity,
+   "0.01": Infinity
+  },
+  {
+   "statistic": "coherent \u03bb\u2081",
+   "1e-07": 32.720943450927734,
+   "1e-06": 28.41687774658203,
+   "1e-05": 22.065471649169922,
+   "0.0001": 17.843093872070312,
+   "0.001": Infinity,
+   "0.01": Infinity
+  },
+  {
+   "statistic": "incoherent sum",
+   "1e-07": 34.06294250488281,
+   "1e-06": 30.02910041809082,
+   "1e-05": 24.202289581298828,
+   "0.0001": 18.448532104492188,
+   "0.001": Infinity,
+   "0.01": Infinity
+  }
+ ]
+}

@@ -1,0 +1,368 @@
+{
+ "prior_mismatch": [
+  {
+   "case": "sg in prior (f0 50-400, Q 4-15)",
+   "detector": "bank",
+   "eff@4": 0.19,
+   "eff@6": 0.8475,
+   "eff@8": 0.9975,
+   "eff@10": 1.0,
+   "eff@14": 1.0,
+   "eff@20": 1.0,
+   "eff@30": 1.0,
+   "eff@40": 1.0,
+   "rho50": 4.942965779467681
+  },
+  {
+   "case": "sg in prior (f0 50-400, Q 4-15)",
+   "detector": "cnn",
+   "eff@4": 0.34,
+   "eff@6": 0.835,
+   "eff@8": 0.9925,
+   "eff@10": 1.0,
+   "eff@14": 1.0,
+   "eff@20": 1.0,
+   "eff@30": 1.0,
+   "eff@40": 1.0,
+   "rho50": 4.646464646464646
+  },
+  {
+   "case": "sg f0 400-500 Hz",
+   "detector": "bank",
+   "eff@4": 0.145,
+   "eff@6": 0.795,
+   "eff@8": 0.99,
+   "eff@10": 1.0,
+   "eff@14": 1.0,
+   "eff@20": 1.0,
+   "eff@30": 1.0,
+   "eff@40": 1.0,
+   "rho50": 5.092307692307692
+  },
+  {
+   "case": "sg f0 400-500 Hz",
+   "detector": "cnn",
+   "eff@4": 0.1225,
+   "eff@6": 0.2325,
+   "eff@8": 0.4225,
+   "eff@10": 0.6725,
+   "eff@14": 0.9425,
+   "eff@20": 0.9975,
+   "eff@30": 0.9975,
+   "eff@40": 1.0,
+   "rho50": 8.620000000000001
+  },
+  {
+   "case": "sg f0 30-50 Hz",
+   "detector": "bank",
+   "eff@4": 0.1225,
+   "eff@6": 0.5775,
+   "eff@8": 0.815,
+   "eff@10": 0.8875,
+   "eff@14": 0.935,
+   "eff@20": 0.9975,
+   "eff@30": 1.0,
+   "eff@40": 1.0,
+   "rho50": 5.659340659340659
+  },
+  {
+   "case": "sg f0 30-50 Hz",
+   "detector": "cnn",
+   "eff@4": 0.22,
+   "eff@6": 0.435,
+   "eff@8": 0.625,
+   "eff@10": 0.7,
+   "eff@14": 0.6375,
+   "eff@20": 0.66,
+   "eff@30": 0.53,
+   "eff@40": 0.535,
+   "rho50": 6.684210526315789
+  },
+  {
+   "case": "sg Q 20-40 (narrow band)",
+   "detector": "bank",
+   "eff@4": 0.1025,
+   "eff@6": 0.6625,
+   "eff@8": 0.9725,
+   "eff@10": 1.0,
+   "eff@14": 1.0,
+   "eff@20": 1.0,
+   "eff@30": 1.0,
+   "eff@40": 1.0,
+   "rho50": 5.419642857142858
+  },
+  {
+   "case": "sg Q 20-40 (narrow band)",
+   "detector": "cnn",
+   "eff@4": 0.2925,
+   "eff@6": 0.6175,
+   "eff@8": 0.905,
+   "eff@10": 0.98,
+   "eff@14": 1.0,
+   "eff@20": 1.0,
+   "eff@30": 0.995,
+   "eff@40": 0.995,
+   "rho50": 5.276923076923077
+  },
+  {
+   "case": "sg Q 1.5-3.5 (broad band)",
+   "detector": "bank",
+   "eff@4": 0.1825,
+   "eff@6": 0.7875,
+   "eff@8": 0.9975,
+   "eff@10": 1.0,
+   "eff@14": 1.0,
+   "eff@20": 1.0,
+   "eff@30": 1.0,
+   "eff@40": 1.0,
+   "rho50": 5.049586776859504
+  },
+  {
+   "case": "sg Q 1.5-3.5 (broad band)",
+   "detector": "cnn",
+   "eff@4": 0.365,
+   "eff@6": 0.805,
+   "eff@8": 0.98,
+   "eff@10": 1.0,
+   "eff@14": 0.9975,
+   "eff@20": 0.995,
+   "eff@30": 0.985,
+   "eff@40": 0.9175,
+   "rho50": 4.613636363636363
+  },
+  {
+   "case": "pulse in prior (0.8-5 ms)",
+   "detector": "bank",
+   "eff@4": 0.1,
+   "eff@6": 0.715,
+   "eff@8": 0.995,
+   "eff@10": 1.0,
+   "eff@14": 1.0,
+   "eff@20": 1.0,
+   "eff@30": 1.0,
+   "eff@40": 1.0,
+   "rho50": 5.300813008130081
+  },
+  {
+   "case": "pulse in prior (0.8-5 ms)",
+   "detector": "cnn",
+   "eff@4": 0.52,
+   "eff@6": 0.925,
+   "eff@8": 1.0,
+   "eff@10": 1.0,
+   "eff@14": 1.0,
+   "eff@20": 1.0,
+   "eff@30": 0.9775,
+   "eff@40": 0.7175,
+   "rho50": 4.0
+  },
+  {
+   "case": "pulse 0.3-0.8 ms",
+   "detector": "bank",
+   "eff@4": 0.11,
+   "eff@6": 0.635,
+   "eff@8": 0.98,
+   "eff@10": 1.0,
+   "eff@14": 1.0,
+   "eff@20": 1.0,
+   "eff@30": 1.0,
+   "eff@40": 1.0,
+   "rho50": 5.485714285714286
+  },
+  {
+   "case": "pulse 0.3-0.8 ms",
+   "detector": "cnn",
+   "eff@4": 0.395,
+   "eff@6": 0.825,
+   "eff@8": 0.99,
+   "eff@10": 1.0,
+   "eff@14": 1.0,
+   "eff@20": 0.99,
+   "eff@30": 0.5175,
+   "eff@40": 0.025,
+   "rho50": 4.488372093023256
+  },
+  {
+   "case": "pulse 5-15 ms",
+   "detector": "bank",
+   "eff@4": 0.0425,
+   "eff@6": 0.3875,
+   "eff@8": 0.705,
+   "eff@10": 0.82,
+   "eff@14": 0.955,
+   "eff@20": 1.0,
+   "eff@30": 1.0,
+   "eff@40": 1.0,
+   "rho50": 6.708661417322834
+  },
+  {
+   "case": "pulse 5-15 ms",
+   "detector": "cnn",
+   "eff@4": 0.2525,
+   "eff@6": 0.4375,
+   "eff@8": 0.49,
+   "eff@10": 0.505,
+   "eff@14": 0.505,
+   "eff@20": 0.46,
+   "eff@30": 0.4,
+   "eff@40": 0.3725,
+   "rho50": 9.333333333333334
+  },
+  {
+   "case": "chirp in prior",
+   "detector": "bank",
+   "eff@4": 0.065,
+   "eff@6": 0.43,
+   "eff@8": 0.8775,
+   "eff@10": 0.995,
+   "eff@14": 1.0,
+   "eff@20": 1.0,
+   "eff@30": 1.0,
+   "eff@40": 1.0,
+   "rho50": 6.312849162011173
+  },
+  {
+   "case": "chirp in prior",
+   "detector": "cnn",
+   "eff@4": 0.3825,
+   "eff@6": 0.795,
+   "eff@8": 0.9925,
+   "eff@10": 1.0,
+   "eff@14": 0.995,
+   "eff@20": 1.0,
+   "eff@30": 1.0,
+   "eff@40": 1.0,
+   "rho50": 4.569696969696969
+  },
+  {
+   "case": "chirp steeper (fdot 600-1500)",
+   "detector": "bank",
+   "eff@4": 0.0475,
+   "eff@6": 0.2375,
+   "eff@8": 0.7675,
+   "eff@10": 0.9775,
+   "eff@14": 1.0,
+   "eff@20": 1.0,
+   "eff@30": 1.0,
+   "eff@40": 1.0,
+   "rho50": 6.990566037735849
+  },
+  {
+   "case": "chirp steeper (fdot 600-1500)",
+   "detector": "cnn",
+   "eff@4": 0.3075,
+   "eff@6": 0.7525,
+   "eff@8": 0.985,
+   "eff@10": 1.0,
+   "eff@14": 0.9975,
+   "eff@20": 1.0,
+   "eff@30": 1.0,
+   "eff@40": 1.0,
+   "rho50": 4.865168539325842
+  },
+  {
+   "case": "chirp f0 150-250 Hz",
+   "detector": "bank",
+   "eff@4": 0.0375,
+   "eff@6": 0.27,
+   "eff@8": 0.745,
+   "eff@10": 0.9675,
+   "eff@14": 1.0,
+   "eff@20": 1.0,
+   "eff@30": 1.0,
+   "eff@40": 1.0,
+   "rho50": 6.968421052631578
+  },
+  {
+   "case": "chirp f0 150-250 Hz",
+   "detector": "cnn",
+   "eff@4": 0.195,
+   "eff@6": 0.335,
+   "eff@8": 0.57,
+   "eff@10": 0.8,
+   "eff@14": 0.975,
+   "eff@20": 0.99,
+   "eff@30": 0.9425,
+   "eff@40": 0.6525,
+   "rho50": 7.404255319148937
+  }
+ ],
+ "eff8": {
+  "bank": 0.9975,
+  "cnn": 0.9925
+ },
+ "base_rate": [
+  {
+   "rate": "1 per hour",
+   "setup": "single detector, FAP 1e-2",
+   "PPV": "2.68e-02",
+   "FAP_needed_PPV90": "3.1e-05"
+  },
+  {
+   "rate": "1 per hour",
+   "setup": "single detector, FAP 1e-3 (eff x0.9)",
+   "PPV": "1.99e-01",
+   "FAP_needed_PPV90": "2.8e-05"
+  },
+  {
+   "rate": "1 per hour",
+   "setup": "two detectors, FAP 1e-6 (eff 0.8, assumed)",
+   "PPV": "9.96e-01",
+   "FAP_needed_PPV90": "2.5e-05"
+  },
+  {
+   "rate": "1 per day",
+   "setup": "single detector, FAP 1e-2",
+   "PPV": "1.15e-03",
+   "FAP_needed_PPV90": "1.3e-06"
+  },
+  {
+   "rate": "1 per day",
+   "setup": "single detector, FAP 1e-3 (eff x0.9)",
+   "PPV": "1.02e-02",
+   "FAP_needed_PPV90": "1.1e-06"
+  },
+  {
+   "rate": "1 per day",
+   "setup": "two detectors, FAP 1e-6 (eff 0.8, assumed)",
+   "PPV": "9.03e-01",
+   "FAP_needed_PPV90": "1.0e-06"
+  },
+  {
+   "rate": "1 per month",
+   "setup": "single detector, FAP 1e-2",
+   "PPV": "3.82e-05",
+   "FAP_needed_PPV90": "4.2e-08"
+  },
+  {
+   "rate": "1 per month",
+   "setup": "single detector, FAP 1e-3 (eff x0.9)",
+   "PPV": "3.43e-04",
+   "FAP_needed_PPV90": "3.8e-08"
+  },
+  {
+   "rate": "1 per month",
+   "setup": "two detectors, FAP 1e-6 (eff 0.8, assumed)",
+   "PPV": "2.35e-01",
+   "FAP_needed_PPV90": "3.4e-08"
+  },
+  {
+   "rate": "1 per year",
+   "setup": "single detector, FAP 1e-2",
+   "PPV": "3.15e-06",
+   "FAP_needed_PPV90": "3.5e-09"
+  },
+  {
+   "rate": "1 per year",
+   "setup": "single detector, FAP 1e-3 (eff x0.9)",
+   "PPV": "2.84e-05",
+   "FAP_needed_PPV90": "3.2e-09"
+  },
+  {
+   "rate": "1 per year",
+   "setup": "two detectors, FAP 1e-6 (eff 0.8, assumed)",
+   "PPV": "2.48e-02",
+   "FAP_needed_PPV90": "2.8e-09"
+  }
+ ]
+}

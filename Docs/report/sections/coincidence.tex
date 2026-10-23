@@ -1,0 +1,70 @@
+\section{Two detectors: coincidence and time slides}\label{sec:coinc}
+
+Every false-alarm probability so far is per one-second window of H1 alone: the glitch floor of a single interferometer (a few $10^{-3}$ per window, Section~\ref{sec:freq}) prevents going below FAP $\approx10^{-3}$. A real search requires a candidate in \emph{both} LIGO detectors with a compatible arrival time and measures its background with \emph{time slides}: data of one detector are shifted by more than the light-travel time so that no real signal is coincident, and the pairs sample the accidental coincidences of independent noise.
+
+\subsection{Data, statistic and background}
+Six chunks of 4096\,s with H1 \emph{and} L1 in science mode (two of them are chunks 0 and 6 of the single-detector study; four new ones evenly spread over the run, $\ge2000$\,s from every event) are whitened exactly as before; the windows with the same index of the two detectors are simultaneous. Four chunks give the background ($4\times4056$ windows), two ($2\times4056$) the zero-lag check and the injections.
+Each single-detector statistic (sine-Gaussian bank, IMR bank, the CNN trained with IMR signals, excess power) is converted into the empirical p-value $p_d$ of that detector (rank in its own background, $p\ge6\times10^{-5}$) and the coincident statistic is the Fisher combination $S=-\ln p_H-\ln p_L$ (for the banks a pair is rejected unless $|\tau_H-\tau_L|\le15$\,ms). A plain sum of the statistics was tried first and discarded: it is dominated by a loud glitch of one detector (with the plain sum the FAP $10^{-5}$ threshold of the sine-Gaussian bank was a statistic of $\approx3\times10^5$, and still $\approx10^3$ after capping each detector's contribution at its FAP $10^{-3}$ value): the tail of the sum was the glitch tail of H1, not that of accidental coincidences. Real pipelines use signal-consistency tests ($\chi^2$ vetoes) for the same purpose; they are not implemented here.
+The background is made by pairing every H1 window of a chunk with every L1 window of the same chunk at a different time (offsets of 2 to $N-2$ windows): $6.6\times10^7$ pairs, enough for FAP down to $10^{-6}$.
+
+\paragraph{Calibration: are the noises independent?} Zero-lag (simultaneous) windows of the two test chunks against time slides \emph{of the same chunks}: $71$--$90$ coincidences above the FAP $10^{-2}$ threshold against $81$ expected and $5$--$9$ above the $10^{-3}$ threshold against $8.1$ expected (ratio $0.6$--$1.1$ for the four statistics): the two noises are independent at this level. Against the slides of \emph{other} epochs the ratio is $1.3$--$1.7$ for the CNN and the banks and $5$ for excess power: the epoch dependence of the background survives coincidence. Figure~\ref{fig:coincbg} shows the background: it follows $(1+S)e^{-S}$, the law of two independent detectors, for the CNN, and lies below it for the banks because of the arrival-time requirement (a random pair is coincident within 15\,ms about $4\,\%$ of the time).
+
+\begin{figure}[h]\centering
+\includegraphics[width=0.95\textwidth]{fig09_coincident_background.pdf}
+\caption{False-alarm probability of the coincident statistic $S$: time slides of the background chunks (red), zero-lag of the test chunks (dashed) and the expectation for independent detectors (grey).}\label{fig:coincbg}
+\end{figure}
+
+\subsection{Detection at low false-alarm probability}
+Injections in the test chunks, in the same window of H1 and L1: a held-out IMR signal (or a sine-Gaussian) with network optimal SNR $\snr_{\rm net}=\sqrt{\rho_H^2+\rho_L^2}$ split as $\rho_H=\snr_{\rm net}\cos\alpha$, $\rho_L=\snr_{\rm net}\sin\alpha$ with $\alpha\sim U(0.45,1.12)$ (amplitude ratio between $0.5$ and $2$), and a random relative delay of $\pm10$\,ms. A single detector sees only its own share of the network SNR (on average about $0.7$ of it), which is part of what a network gains. Table~\ref{tab:coinc} and Fig.~\ref{fig:coincrho} give $\snr_{50}$ in terms of the network SNR.
+\begin{itemize}[nosep]
+\item \textbf{Coincidence moves the false-alarm floor from $10^{-3}$ to $10^{-6}$ and below, at a small cost in SNR.} Lowering the FAP by four orders of magnitude costs $+3.7$ (IMR bank) to $+6.9$ (CNN) in network SNR. A single detector cannot follow: H1 alone, the CNN needs $6.9$ at $10^{-2}$ and $9.8$ at $10^{-3}$; the IMR bank of H1 alone does not reach $50\,\%$ efficiency at $10^{-3}$ up to a network SNR of 30, because of the glitch tail of the H1 data.
+\item \textbf{At FAP $10^{-6}$ per window the network SNR needed is $\approx11$} for both the CNN and the IMR bank, the same order as the thresholds of real searches (which work at much lower rates).
+\item \textbf{The ranking of Section~\ref{sec:imr} survives coincidence.} On binary-black-hole signals the burst statistics are $2$--$3$ times worse (sine-Gaussian bank $12.4$ at FAP $10^{-2}$ and $20.4$ at $10^{-6}$; excess power $10.5$ and no $50\,\%$ efficiency at $10^{-6}$ up to 30); on sine-Gaussians the sine-Gaussian bank and the CNN are the best, and the IMR bank, of the wrong family, is useless ($13.2$ at $10^{-2}$).
+\end{itemize}
+
+\begin{table}[h]\centering\small
+\begin{tabular}{llrrrrrrr}
+\toprule
+& & \multicolumn{5}{c}{coincident, FAP} & \multicolumn{2}{c}{H1 alone}\\
+injection & statistic & $10^{-2}$ & $10^{-3}$ & $10^{-4}$ & $10^{-5}$ & $10^{-6}$ & $10^{-2}$ & $10^{-3}$\\
+\midrule
+IMR & CNN, trained with IMR & 4.05 & 6.78 & 8.22 & 9.74 & 10.95 & 6.89 & 9.75\\
+& IMR bank & 7.38 & 7.63 & 8.48 & 9.72 & 11.04 & 7.53 & --\\
+& sine-Gaussian bank & 12.38 & 12.86 & 14.28 & 16.62 & 20.40 & 11.08 & --\\
+& excess power & 10.45 & 12.88 & 15.32 & 18.86 & -- & 11.74 & --\\
+\midrule
+sine-Gaussian & CNN, trained with IMR & 4.14 & 6.80 & 8.05 & 9.56 & 11.00 & 7.11 & 9.65\\
+& sine-Gaussian bank & 7.08 & 7.57 & 8.47 & 10.34 & 12.19 & 7.29 & --\\
+& IMR bank & 13.16 & 13.84 & 15.73 & 18.38 & 21.51 & 11.77 & --\\
+& excess power & 8.52 & 10.88 & 13.61 & 15.91 & -- & 9.40 & --\\
+\bottomrule
+\end{tabular}
+\caption{$\snr_{50}$ in terms of the network optimal SNR, coincident (H1+L1) at FAP $10^{-2}$--$10^{-6}$ and H1 alone at FAP $10^{-2}$, $10^{-3}$ (a dash: $50\,\%$ efficiency not reached up to a network SNR of 30).}\label{tab:coinc}
+\end{table}
+
+\begin{figure}[h]\centering
+\includegraphics[width=0.95\textwidth]{fig09_rho50_vs_fap.pdf}
+\caption{$\snr_{50}$ (network SNR) against the false-alarm probability: coincident (circles) and H1 alone (squares) for the four statistics, on binary-black-hole (left) and sine-Gaussian (right) injections.}\label{fig:coincrho}
+\end{figure}
+
+\paragraph{Caveats.} No coherent (phase-consistent) network statistic and no antenna-pattern consistency between the detectors (the same waveform shape is injected in both, with different amplitudes); the CNN was trained on H1 and applied to L1 as it is; the p-values are resolved down to $6\times10^{-5}$ per detector (16\,224 background windows), which limits the Fisher statistic to $S\le19.4$; six chunks of 4096\,s; and the false-alarm probability is per one-second window pair ($10^{-6}\approx$ one accidental coincidence every 11.6 days of coincident data), not yet a rate comparable to the one-per-century level of real detections.
+
+\subsection{A mini continuous search}\label{sec:search}
+The per-window analysis is turned into a search (notebook~14) on the two test chunks ($2.25\,$h of H1+L1): windows of $1\,$s every $0.5\,$s, IMR bank in both detectors, coincident statistic of this section with the $15\,$ms gate, one trigger per $\pm1\,$s (clustering), and a background built from every shift of L1 by $k\times0.5\,$s of the same data ($2.08$ years of equivalent slid time). A first version of the slides lost the pairs that wrap around the end of the chunk and under-estimated the background by a factor $\approx4$; with the alignment fixed the number of zero-lag triggers above $S=6$ is $62$ against $63.1$ expected from the slides (chunk-by-chunk ratios $0.8$--$1.0$ at $S\ge6$--$8$), i.e.\ the data contain no foreground at these significances, as expected from chunks selected $\ge2000\,$s from catalogued events. The loudest candidate has $S=9.8$, a false-alarm rate of $\approx7\cdot10^{3}\,\mathrm{yr}^{-1}$ ($1.7$ such triggers expected in the data), and the top of the list is made of loud H1 glitches ($\rho_H$ up to $296$) paired with a noise-level L1 window.
+Injections of $40$ IMR signals into the same data are recovered with $S$ above the $10^{3}\,\mathrm{yr}^{-1}$ threshold in $10$, $40$, $70$ and $100\,\%$ of the cases at network $\rho=8,10,12,15$ but never below $1\,\mathrm{yr}^{-1}$: two years of slid background cannot resolve it, and reaching it requires far more data and chi$^2$ vetoes.
+\begin{figure}[h]\centering\includegraphics[width=0.55\textwidth]{fig14_search_ifar.pdf}
+\caption{False-alarm rate of the coincident statistic: time-slide background and zero-lag triggers.}\end{figure}
+
+\subsection{A coherent statistic and physical network injections}\label{sec:coherent}
+Notebook~31 asks whether combining the two detectors coherently, rather than through p-values, helps, and replaces the balanced amplitude split of the injections of this section by the real antenna patterns. Six more H1+L1 chunks (download\_coinc\_extra.py) extend the background to ten chunks and $1.64\cdot10^{8}$ time-slide pairs (FAP floor $6\cdot10^{-9}$). For every IMR template the complex peak outputs $z_H,z_L$ are combined as $\lambda_1$, the largest eigenvalue of $\mathrm{Re}(zz^\dagger)$ (the profile likelihood of a linearly polarised signal: same waveform, real amplitudes of either sign), with the $15\,$ms gate and the same template in both detectors; the incoherent counterpart is $|z_H|^2+|z_L|^2$. The injections place the same IMRPhenomD source (aligned spins, random inclination) in H1 and L1 with the real $F_+$, $F_\times$ of each site for a random sky position and polarisation and the real delay.
+\begin{itemize}[nosep]
+\item \textbf{The raw statistics fail in non-Gaussian noise}, as for the plain sum of Section~\ref{sec:coinc}: one enormous glitch ($\rho\sim10^4$) paired with each window of the other detector gives a threshold of $3\cdot10^{8}$ at FAP $10^{-6}$. Rescaling each output (keeping its phase) so that $|z|^2\to-2\ln p$ with $p$ the single-detector empirical p-value cures this (threshold $28$ for $\lambda_1$, $30$ for the sum, $13$ for the Fisher statistic at $10^{-6}$).
+\item \textbf{Coherence does not help in this implementation}: at FAP $10^{-4}$ the network $\snr_{50}$ is $9.36$ (Fisher of the best templates), $9.77$ (incoherent sum, same template) and $10.20$ ($\lambda_1$); at $10^{-6}$ only the Fisher statistic reaches $50\,\%$ within network $\snr=20$ ($\snr_{50}=15.0$). The requirement of the \emph{same} template and of both peak lags within the gate costs more than the coherence gains: in the weaker detector the best template is often a noise one, and elliptically polarised signals do not satisfy the real-amplitude hypothesis.
+\item \textbf{The injections of Section~\ref{sec:coinc} were optimistic}: with the real antenna patterns (including orientations with a very unequal response in the two sites) the $50\,\%$ point at FAP $10^{-6}$ moves from $\snr\approx11$ to $\approx15$ network SNR for the same IMR bank and Fisher statistic.
+\item Zero-lag against slides of the same chunks: $9$ against $8.1$ expected at FAP $10^{-3}$ and $2$ against $0.8$ at $10^{-4}$ for all three statistics: no excess.
+\end{itemize}
+A proper coherent search (sky grid, both polarisations, null stream, $\chi^2$ vetoes) is beyond this analysis; the result shows that the naive step is not enough.
+\begin{figure}[h]\centering\includegraphics[width=0.98\textwidth]{fig31_coherent.pdf}\caption{Left: false-alarm probability of the three statistics from $1.6\cdot10^{8}$ slide pairs. Right: efficiency against network SNR for physical injections (dotted: FAP $10^{-2}$, solid: $10^{-6}$).}\label{fig:coherent}\end{figure}
+
+\subsection{Adding Virgo}\label{sec:virgo}
+A third detector can only be assessed here in the \emph{ideal} way, because no three-detector background was built (notebook~38, one chunk of August $2017$ with H1, L1 and V1 in science mode, away from events). With the real PSDs, antenna patterns and times, $20\,000$ random sources of the notebook~31 library give the optimal SNR in each detector. The median amplitude spectral density of V1 in the band is $3.7$ times that of H1 ($0.93$ for L1). Virgo contributes on average $9.6\,\%$ of the network SNR$^2$ (median $4.9\,\%$): at an equal network threshold the sensitive volume grows by $6.3\,\%$ ($5.8$ for HL against H1 alone, $6.2$ for HLV), and of the $23\,\%$ of orientations in which the H1--L1 network SNR is below $0.6$ of its median only $14\,\%$ are rescued above that level. The benefit of Virgo in O2 for this detection-only analysis is therefore modest; its main value would be sky localisation, which this project does not attempt, and a real gain would have to exceed the cost of a higher threshold from the additional background trials, not estimated here.

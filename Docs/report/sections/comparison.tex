@@ -1,16 +1,28 @@
 \section{Comparison of the three approaches}\label{sec:comparison}
 
-Table~\ref{tab:final} collects what each approach gives on the same data, and what it does \emph{not} give.
+Figure~\ref{fig:summary} shows $\snr_{50}$ of every method on one axis and Fig.~\ref{fig:pipeline} the pipeline; Table~\ref{tab:final} collects what each approach gives on the same data, and what it does \emph{not} give.
+
+\begin{figure}[h]\centering
+\includegraphics[width=0.98\textwidth]{fig13_summary_rho50.pdf}
+\caption{$\snr_{50}$ of the detectors compared in this report, thresholds from the validation background; solid: FAP $10^{-2}$, light: $10^{-3}$. Left: mean over the three phenomenological morphologies; right: IMRPhenomD signals (held-out library).}\label{fig:summary}
+\end{figure}
+\begin{figure}[h]\centering
+\includegraphics[width=0.98\textwidth]{fig13_pipeline.pdf}
+\caption{Pipeline of the analysis; numbers refer to the notebooks.}\label{fig:pipeline}
+\end{figure}
 
 \begin{table}[h]\centering\small
-\begin{tabular}{p{3.1cm}p{3.7cm}p{3.7cm}p{3.7cm}}
+\begin{tabular}{p{3.0cm}p{3.7cm}p{3.7cm}p{3.9cm}}
 \toprule
 & frequentist (bank) & Bayesian (same likelihood) & machine learning\\
 \midrule
 \textbf{statistic} & $\lmax=\max\rho^2$ (profile LR) & $\ln B_{10}$ (prior-weighted mean of the same cube) & CNN logit / ensemble mean\\
-\textbf{detection, sine-Gaussian} & $\snr_{50}=4.9$ (val.\ bkg) & identical to the bank within $0.01$ in efficiency & $5.1$ (static ensemble); $4.7$--$4.8$ (CNN with fresh injections): parity or better\\
-\textbf{detection, other morphologies} & $5.3$ / $6.3$ (pulse / chirp), robust & as the bank & better if trained on them ($4.2$ / $5.3$; $4.1$--$4.2$ / $4.8$--$5.0$ with fresh injections), worse if not ($6.5$ / $6.8$)\\
-\textbf{morphology (3-way accuracy, $\snr=8$)} & $0.92$ (largest $\rho^2$) & $\mathbf{0.97}$ (Bayes factors of the families) & $0.96$ (CNN), $0.93$ (GRU), $0.87$ (Transformer)\\
+\textbf{detection, sine-Gaussian ($\snr_{50}$, FAP $10^{-2}$)} & $4.9$ (val.\ bkg) & identical to the bank within $0.01$ in efficiency & $5.1$ (static ensemble); $4.7$--$4.8$ (CNN with fresh injections)\\
+\textbf{detection, other morphologies} & $5.3$ / $6.3$ (pulse / chirp), robust & as the bank & better if trained on them ($4.1$--$4.2$ / $4.8$--$5.0$ with fresh injections), worse if not ($6.5$ / $6.8$)\\
+\textbf{binary black holes (IMRPhenomD)} & IMR bank $5.4$; sine-Gaussian bank $7.4$; oracle $3.0$ & not computed & CNN trained with IMR $4.45$; without IMR $5.5$--$6.2$\\
+\textbf{two detectors, FAP $10^{-6}$ (network SNR)} & IMR bank $11.0$ & not computed & CNN $11.0$\\
+\textbf{morphology (3-way accuracy, $\snr=8$)} & $0.92$ (largest $\rho^2$) & $0.97$ (Bayes factors of the families) & $0.977$ (CNN, fresh), $0.960$ (static), $0.87$ (Transformer)\\
+\textbf{unknown morphology} & residual of the best fit flags stochastic bursts (AUROC $0.94$ at $\snr=8$) & -- & energy score flags chirps of the wrong family (AUROC $0.93$)\\
 \textbf{sequence models} & -- & -- & Transformer and GRU worse than the CNN at detection; a convolutional stem recovers most of the gap, not all\\
 \textbf{needs} & a template family & a template family and a prior & labelled injections; no template\\
 \textbf{parameters} & MLE, saturates the Fisher bound for $\snr\gtrsim10$ & full posterior; calibrated (SBC) & none (not attempted)\\
@@ -19,16 +31,90 @@ Table~\ref{tab:final} collects what each approach gives on the same data, and wh
 \textbf{cost} & seconds & seconds (grid) -- minutes (MCMC) & $17$--$80$ min training (laptop), ms inference\\
 \bottomrule
 \end{tabular}
-\caption{Summary of the three approaches (FAP $10^{-2}$ per one-second window; SNR values are optimal SNRs).}\label{tab:final}
+\caption{Summary of the three approaches (FAP $10^{-2}$ per one-second window unless stated; SNR values are optimal SNRs).}\label{tab:final}
 \end{table}
+
+
+\subsection{Which background sets the threshold?}\label{sec:threshconv}
+Every $\snr_{50}$ depends on the noise sample on which the false-alarm threshold is measured. Table~\ref{tab:threshconv} gives the matched-filter bank with the threshold taken from the training, validation, pooled and test noise (same injections, notebook~12). At FAP $10^{-2}$ the choice moves $\snr_{50}$ by about $0.5$ (sine-Gaussian $5.5$, $4.9$, $4.9$ for train, validation, test); at $10^{-3}$ by several units ($10.8$ with the training background, $6.8$ with the validation one, $14.2$ with the test one), because the tail is set by a few glitches of the epochs sampled. \emph{Convention of this report:} all cross-method comparisons (Sections~\ref{sec:ml}--\ref{sec:coinc} and this one) use the validation background; the training-background numbers appear only in the calibration discussion of Section~\ref{sec:freq}; the test noise is never used to set a headline threshold.
+\begin{table}[h]\centering\small
+\begin{tabular}{llrrrr}
+\toprule
+FAP & threshold from & sine-Gaussian & pulse & chirp & mean\\
+\midrule
+$10^{-2}$ & train & $5.49$ & $5.87$ & $7.05$ & $6.13$\\
+ & validation & $4.94$ & $5.40$ & $6.25$ & $5.53$\\
+ & train+val & $5.27$ & $5.64$ & $6.78$ & $5.90$\\
+ & test & $4.89$ & $5.36$ & $6.18$ & $5.48$\\
+$10^{-3}$ & train & $10.78$ & $11.38$ & $14.06$ & $12.07$\\
+ & validation & $6.82$ & $7.39$ & $9.08$ & $7.76$\\
+ & train+val & $10.08$ & $10.83$ & $13.33$ & $11.41$\\
+\bottomrule
+\end{tabular}
+\caption{$\snr_{50}$ of the sine-Gaussian bank as a function of the background used for the threshold. Bootstrap error $\approx0.1$ at $10^{-2}$ and $\approx1$ at $10^{-3}$ (the latter set by the $\approx16\,000$-window backgrounds). With the test noise at $10^{-3}$ the chirp curve does not reach $50\,\%$ within $\snr\le16$.}\label{tab:threshconv}
+\end{table}
+
+
+\subsection{Why does the CNN beat the bank?}\label{sec:ablation}
+Notebook~15 tests three explanations on the three phenomenological morphologies (thresholds from the validation background, mean $\snr_{50}$ over sine-Gaussian, pulse and chirp, bootstrap error $\approx0.1$ at FAP $10^{-2}$, $\approx0.35$ at $10^{-3}$; Fig.~\ref{fig:ablation}).
+\begin{table}[h]\centering\small
+\begin{tabular}{lrr}
+\toprule
+detector, noise & FAP $10^{-2}$ & FAP $10^{-3}$\\
+\midrule
+bank (160 templates), real noise & $5.58$ & $7.71$\\
+bank (640 templates), real noise & $5.54$ & $7.61$\\
+bank (160) + amplitude veto, real noise & $5.66$ & $6.87$\\
+CNN (fresh injections), real noise & $4.50$ & $5.48$\\
+bank (160), \emph{Gaussian} noise & $5.38$ & $6.00$\\
+CNN (same network, not retrained), Gaussian noise & $5.63$ & $6.30$\\
+\bottomrule
+\end{tabular}
+\caption{Mean $\snr_{50}$ of the bank and of the CNN in real and in synthetic Gaussian noise, and with a richer bank or a veto. The amplitude veto removes the largest-amplitude windows ($0.5\,\%$ of the noise) and also loud pulses; at $10^{-3}$ the pulse curve does not reach $50\,\%$ with it and is excluded from the mean.}\label{tab:ablation}
+\end{table}
+\begin{figure}[h]\centering\includegraphics[width=0.95\textwidth]{fig15_ablation.pdf}\caption{Mean $\snr_{50}$ of the ablation cases of Table~\ref{tab:ablation}.}\label{fig:ablation}\end{figure}
+\begin{enumerate}[nosep]
+\item \emph{A richer bank does not close the gap} ($5.54$ against $5.58$): the advantage is not template coverage.
+\item \emph{In Gaussian noise the network is not better than the bank}: $5.63$ against $5.38$ at $10^{-2}$ (it is better on pulses, worse on sine-Gaussians), where it was never trained. The CNN advantage of $\approx1.1$ ($10^{-2}$) and $\approx2.2$ ($10^{-3}$) seen in real noise is therefore largely an advantage on \emph{real} noise, in which the network was trained: the real noise costs the bank $0.2$ at $10^{-2}$ and $1.7$ at $10^{-3}$ and costs the network nothing. Part of it is a domain effect (the network was not retrained in Gaussian noise), so this is evidence that the advantage lives in the tail of real noise, not a proof of its mechanism.
+\item \emph{A crude glitch veto recovers part of the gap at $10^{-3}$} ($7.71\to6.87$ on the morphologies that still reach $50\,\%$) and nothing at $10^{-2}$; signal-consistency vetoes ($\chi^2$) are the natural next step.
+\end{enumerate}
+
+
+\subsection{Generalisation to O2 and O3}\label{sec:o2o3}
+Notebook~36 applies the unchanged pipeline (own-chunk median-Welch PSD, one-second windows, band $30$--$500\,$Hz) to nine new H1 chunks, three each in O2, O3a and O3b ($\ge2000\,$s from catalogued events). The in-band amplitude spectral density is $0.91$ (O2), $0.65$ (O3a) and $0.61$ (O3b) times that of O1, but the data are much less Gaussian in O3: the excess kurtosis of the whitened samples is $10^{5}$--$10^{6}$ and the largest bank statistics reach $7\cdot10^{5}$ (a single window of $\rho\approx800$), orders of magnitude above O1.
+\begin{table}[h]\centering\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llrrr}
+\toprule
+detector & threshold & O2 & O3a & O3b\\
+\midrule
+bank, observed FAP at nominal $10^{-2}$ ($10^{-3}$) & O1 validation & $0.0125$ ($0.0013$) & $0.0164$ ($0.0040$) & $0.0088$ ($0.0022$)\\
+CNN (O1), observed FAP at nominal $10^{-2}$ ($10^{-3}$) & O1 validation & $0.0162$ ($0.0020$) & $0.0206$ ($0.0033$) & $0.0149$ ($0.0012$)\\
+\midrule
+bank $\snr_{50}$ at FAP $10^{-2}$ ($10^{-3}$) & O1 threshold & $5.55$ ($7.75$) & $5.55$ ($7.76$) & $5.58$ ($7.69$)\\
+ & own-run threshold & $5.63$ ($8.58$) & $5.90$ ($>16$) & $5.53$ ($>16$)\\
+CNN $\snr_{50}$ at FAP $10^{-2}$ ($10^{-3}$) & O1 threshold & $3.69$ ($5.23$) & $3.87$ ($5.33$) & $3.86$ ($5.35$)\\
+ & own-run threshold & $4.09$ ($5.43$) & $4.54$ ($6.24$) & $4.25$ ($5.46$)\\
+\bottomrule
+\end{tabular}}
+\caption{Transfer of the O1 calibration and sensitivity to O2 and O3 (mean $\snr_{50}$ over the three morphologies; three chunks per run; a threshold from three chunks at $10^{-3}$ rests on $\approx12$ windows).}\label{tab:o2o3}
+\end{table}
+\begin{itemize}[nosep]
+\item \textbf{The O1 thresholds transfer remarkably well at FAP $10^{-2}$}: the observed FAP is $0.9$--$1.6\,\%$ for the bank and $1.4$--$2.1\,\%$ for the CNN, a factor $<2$ off the nominal value, and the $\snr_{50}$ with the O1 threshold is the same as in O1 ($5.55$ for the bank; $3.7$--$3.9$ for the five-network CNN ensemble, against $3.79$ in O1, Section~\ref{sec:seeds}): the whitening with the chunk's own PSD absorbs the change of sensitivity.
+\item \textbf{At FAP $10^{-3}$ the tails decide}: with its own threshold the bank in O3 needs a network SNR above $16$ for $50\,\%$ efficiency, because three O3 chunks contain windows with a statistic of $10^{4}$--$10^{6}$ that push the $99.9\,\%$ quantile above any realistic signal; the CNN is far less affected ($5.4$--$6.2$). In O3 the data-quality flags of Section~\ref{sec:dq} (not applied here) or time slides are indispensable for a template statistic.
+\item The CNN trained on O1 only keeps its ranking with the bank in O2 and O3 without retraining ($3.7$--$4.5$ against $5.5$--$5.9$ at $10^{-2}$): its advantage does not depend on the epoch of the training noise.
+\end{itemize}
+\begin{figure}[h]\centering\includegraphics[width=0.98\textwidth]{fig36_o2_o3.pdf}\caption{Left: observed FAP of the O1 thresholds in O2/O3 (nominal $0.01$). Right: $\snr_{50}$ with the threshold of the own run.}\label{fig:o2o3}\end{figure}
 
 \paragraph{What the comparison supports.}
 \begin{enumerate}[nosep]
 \item The frequentist and Bayesian statistics are two views of the same matched-filter cube and detect the same bursts; the Bayesian analysis adds calibrated posteriors and the prior dependence of the evidence, the frequentist analysis adds optimality statements (Neyman--Pearson oracle gap) and guaranteed coverage.
 \item A network with no template knowledge reaches matched-filter performance on the family the bank was designed for, and exceeds it on the shapes it has seen; trained with fresh injections at every epoch a single CNN does better than a five-member ensemble trained on a fixed set. Its advantage is bounded by its training set: on a morphology it has not seen it falls below the bank, so it is not a replacement for a morphology-independent statistic.
-\item \textbf{Which morphology?} Model comparison with the exact likelihood of each family (Bayes factors) is the best classifier from $\snr\approx6$, the CNN is tied with it at high SNR and $0.04$--$0.05$ behind at $\snr=5$--6, and no method can say that a signal belongs to none of the families.
+\item \textbf{Realistic signals.} On binary-black-hole signals the detectors designed on phenomenological bursts do not transfer for free (the sine-Gaussian bank loses $2.0$ in $\snr_{50}$ with respect to an IMR bank, excess power $2.9$); the networks trained on the phenomenological morphologies generalise better than the banks of the wrong family, and a network trained with IMR signals beats the IMR bank on waveforms never seen in training, at no cost on the other morphologies.
+\item \textbf{Two detectors.} Coincidence with time slides moves the false-alarm floor from $10^{-3}$ (one detector, set by the glitch tail) to $10^{-6}$ per window at a cost of a few SNR units; the CNN and the matched filter of the right family then both need a network SNR of $\approx11$. The combination statistic must be robust to a glitch in one detector.
+\item \textbf{Which morphology?} Model comparison with the exact likelihood of each family (Bayes factors) is the best classifier among the networks trained on the static set; a CNN trained with fresh injections ties with it at low SNR and is slightly ahead at high SNR ($0.977$ against $0.969$ at $\snr=8$). A signal that belongs to none of the families is not flagged by the family decision of any method, but it is by an explicit goodness-of-fit of the matched filter (stochastic bursts) or by the energy score of the network (chirps of the wrong family).
 \item \textbf{Sequence structure does not help here.} A patch Transformer and a GRU detect worse than the CNN with every lever tried (data, learning rate, patch size, longer training). The patch embedding, not the data or the optimisation, is the limitation: a convolutional stem recovers most of the gap, but the CNN stays ahead on one-second windows with a localised burst.
 \item None of the statistics escapes the real noise: the glitch floor dominates the price of a low false-alarm probability, and the calibration of a threshold is a property of the epoch in which it was measured.
 \end{enumerate}
 
-\paragraph{What it does not support.} These are efficiencies for single-detector injections into one-second windows at a given \emph{optimal SNR}; they are not astrophysical sensitivities, not rates, and say nothing about coincidence between detectors, where most of the real-world rejection of glitches comes from.
+\paragraph{What it does not support.} These are efficiencies for injections into one-second windows at a given \emph{optimal SNR}; they are not astrophysical sensitivities and not rates. Even the two-detector analysis lacks a coherent network statistic, sky localisation, signal-consistency vetoes and the very low false-alarm rates of real searches.

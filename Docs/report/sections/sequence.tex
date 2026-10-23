@@ -70,7 +70,7 @@ Transformer 4-class, pre-trained & 0.665 & 0.765 & 0.873 & 0.924 & 0.955\\
 \end{table}
 
 \begin{itemize}[nosep]
-\item \textbf{Bayesian model comparison is the best classifier from $\snr\approx6$ (tied with the CNN above $\snr\approx10$)} ($0.969$ at $\snr=8$) and has the best four-class balanced accuracy in both SNR ranges ($0.778$ for $\snr=4$--7, $0.988$ for $\snr=8$--16). The CNN is close at high SNR ($0.960$ at $\snr=8$) and $0.04$--$0.05$ behind at $\snr=5$--6; then come the GRU, and last the Transformer ($0.867$--$0.873$), pre-trained or not. The answer to the question is therefore: among the networks the convolutional structure (local filters plus global pooling) does best, a bidirectional recurrent encoder is second and attention on 16-sample patches third; none beats the Bayesian comparison, which uses the exact likelihood of each family.
+\item \textbf{Bayesian model comparison is the best classifier from $\snr\approx6$ among the networks trained on the static set (tied with the CNN above $\snr\approx10$)} ($0.969$ at $\snr=8$; this ranking changes when the networks are trained with fresh injections, Section~\ref{sec:tuning}) and has the best four-class balanced accuracy in both SNR ranges ($0.778$ for $\snr=4$--7, $0.988$ for $\snr=8$--16). The CNN is close at high SNR ($0.960$ at $\snr=8$) and $0.04$--$0.05$ behind at $\snr=5$--6; then come the GRU, and last the Transformer ($0.867$--$0.873$), pre-trained or not. The answer to the question is therefore: among the networks the convolutional structure (local filters plus global pooling) does best, a bidirectional recurrent encoder is second and attention on 16-sample patches third; none beats the Bayesian comparison, which uses the exact likelihood of each family.
 \item \textbf{The frequentist rule depends on how the trial factors are treated.} The largest raw $\rho^2_f$ is $0.05$ worse than the Bayes factor at $\snr=8$; converting each into a background p-value is the best rule at $\snr\le5$ but its accuracy \emph{falls} with SNR beyond $\snr\approx9$ ($0.82$ at 14) because the empirical p-values of loud signals saturate at $1/(N+1)$ for every family and the tie is broken by the raw $\rho^2$, which favours the families with more templates. This is a limit of the $8112$-window background, not of the method.
 \item \textbf{Detection comes first.} Only $\approx46\,\%$ of the $\snr=5$ injections and $97\,\%$ of those at $\snr=7$ pass the common Bayesian gate, so the morphology can be discussed only for signals loud enough to be detected. In the range $\snr=4$--7 the fraction of signals called noise is $0.40$ (Bayes, frequentist), $0.51$ (CNN), $0.54$ (GRU), $0.60$ (Transformer).
 \item \textbf{A signal incompatible with every hypothesis.} A Gaussian-enveloped burst of band-limited stochastic noise ($\sigma_t=15$\,ms) belongs to none of the families. It is detected when loud ($94$--$98\,\%$ at $\snr=12$) and every method gives it a family, mostly sine-Gaussian ($0.93$ max-$\rho^2$, $0.95$ CNN, $0.80$ Bayes, $0.82$--$0.85$ Transformers, $0.90$ GRU) and then pulse. No method can say ``none of the above'': a softmax is normalised over the classes it knows and the Bayesian posterior over the families it contains. Flagging such signals would need an explicit goodness-of-fit (the residual after subtracting the best template) or an open-set head; neither was tried.
@@ -94,19 +94,19 @@ The comparison above used a small budget (at most 12 epochs, two seeds, no tunin
 model & train loss & val.\ loss & $\overline{\snr_{50}}$ @$10^{-2}$ & $\overline{\snr_{50}}$ @$10^{-3}$\\
 \midrule
 Transformer (Sec.~\ref{sec:seq}, 2 seeds) & 0.30 & 0.31 & 6.20 & 7.32\\
-\quad + fresh injections & 0.30 & 0.30 & 6.29 & 7.25\\
+\quad + fresh injections (2 seeds) & 0.30 & 0.30 & 6.27 & 7.38\\
 \quad + learning rate $3\times10^{-3}$ & 0.30 & 0.32 & 6.36 & 7.68\\
 \quad + patches of 8 samples & 0.31 & 0.31 & 6.59 & 7.58\\
 \midrule
-hybrid (conv.\ stem + 2 blocks), static & 0.24 & 0.27 & 5.66 & 6.60\\
-hybrid, fresh injections & 0.23 & 0.25 & 5.36 & 6.14\\
+hybrid (conv.\ stem + 2 blocks), static (2 seeds) & 0.22 & 0.27 & 5.64 & 6.79\\
+hybrid, fresh injections (2 seeds) & 0.23 & 0.25 & 5.33 & 6.21\\
 \midrule
 CNN, static data (2 seeds) & 0.08 & 0.18 & 5.22 & 6.26\\
 CNN, fresh injections (2 seeds) & 0.09 & \textbf{0.117} & \textbf{4.60} & \textbf{5.65}\\
 CNN ensemble of Sec.~\ref{sec:ml} (5, static) & -- & -- & 4.85 & 5.79\\
 \bottomrule
 \end{tabular}
-\caption{Tuning study: training and validation loss at the best epoch and mean over the three morphologies of $\snr_{50}$ at FAP $10^{-2}$ and $10^{-3}$ (thresholds on the validation noise). Differences below $\approx0.3$ are not significant: the seed-to-seed difference of the same configuration is $0.23$ and $0.14$ (static CNN) and $0.06$ and $0.02$ (fresh CNN); most variants have a single seed.}\label{tab:tuning}
+\caption{Tuning study: training and validation loss at the best epoch and mean over the three morphologies of $\snr_{50}$ at FAP $10^{-2}$ and $10^{-3}$ (thresholds on the validation noise). Differences below $\approx0.3$ are not significant: the half-range between seeds of the same configuration is $0.11$/$0.07$ (static CNN), $0.03$/$0.01$ (fresh CNN), $0.03$/$0.13$ (Transformer, fresh), $0.02$/$0.18$ (hybrid, static) and $0.03$/$0.07$ (hybrid, fresh) at FAP $10^{-2}$/$10^{-3}$; the lr-$3\times10^{-3}$ and patch-8 variants have a single seed.}\label{tab:tuning}
 \end{table}
 
 \begin{figure}[h]\centering
@@ -117,13 +117,58 @@ CNN ensemble of Sec.~\ref{sec:ml} (5, static) & -- & -- & 4.85 & 5.79\\
 
 \paragraph{Findings.}
 \begin{enumerate}[nosep]
-\item \textbf{The patch Transformer does not recover with any single lever.} Fresh injections, a three times higher learning rate, smaller patches (four times the cost) and the 25-epoch run leave $\overline{\snr_{50}}$ at $6.3$--$6.6$ and the validation loss at $0.30$--$0.32$: the limitation is the embedding, not the data or the optimisation time. Chirps are the worst case ($\snr_{50}\approx7.4$--$8.0$ against $5.5$--$5.8$ for the CNN): a 30--80\,ms oscillation needs frequency-selective filters, which a linear map of 16 raw samples does not provide.
-\item \textbf{A convolutional stem is the lever that works.} The hybrid reaches $5.66$ (static) and $5.36$ (fresh), $0.5$--$0.9$ better than the patch Transformer, well above the seed scatter, and a validation loss of $0.27$/$0.25$; it is the only sequence model competitive at FAP $10^{-3}$ ($6.14$ against $7.3$--$7.7$).
-\item \textbf{But the CNN stays ahead with the same data.} Static data: hybrid $5.66$ against CNN $5.1$--$5.3$; fresh data: $5.36$ against $4.6$. Attention on top of a good convolutional front-end does not add detection power on one-second windows with a localised burst.
-\item \textbf{The CNN of Section~\ref{sec:ml} was data-limited, and fresh injections are the best lever of the whole study.} A \emph{single} CNN trained with fresh injections reaches $\overline{\snr_{50}}=4.6$ at FAP $10^{-2}$ and $5.65$ at $10^{-3}$, better than the five-member static ensemble ($4.85$, $5.79$), with the same $\snr_{90}$ ($6.6$); its validation loss falls from $0.17$--$0.19$ to $0.117$. This is the reference CNN for any future comparison; the numbers of Section~\ref{sec:ml} are unchanged but should be read as those of a data-limited network.
-\item \textbf{The comparison does not favour the CNN.} At a nominal FAP of $1\,\%$ the observed false-alarm probability on the test chunks is $0.4$--$0.5\,\%$ for the fresh CNN and $0.97$--$0.99\,\%$ for the hybrids: the CNN threshold is the more conservative one, so at equal observed FAP the gap would be larger.
+\item \textbf{The patch Transformer does not recover with any single lever.} Fresh injections ($6.27$, two seeds), a three times higher learning rate, smaller patches (four times the cost) and the 25-epoch run leave $\overline{\snr_{50}}$ at $6.3$--$6.6$ and the validation loss at $0.30$--$0.32$: the limitation is the embedding, not the data or the optimisation time. Chirps are the worst case ($\snr_{50}\approx7.4$--$8.0$ against $5.5$--$5.8$ for the CNN): a 30--80\,ms oscillation needs frequency-selective filters, which a linear map of 16 raw samples does not provide.
+\item \textbf{A convolutional stem is the lever that works.} The hybrid reaches $5.64$ (static) and $5.33$ (fresh), $0.6$--$0.9$ better than the patch Transformer, well above the seed scatter, and a validation loss of $0.27$/$0.25$; it is the only sequence model competitive at FAP $10^{-3}$ ($6.21$ against $7.3$--$7.7$).
+\item \textbf{But the CNN stays ahead with the same data.} Static data: hybrid $5.64$ against CNN $5.22$; fresh data: $5.33$ against $4.60$. Attention on top of a good convolutional front-end does not add detection power on one-second windows with a localised burst.
+\item \textbf{The CNN of Section~\ref{sec:ml} was data-limited, and fresh injections are the best lever of the whole study.} Fresh injections cut $\overline{\snr_{50}}$ of the CNN from $5.22$ to $4.60$ at FAP $10^{-2}$ and from $6.26$ to $5.65$ at $10^{-3}$, of the hybrid by $0.31$ and $0.58$, and of the patch Transformer by nothing. A \emph{single} fresh CNN is better than the five-member static ensemble ($4.85$, $5.79$), with the same $\snr_{90}$ ($6.6$); its validation loss falls from $0.17$--$0.19$ to $0.117$. This is the reference CNN for any future comparison; the numbers of Section~\ref{sec:ml} are unchanged but should be read as those of a data-limited network.
+\item \textbf{The comparison does not favour the CNN.} At a nominal FAP of $1\,\%$ the observed false-alarm probability on the test chunks is $0.4$--$0.5\,\%$ for the fresh CNNs, $0.7$--$1.0\,\%$ for the patch Transformers and $1.0$--$1.1\,\%$ for the hybrids: the CNN threshold is the more conservative one, so at equal observed FAP the gap would be larger.
 \end{enumerate}
 
 \paragraph{Intuition (interpretation, not tested separately).} The burst is a short, localised oscillation in white noise; seeing it requires a filter tuned to its frequency, which is what a convolution does (a learned matched filter). A patch Transformer first mixes 16 raw samples with a single linear map, which cannot build such filters, and nothing downstream recovers what is lost: this is consistent with the high training loss. Once the filters are provided by a convolutional stem the Transformer improves a lot, but a burst that sits in one place of a one-second window leaves little long-range structure for attention to exploit, and recurrence, whose strength is remembering distant context, is similarly wasted.
 
-\paragraph{Caveats.} A single seed for the Transformer, GRU and hybrid variants; a budget of 12 epochs (the hybrid reaches its best validation epoch at 7 with static and 11 with fresh data, so the longer fresh-data runs might gain a little more); depth, width, number of heads and the pre-training were not swept; the multiclass networks of the previous subsection were trained on static data and probably under-estimate what a CNN trained with fresh injections would do; the unit tested is one second of whitened data with one localised burst --- longer windows, or several overlapping signals, are the setting where attention could be expected to matter.
+\paragraph{Multiclass networks with fresh injections change a conclusion of Section~\ref{sec:seq}.} The four-class networks of the previous subsection were trained on the static set. Trained with fresh injections (Table~\ref{tab:mcfresh}) the CNN rises from $0.960$ to $0.977$ three-way accuracy at $\snr=8$ and from $0.983$ to $0.991$ balanced four-class accuracy for $\snr=8$--16 ($0.796$ against $0.722$ for $\snr=4$--7): it ties with the Bayesian model comparison at low SNR ($0.768$ against $0.771$ at $\snr=5$) and is slightly \emph{ahead} of it at high SNR ($0.977$ against $0.969$ at $\snr=8$, $0.988$ against $0.977$ at $\snr=10$; differences of $\approx0.01$, about two standard errors with 1500 injections per point). The hybrid network is level with the Bayes factors; the patch Transformer is not helped ($0.844$ at $\snr=8$ against $0.867$ static). The statement of Section~\ref{sec:seq} that Bayesian model comparison is the best morphology classifier was therefore a statement about a data-limited CNN: with the same budget and fresh injections the CNN is as good.
+
+\begin{table}[h]\centering\small
+\begin{tabular}{lrrrrrcc}
+\toprule
+3-way accuracy at $\snr=$ & 5 & 6 & 8 & 10 & 14 & bal.\ 4--7 & bal.\ 8--16\\
+\midrule
+Bayes (3 families) & 0.771 & 0.906 & 0.969 & 0.977 & 0.989 & 0.778 & 0.988\\
+CNN 4-class, static & 0.725 & 0.863 & 0.960 & 0.980 & 0.991 & 0.722 & 0.983\\
+CNN 4-class, fresh & 0.768 & 0.900 & \textbf{0.977} & \textbf{0.988} & \textbf{0.997} & \textbf{0.796} & \textbf{0.991}\\
+hybrid 4-class, fresh & 0.769 & 0.888 & 0.965 & 0.986 & 0.997 & 0.760 & 0.987\\
+Transformer 4-class, static & 0.643 & 0.759 & 0.867 & 0.925 & 0.955 & 0.661 & 0.944\\
+Transformer 4-class, fresh & 0.635 & 0.736 & 0.844 & 0.899 & 0.950 & 0.656 & 0.933\\
+GRU 4-class, static & 0.665 & 0.813 & 0.925 & 0.969 & 0.989 & 0.700 & 0.966\\
+\bottomrule
+\end{tabular}
+\caption{Three-way morphology accuracy at several SNRs and balanced four-class accuracy for $\snr=4$--7 and 8--16, with static and fresh-injection training (the Bayes row is from Table~\ref{tab:morph}).}\label{tab:mcfresh}
+\end{table}
+
+\paragraph{Caveats.} A single seed for the lr-$3\times10^{-3}$ and patch-8 Transformers and for the four-class Transformer and hybrid; a budget of 12 epochs (the hybrid reaches its best validation epoch at 7--12, so the fresh-data runs might gain a little more); depth, width, number of heads and the pre-training were not swept; the unit tested is one second of whitened data with one localised burst --- longer windows, or several overlapping signals, are the setting where attention could be expected to matter.
+
+\subsection{Seed scatter and paired tests}\label{sec:seeds}
+The comparisons above used one or two seeds per architecture. Notebook~30 trains more seeds with the same recipe (CNN with fresh injections: $5$; hybrid: $3$; Transformer: $3$) and evaluates all on the same test injections with the validation thresholds (mean $\snr_{50}$ over the three morphologies).
+\begin{table}[h]\centering\small
+\begin{tabular}{lrrr}
+\toprule
+architecture (seeds) & FAP $10^{-2}$: mean $\pm$ std (range) & FAP $10^{-3}$: mean $\pm$ std\\
+\midrule
+CNN, fresh injections (5) & $4.31\pm0.40$ ($3.72$--$4.63$) & $5.67\pm0.03$\\
+hybrid, fresh (3) & $5.35\pm0.05$ & $6.29\pm0.16$\\
+Transformer, fresh (3) & $6.29\pm0.05$ & $7.47\pm0.20$\\
+average of the 5 CNN logits & $3.79$ & $5.32$\\
+\bottomrule
+\end{tabular}
+\caption{Seed-to-seed scatter of the detectors (the test-set bootstrap error of a single network is $0.08$).}\label{tab:seeds}
+\end{table}
+The scatter of the CNN at FAP $10^{-2}$ ($0.40$; two seeds at $3.72$ and $4.08$ against $4.56$--$4.63$ for the other three) is much larger than the $0.03$ half-range of the two seeds of notebook~07 and larger than the test-set error, while at $10^{-3}$ all seeds agree to $0.03$: a single-seed number at $10^{-2}$ is uncertain by about $\pm0.4$. The architecture differences are nevertheless larger than the scatter and significant at the level of seeds (permutation and Welch tests): hybrid minus CNN $+1.04$ ($p=0.018$ permutation, $0.004$ Welch) and Transformer minus CNN $+1.98$ ($p=0.018$, $0.0003$) at $10^{-2}$; $+0.62$ and $+1.79$ at $10^{-3}$. Averaging five CNNs lowers $\snr_{50}$ by a further $0.5$ ($3.79$, $5.32$), the largest single gain obtained in this study at fixed training data. The earlier statement that the ranking CNN $<$ hybrid $<$ Transformer is robust is confirmed; its margin is $1$ to $2$ units, not tenths.
+\begin{figure}[h]\centering\includegraphics[width=0.75\textwidth]{fig30_seed_scatter.pdf}\caption{Mean $\snr_{50}$ of every seed (dots) with mean and standard deviation (bar).}\label{fig:seeds}\end{figure}
+
+\subsection{Other architectures: ResNet-1D, TCN, spectrogram CNN, graph network}\label{sec:otherarch}
+Notebook~34 trains four more detectors with the recipe of notebook~07 (fresh injections, $12$ epochs, one seed): a ResNet-1D (stem and four residual stages), a temporal convolutional network (residual dilated convolutions, dilation $1$--$32$), a 2-D CNN on the log-spectrogram ($33\times121$) and a graph network (EdgeConv with $8$ nearest neighbours) on the $64$ time-frequency pixels of largest power, the construction behind the clustering of coherent WaveBurst. Mean $\snr_{50}$ over the three morphologies at FAP $10^{-2}$ ($10^{-3}$): ResNet-1D $5.01$ ($5.77$), TCN $5.09$ ($5.87$), 2-D CNN $5.20$ ($5.97$), graph network $5.48$ ($6.46$), against $4.31\pm0.40$ ($5.67\pm0.03$) for the project CNN over five seeds, $5.35$ ($6.29$) for the hybrid and $6.29$ ($7.47$) for the Transformer; the bootstrap error of each is $0.04$--$0.05$ at $10^{-2}$ and the seed scatter of the CNN is $0.4$. No architecture beats the plain 1-D CNN, the four are within $\approx0.2$--$0.5$ of each other and of the matched-filter bank ($5.5$), and all are better than the patch Transformer: the global max-pooling over localised convolutional features is what the detection of a localised burst needs, and adding depth, dilation or a second dimension does not change that. The graph network, which sees only $64$ pixels, loses $\approx0.5$ against the best and is the cheapest to evaluate; per morphology the four differ by less than $1$ ($4.5$--$5.8$ over the three morphologies), without a consistent winner.
+\begin{figure}[h]\centering\includegraphics[width=0.75\textwidth]{fig34_architectures.pdf}\caption{Mean $\snr_{50}$ of the four additional architectures (blue) and of the references of Section~\ref{sec:seeds} (green); light part: increase at FAP $10^{-3}$.}\label{fig:otherarch}\end{figure}
+
+\subsection{Transformer tuning, second round: depth, width, length}\label{sec:tftune2}
+The levers left open by notebook~07 were run in notebook~39 (patch $16$, fresh injections, one seed each): six blocks instead of three ($214\,$k parameters), width $128$ with MLP $256$ ($425\,$k) and $30$ epochs instead of $12$. Mean $\snr_{50}$ at FAP $10^{-2}$ ($10^{-3}$): baseline $6.29$ ($7.47$; three seeds, seed scatter $0.05$ ($0.2$)), depth $6.23$ ($7.21$), width $6.11$ ($6.97$), $30$ epochs $5.81$ ($7.15$), with validation losses $0.301$, $0.299$, $0.301$ and $0.255$. Deeper and wider networks gain $0.06$--$0.2$ at $10^{-2}$ (within the seed scatter for the depth) and $0.3$--$0.5$ at $10^{-3}$; training longer is the only lever whose gain at $10^{-2}$ ($0.48$) is far beyond the scatter, and it still leaves the Transformer $1.5$ units behind the CNN ($4.31$) and $0.5$ behind the hybrid ($5.35$). Combined with the earlier levers (learning rate, patch size, fresh data, convolutional stem), the Transformer on one-second windows with a localised burst does not reach the CNN with any budget tried here; contrastive pre-training and overlapping windows, also on the original list, were not run.
+\begin{figure}[h]\centering\includegraphics[width=0.98\textwidth]{fig39_transformer_tuning.pdf}\caption{Left: validation loss of the variants. Right: mean $\snr_{50}$ of the variants and of the references.}\label{fig:tftune2}\end{figure}

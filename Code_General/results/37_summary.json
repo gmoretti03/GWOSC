@@ -1,0 +1,489 @@
+{
+ "retention": [
+  {
+   "system": "3+3 M\u2609 (M_tot 6)",
+   "frac_in_band": 0.5258351355750917,
+   "frac_band_and_last_second": 0.23673410556830107,
+   "duration_band_s": 13.595703125,
+   "snr_factor_retained": 0.4865532916015481
+  },
+  {
+   "system": "4+4 M\u2609 (M_tot 8)",
+   "frac_in_band": 0.46417933572660025,
+   "frac_band_and_last_second": 0.2556987927456524,
+   "duration_band_s": 8.501220703125,
+   "snr_factor_retained": 0.5056666814668062
+  },
+  {
+   "system": "5+5 M\u2609 (M_tot 10)",
+   "frac_in_band": 0.8433671256426196,
+   "frac_band_and_last_second": 0.5330006064815871,
+   "duration_band_s": 5.8369140625,
+   "snr_factor_retained": 0.7300689052970186
+  },
+  {
+   "system": "7.5+7.5 M\u2609 (M_tot 15)",
+   "frac_in_band": 0.9670603360968263,
+   "frac_band_and_last_second": 0.7585905634805865,
+   "duration_band_s": 2.95458984375,
+   "snr_factor_retained": 0.8709710462929215
+  },
+  {
+   "system": "10+10 M\u2609 (M_tot 20)",
+   "frac_in_band": 0.9639077965798397,
+   "frac_band_and_last_second": 0.8635719100829401,
+   "duration_band_s": 1.89404296875,
+   "snr_factor_retained": 0.929285698847744
+  },
+  {
+   "system": "15+15 M\u2609 (M_tot 30)",
+   "frac_in_band": 0.9681402653903949,
+   "frac_band_and_last_second": 0.9284725631426659,
+   "duration_band_s": 127.750244140625,
+   "snr_factor_retained": 0.9635728115418501
+  },
+  {
+   "system": "25+25 M\u2609 (M_tot 50)",
+   "frac_in_band": 0.9784868214407441,
+   "frac_band_and_last_second": 0.940057994768965,
+   "duration_band_s": 127.99853515625,
+   "snr_factor_retained": 0.9695658795404081
+  },
+  {
+   "system": "50+50 M\u2609 (M_tot 100)",
+   "frac_in_band": 0.9818638879074372,
+   "frac_band_and_last_second": 0.8650538267044966,
+   "duration_band_s": 127.999755859375,
+   "snr_factor_retained": 0.9300826988523636
+  },
+  {
+   "system": "BNS 1.4+1.4 M\u2609",
+   "frac_in_band": 0.03553096251576772,
+   "frac_band_and_last_second": 0.007630439881050041,
+   "duration_band_s": 47.5616455078125,
+   "snr_factor_retained": 0.08735238909755154
+  }
+ ],
+ "rho50": [
+  {
+   "family": "NSBH (BH 20-60 + NS)",
+   "detector": "sine-Gaussian bank",
+   "FAP": 0.01,
+   "rho50": 8.990291262135923,
+   "eff_rho8": 0.296
+  },
+  {
+   "family": "NSBH (BH 20-60 + NS)",
+   "detector": "sine-Gaussian bank",
+   "FAP": 0.001,
+   "rho50": 13.647058823529411,
+   "eff_rho8": 0.012
+  },
+  {
+   "family": "NSBH (BH 20-60 + NS)",
+   "detector": "IMR bank (30-100 M\u2609)",
+   "FAP": 0.01,
+   "rho50": 10.761904761904763,
+   "eff_rho8": 0.296
+  },
+  {
+   "family": "NSBH (BH 20-60 + NS)",
+   "detector": "IMR bank (30-100 M\u2609)",
+   "FAP": 0.001,
+   "rho50": 15.222222222222221,
+   "eff_rho8": 0.132
+  },
+  {
+   "family": "NSBH (BH 20-60 + NS)",
+   "detector": "excess power",
+   "FAP": 0.01,
+   "rho50": 11.011494252873563,
+   "eff_rho8": 0.108
+  },
+  {
+   "family": "NSBH (BH 20-60 + NS)",
+   "detector": "excess power",
+   "FAP": 0.001,
+   "rho50": 13.794117647058824,
+   "eff_rho8": 0.012
+  },
+  {
+   "family": "NSBH (BH 20-60 + NS)",
+   "detector": "CNN (no IMR in training)",
+   "FAP": 0.01,
+   "rho50": 6.2272727272727275,
+   "eff_rho8": 0.808
+  },
+  {
+   "family": "NSBH (BH 20-60 + NS)",
+   "detector": "CNN (no IMR in training)",
+   "FAP": 0.001,
+   "rho50": 7.955882352941177,
+   "eff_rho8": 0.512
+  },
+  {
+   "family": "NSBH (BH 20-60 + NS)",
+   "detector": "CNN (trained with IMRPhenomD)",
+   "FAP": 0.01,
+   "rho50": 5.4375,
+   "eff_rho8": 0.824
+  },
+  {
+   "family": "NSBH (BH 20-60 + NS)",
+   "detector": "CNN (trained with IMRPhenomD)",
+   "FAP": 0.001,
+   "rho50": 7.755102040816326,
+   "eff_rho8": 0.548
+  },
+  {
+   "family": "IMRPhenomD, 30-60 M\u2609 (control)",
+   "detector": "sine-Gaussian bank",
+   "FAP": 0.01,
+   "rho50": 8.080808080808081,
+   "eff_rho8": 0.484
+  },
+  {
+   "family": "IMRPhenomD, 30-60 M\u2609 (control)",
+   "detector": "sine-Gaussian bank",
+   "FAP": 0.001,
+   "rho50": 11.852631578947369,
+   "eff_rho8": 0.016
+  },
+  {
+   "family": "IMRPhenomD, 30-60 M\u2609 (control)",
+   "detector": "IMR bank (30-100 M\u2609)",
+   "FAP": 0.01,
+   "rho50": 5.291666666666667,
+   "eff_rho8": 0.944
+  },
+  {
+   "family": "IMRPhenomD, 30-60 M\u2609 (control)",
+   "detector": "IMR bank (30-100 M\u2609)",
+   "FAP": 0.001,
+   "rho50": 6.453333333333333,
+   "eff_rho8": 0.888
+  },
+  {
+   "family": "IMRPhenomD, 30-60 M\u2609 (control)",
+   "detector": "excess power",
+   "FAP": 0.01,
+   "rho50": 9.032967032967033,
+   "eff_rho8": 0.312
+  },
+  {
+   "family": "IMRPhenomD, 30-60 M\u2609 (control)",
+   "detector": "excess power",
+   "FAP": 0.001,
+   "rho50": 11.066666666666666,
+   "eff_rho8": 0.072
+  },
+  {
+   "family": "IMRPhenomD, 30-60 M\u2609 (control)",
+   "detector": "CNN (no IMR in training)",
+   "FAP": 0.01,
+   "rho50": 5.475409836065574,
+   "eff_rho8": 0.904
+  },
+  {
+   "family": "IMRPhenomD, 30-60 M\u2609 (control)",
+   "detector": "CNN (no IMR in training)",
+   "FAP": 0.001,
+   "rho50": 7.389830508474576,
+   "eff_rho8": 0.644
+  },
+  {
+   "family": "IMRPhenomD, 30-60 M\u2609 (control)",
+   "detector": "CNN (trained with IMRPhenomD)",
+   "FAP": 0.01,
+   "rho50": 4.5636363636363635,
+   "eff_rho8": 0.976
+  },
+  {
+   "family": "IMRPhenomD, 30-60 M\u2609 (control)",
+   "detector": "CNN (trained with IMRPhenomD)",
+   "FAP": 0.001,
+   "rho50": 6.11764705882353,
+   "eff_rho8": 0.88
+  },
+  {
+   "family": "EccentricFD e0=0",
+   "detector": "sine-Gaussian bank",
+   "FAP": 0.01,
+   "rho50": 8.732673267326733,
+   "eff_rho8": 0.352
+  },
+  {
+   "family": "EccentricFD e0=0",
+   "detector": "sine-Gaussian bank",
+   "FAP": 0.001,
+   "rho50": 12.74074074074074,
+   "eff_rho8": 0.0
+  },
+  {
+   "family": "EccentricFD e0=0",
+   "detector": "IMR bank (30-100 M\u2609)",
+   "FAP": 0.01,
+   "rho50": 6.977777777777778,
+   "eff_rho8": 0.544
+  },
+  {
+   "family": "EccentricFD e0=0",
+   "detector": "IMR bank (30-100 M\u2609)",
+   "FAP": 0.001,
+   "rho50": 9.0,
+   "eff_rho8": 0.392
+  },
+  {
+   "family": "EccentricFD e0=0",
+   "detector": "excess power",
+   "FAP": 0.01,
+   "rho50": 9.880952380952381,
+   "eff_rho8": 0.184
+  },
+  {
+   "family": "EccentricFD e0=0",
+   "detector": "excess power",
+   "FAP": 0.001,
+   "rho50": 12.137931034482758,
+   "eff_rho8": 0.02
+  },
+  {
+   "family": "EccentricFD e0=0",
+   "detector": "CNN (no IMR in training)",
+   "FAP": 0.01,
+   "rho50": 5.9714285714285715,
+   "eff_rho8": 0.82
+  },
+  {
+   "family": "EccentricFD e0=0",
+   "detector": "CNN (no IMR in training)",
+   "FAP": 0.001,
+   "rho50": 7.673469387755103,
+   "eff_rho8": 0.564
+  },
+  {
+   "family": "EccentricFD e0=0",
+   "detector": "CNN (trained with IMRPhenomD)",
+   "FAP": 0.01,
+   "rho50": 5.277777777777778,
+   "eff_rho8": 0.88
+  },
+  {
+   "family": "EccentricFD e0=0",
+   "detector": "CNN (trained with IMRPhenomD)",
+   "FAP": 0.001,
+   "rho50": 7.166666666666666,
+   "eff_rho8": 0.66
+  },
+  {
+   "family": "EccentricFD e0=0.2",
+   "detector": "sine-Gaussian bank",
+   "FAP": 0.01,
+   "rho50": 8.568421052631578,
+   "eff_rho8": 0.392
+  },
+  {
+   "family": "EccentricFD e0=0.2",
+   "detector": "sine-Gaussian bank",
+   "FAP": 0.001,
+   "rho50": 13.375796178343949,
+   "eff_rho8": 0.012
+  },
+  {
+   "family": "EccentricFD e0=0.2",
+   "detector": "IMR bank (30-100 M\u2609)",
+   "FAP": 0.01,
+   "rho50": 7.375,
+   "eff_rho8": 0.54
+  },
+  {
+   "family": "EccentricFD e0=0.2",
+   "detector": "IMR bank (30-100 M\u2609)",
+   "FAP": 0.001,
+   "rho50": 10.090909090909092,
+   "eff_rho8": 0.388
+  },
+  {
+   "family": "EccentricFD e0=0.2",
+   "detector": "excess power",
+   "FAP": 0.01,
+   "rho50": 9.974358974358974,
+   "eff_rho8": 0.192
+  },
+  {
+   "family": "EccentricFD e0=0.2",
+   "detector": "excess power",
+   "FAP": 0.001,
+   "rho50": 12.566929133858268,
+   "eff_rho8": 0.044
+  },
+  {
+   "family": "EccentricFD e0=0.2",
+   "detector": "CNN (no IMR in training)",
+   "FAP": 0.01,
+   "rho50": 5.857142857142857,
+   "eff_rho8": 0.9
+  },
+  {
+   "family": "EccentricFD e0=0.2",
+   "detector": "CNN (no IMR in training)",
+   "FAP": 0.001,
+   "rho50": 7.4,
+   "eff_rho8": 0.608
+  },
+  {
+   "family": "EccentricFD e0=0.2",
+   "detector": "CNN (trained with IMRPhenomD)",
+   "FAP": 0.01,
+   "rho50": 5.4423076923076925,
+   "eff_rho8": 0.916
+  },
+  {
+   "family": "EccentricFD e0=0.2",
+   "detector": "CNN (trained with IMRPhenomD)",
+   "FAP": 0.001,
+   "rho50": 6.875,
+   "eff_rho8": 0.684
+  },
+  {
+   "family": "EccentricFD e0=0.4",
+   "detector": "sine-Gaussian bank",
+   "FAP": 0.01,
+   "rho50": 8.505050505050505,
+   "eff_rho8": 0.4
+  },
+  {
+   "family": "EccentricFD e0=0.4",
+   "detector": "sine-Gaussian bank",
+   "FAP": 0.001,
+   "rho50": 12.973684210526317,
+   "eff_rho8": 0.008
+  },
+  {
+   "family": "EccentricFD e0=0.4",
+   "detector": "IMR bank (30-100 M\u2609)",
+   "FAP": 0.01,
+   "rho50": 7.393939393939394,
+   "eff_rho8": 0.58
+  },
+  {
+   "family": "EccentricFD e0=0.4",
+   "detector": "IMR bank (30-100 M\u2609)",
+   "FAP": 0.001,
+   "rho50": 8.8,
+   "eff_rho8": 0.404
+  },
+  {
+   "family": "EccentricFD e0=0.4",
+   "detector": "excess power",
+   "FAP": 0.01,
+   "rho50": 9.655172413793103,
+   "eff_rho8": 0.212
+  },
+  {
+   "family": "EccentricFD e0=0.4",
+   "detector": "excess power",
+   "FAP": 0.001,
+   "rho50": 11.853658536585366,
+   "eff_rho8": 0.024
+  },
+  {
+   "family": "EccentricFD e0=0.4",
+   "detector": "CNN (no IMR in training)",
+   "FAP": 0.01,
+   "rho50": 5.681818181818182,
+   "eff_rho8": 0.928
+  },
+  {
+   "family": "EccentricFD e0=0.4",
+   "detector": "CNN (no IMR in training)",
+   "FAP": 0.001,
+   "rho50": 7.4,
+   "eff_rho8": 0.68
+  },
+  {
+   "family": "EccentricFD e0=0.4",
+   "detector": "CNN (trained with IMRPhenomD)",
+   "FAP": 0.01,
+   "rho50": 5.185185185185185,
+   "eff_rho8": 0.936
+  },
+  {
+   "family": "EccentricFD e0=0.4",
+   "detector": "CNN (trained with IMRPhenomD)",
+   "FAP": 0.001,
+   "rho50": 6.928571428571429,
+   "eff_rho8": 0.752
+  },
+  {
+   "family": "IMRPhenomD, 15-40 M\u2609 (control)",
+   "detector": "sine-Gaussian bank",
+   "FAP": 0.01,
+   "rho50": 8.929292929292929,
+   "eff_rho8": 0.316
+  },
+  {
+   "family": "IMRPhenomD, 15-40 M\u2609 (control)",
+   "detector": "sine-Gaussian bank",
+   "FAP": 0.001,
+   "rho50": 13.832402234636872,
+   "eff_rho8": 0.008
+  },
+  {
+   "family": "IMRPhenomD, 15-40 M\u2609 (control)",
+   "detector": "IMR bank (30-100 M\u2609)",
+   "FAP": 0.01,
+   "rho50": 6.529411764705882,
+   "eff_rho8": 0.644
+  },
+  {
+   "family": "IMRPhenomD, 15-40 M\u2609 (control)",
+   "detector": "IMR bank (30-100 M\u2609)",
+   "FAP": 0.001,
+   "rho50": 8.232558139534884,
+   "eff_rho8": 0.48
+  },
+  {
+   "family": "IMRPhenomD, 15-40 M\u2609 (control)",
+   "detector": "excess power",
+   "FAP": 0.01,
+   "rho50": 10.838709677419354,
+   "eff_rho8": 0.092
+  },
+  {
+   "family": "IMRPhenomD, 15-40 M\u2609 (control)",
+   "detector": "excess power",
+   "FAP": 0.001,
+   "rho50": 13.742331288343559,
+   "eff_rho8": 0.008
+  },
+  {
+   "family": "IMRPhenomD, 15-40 M\u2609 (control)",
+   "detector": "CNN (no IMR in training)",
+   "FAP": 0.01,
+   "rho50": 6.150943396226415,
+   "eff_rho8": 0.832
+  },
+  {
+   "family": "IMRPhenomD, 15-40 M\u2609 (control)",
+   "detector": "CNN (no IMR in training)",
+   "FAP": 0.001,
+   "rho50": 7.839285714285714,
+   "eff_rho8": 0.536
+  },
+  {
+   "family": "IMRPhenomD, 15-40 M\u2609 (control)",
+   "detector": "CNN (trained with IMRPhenomD)",
+   "FAP": 0.01,
+   "rho50": 5.242424242424242,
+   "eff_rho8": 0.872
+  },
+  {
+   "family": "IMRPhenomD, 15-40 M\u2609 (control)",
+   "detector": "CNN (trained with IMRPhenomD)",
+   "FAP": 0.001,
+   "rho50": 7.333333333333333,
+   "eff_rho8": 0.628
+  }
+ ]
+}

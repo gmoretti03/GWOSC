@@ -1,0 +1,257 @@
+{
+ "rows": [
+  {
+   "case": "bank 160 (real noise)",
+   "FAP": 0.01,
+   "morph": "sg",
+   "rho50": 5.032608695652174,
+   "err": 0.09146284720215148
+  },
+  {
+   "case": "bank 160 (real noise)",
+   "FAP": 0.01,
+   "morph": "pulse",
+   "rho50": 5.361702127659575,
+   "err": 0.07237583649846258
+  },
+  {
+   "case": "bank 160 (real noise)",
+   "FAP": 0.01,
+   "morph": "chirp",
+   "rho50": 6.3428571428571425,
+   "err": 0.09289821132214637
+  },
+  {
+   "case": "bank 160 (real noise)",
+   "FAP": 0.001,
+   "morph": "sg",
+   "rho50": 6.918367346938775,
+   "err": 0.8195866268471477
+  },
+  {
+   "case": "bank 160 (real noise)",
+   "FAP": 0.001,
+   "morph": "pulse",
+   "rho50": 7.3652173913043475,
+   "err": 0.7725132418314673
+  },
+  {
+   "case": "bank 160 (real noise)",
+   "FAP": 0.001,
+   "morph": "chirp",
+   "rho50": 8.841463414634147,
+   "err": 1.1821530129400406
+  },
+  {
+   "case": "bank 640 (real noise)",
+   "FAP": 0.01,
+   "morph": "sg",
+   "rho50": 5.032258064516129,
+   "err": 0.08684130808194457
+  },
+  {
+   "case": "bank 640 (real noise)",
+   "FAP": 0.01,
+   "morph": "pulse",
+   "rho50": 5.252427184466019,
+   "err": 0.07175379407325488
+  },
+  {
+   "case": "bank 640 (real noise)",
+   "FAP": 0.01,
+   "morph": "chirp",
+   "rho50": 6.333333333333333,
+   "err": 0.11135467165451507
+  },
+  {
+   "case": "bank 640 (real noise)",
+   "FAP": 0.001,
+   "morph": "sg",
+   "rho50": 6.885416666666667,
+   "err": 0.754317864363641
+  },
+  {
+   "case": "bank 640 (real noise)",
+   "FAP": 0.001,
+   "morph": "pulse",
+   "rho50": 7.135135135135135,
+   "err": 0.706047152994989
+  },
+  {
+   "case": "bank 640 (real noise)",
+   "FAP": 0.001,
+   "morph": "chirp",
+   "rho50": 8.8,
+   "err": 1.1195225843787275
+  },
+  {
+   "case": "bank 160 + amplitude veto (real noise)",
+   "FAP": 0.01,
+   "morph": "sg",
+   "rho50": 5.0602409638554215,
+   "err": 0.09732662127790093
+  },
+  {
+   "case": "bank 160 + amplitude veto (real noise)",
+   "FAP": 0.01,
+   "morph": "pulse",
+   "rho50": 5.590361445783133,
+   "err": 0.07129564950876688
+  },
+  {
+   "case": "bank 160 + amplitude veto (real noise)",
+   "FAP": 0.01,
+   "morph": "chirp",
+   "rho50": 6.327868852459016,
+   "err": 0.11890296010295964
+  },
+  {
+   "case": "bank 160 + amplitude veto (real noise)",
+   "FAP": 0.001,
+   "morph": "sg",
+   "rho50": 6.023529411764706,
+   "err": 0.4732141439705506
+  },
+  {
+   "case": "bank 160 + amplitude veto (real noise)",
+   "FAP": 0.001,
+   "morph": "pulse",
+   "rho50": NaN,
+   "err": 0.49003124712802126
+  },
+  {
+   "case": "bank 160 + amplitude veto (real noise)",
+   "FAP": 0.001,
+   "morph": "chirp",
+   "rho50": 7.712643678160919,
+   "err": 0.508944207758915
+  },
+  {
+   "case": "CNN fresh (real noise)",
+   "FAP": 0.01,
+   "morph": "sg",
+   "rho50": 4.772151898734177,
+   "err": 0.12048829431438124
+  },
+  {
+   "case": "CNN fresh (real noise)",
+   "FAP": 0.01,
+   "morph": "pulse",
+   "rho50": 4.126315789473685,
+   "err": 0.10427702168105313
+  },
+  {
+   "case": "CNN fresh (real noise)",
+   "FAP": 0.01,
+   "morph": "chirp",
+   "rho50": 4.597014925373134,
+   "err": 0.11453739373175997
+  },
+  {
+   "case": "CNN fresh (real noise)",
+   "FAP": 0.001,
+   "morph": "sg",
+   "rho50": 5.863013698630137,
+   "err": 0.18003383558022712
+  },
+  {
+   "case": "CNN fresh (real noise)",
+   "FAP": 0.001,
+   "morph": "pulse",
+   "rho50": 4.81,
+   "err": 0.12630395136778105
+  },
+  {
+   "case": "CNN fresh (real noise)",
+   "FAP": 0.001,
+   "morph": "chirp",
+   "rho50": 5.776315789473684,
+   "err": 0.23341215158158457
+  },
+  {
+   "case": "bank 160 (Gaussian noise)",
+   "FAP": 0.01,
+   "morph": "sg",
+   "rho50": 4.776859504132232,
+   "err": 0.05787847930509482
+  },
+  {
+   "case": "bank 160 (Gaussian noise)",
+   "FAP": 0.01,
+   "morph": "pulse",
+   "rho50": 5.179775280898877,
+   "err": 0.08744014910504827
+  },
+  {
+   "case": "bank 160 (Gaussian noise)",
+   "FAP": 0.01,
+   "morph": "chirp",
+   "rho50": 6.170454545454546,
+   "err": 0.08664072587204652
+  },
+  {
+   "case": "bank 160 (Gaussian noise)",
+   "FAP": 0.001,
+   "morph": "sg",
+   "rho50": 5.2700000000000005,
+   "err": 0.07003209286695311
+  },
+  {
+   "case": "bank 160 (Gaussian noise)",
+   "FAP": 0.001,
+   "morph": "pulse",
+   "rho50": 5.826086956521739,
+   "err": 0.0870571616974285
+  },
+  {
+   "case": "bank 160 (Gaussian noise)",
+   "FAP": 0.001,
+   "morph": "chirp",
+   "rho50": 6.905882352941177,
+   "err": 0.09262634384585633
+  },
+  {
+   "case": "CNN fresh (Gaussian noise)",
+   "FAP": 0.01,
+   "morph": "sg",
+   "rho50": 5.8765432098765435,
+   "err": 0.09044013017618635
+  },
+  {
+   "case": "CNN fresh (Gaussian noise)",
+   "FAP": 0.01,
+   "morph": "pulse",
+   "rho50": 4.914285714285715,
+   "err": 0.0690900144682085
+  },
+  {
+   "case": "CNN fresh (Gaussian noise)",
+   "FAP": 0.01,
+   "morph": "chirp",
+   "rho50": 6.1,
+   "err": 0.1096572716411428
+  },
+  {
+   "case": "CNN fresh (Gaussian noise)",
+   "FAP": 0.001,
+   "morph": "sg",
+   "rho50": 6.426966292134831,
+   "err": 0.07765198518881089
+  },
+  {
+   "case": "CNN fresh (Gaussian noise)",
+   "FAP": 0.001,
+   "morph": "pulse",
+   "rho50": 5.578947368421052,
+   "err": 0.08873617558911695
+  },
+  {
+   "case": "CNN fresh (Gaussian noise)",
+   "FAP": 0.001,
+   "morph": "chirp",
+   "rho50": 6.901234567901235,
+   "err": 0.10947691508672364
+  }
+ ],
+ "veto_cut": 4.385520935058594
+}

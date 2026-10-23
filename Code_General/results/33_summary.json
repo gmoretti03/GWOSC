@@ -1,0 +1,216 @@
+{
+ "rho50": [
+  {
+   "model": "normalising flow (-ln p)",
+   "FAP": 0.01,
+   "morph": "sg",
+   "rho50": 7.445255474452555,
+   "err": 0.07861469694166923,
+   "auc8": 0.9710801243782043
+  },
+  {
+   "model": "normalising flow (-ln p)",
+   "FAP": 0.01,
+   "morph": "pulse",
+   "rho50": 7.235714285714286,
+   "err": 0.08277570190052241,
+   "auc8": 0.9785517454147339
+  },
+  {
+   "model": "normalising flow (-ln p)",
+   "FAP": 0.01,
+   "morph": "chirp",
+   "rho50": 9.25,
+   "err": 0.11701373577464036,
+   "auc8": 0.854393720626831
+  },
+  {
+   "model": "normalising flow (-ln p)",
+   "FAP": 0.01,
+   "morph": "imr",
+   "rho50": 9.44954128440367,
+   "err": 0.127393728879734,
+   "auc8": 0.8478699326515198
+  },
+  {
+   "model": "normalising flow (-ln p)",
+   "FAP": 0.001,
+   "morph": "sg",
+   "rho50": 9.492857142857142,
+   "err": 0.721754999298911,
+   "auc8": 0.9710801243782043
+  },
+  {
+   "model": "normalising flow (-ln p)",
+   "FAP": 0.001,
+   "morph": "pulse",
+   "rho50": 9.92436974789916,
+   "err": 0.9513812304707088,
+   "auc8": 0.9785517454147339
+  },
+  {
+   "model": "normalising flow (-ln p)",
+   "FAP": 0.001,
+   "morph": "chirp",
+   "rho50": 11.348837209302326,
+   "err": 0.5891021376413805,
+   "auc8": 0.854393720626831
+  },
+  {
+   "model": "normalising flow (-ln p)",
+   "FAP": 0.001,
+   "morph": "imr",
+   "rho50": 12.891089108910892,
+   "err": 1.207028301199557,
+   "auc8": 0.8478699326515198
+  },
+  {
+   "model": "VAE, local reconstruction error",
+   "FAP": 0.01,
+   "morph": "sg",
+   "rho50": 6.737226277372263,
+   "err": 0.08662154968360225,
+   "auc8": 0.9804267883300781
+  },
+  {
+   "model": "VAE, local reconstruction error",
+   "FAP": 0.01,
+   "morph": "pulse",
+   "rho50": 6.519230769230769,
+   "err": 0.0962948547757656,
+   "auc8": 0.9878749847412109
+  },
+  {
+   "model": "VAE, local reconstruction error",
+   "FAP": 0.01,
+   "morph": "chirp",
+   "rho50": 8.495412844036696,
+   "err": 0.13590221704606176,
+   "auc8": 0.8954579830169678
+  },
+  {
+   "model": "VAE, local reconstruction error",
+   "FAP": 0.01,
+   "morph": "imr",
+   "rho50": 7.685185185185185,
+   "err": 0.12305847600930564,
+   "auc8": 0.937894344329834
+  },
+  {
+   "model": "VAE, local reconstruction error",
+   "FAP": 0.001,
+   "morph": "sg",
+   "rho50": 9.31875,
+   "err": 0.8780159835347705,
+   "auc8": 0.9804267883300781
+  },
+  {
+   "model": "VAE, local reconstruction error",
+   "FAP": 0.001,
+   "morph": "pulse",
+   "rho50": 9.211267605633802,
+   "err": 0.9047681248044883,
+   "auc8": 0.9878749847412109
+  },
+  {
+   "model": "VAE, local reconstruction error",
+   "FAP": 0.001,
+   "morph": "chirp",
+   "rho50": 12.464864864864865,
+   "err": 1.2799287117172247,
+   "auc8": 0.8954579830169678
+  },
+  {
+   "model": "VAE, local reconstruction error",
+   "FAP": 0.001,
+   "morph": "imr",
+   "rho50": 10.809756097560976,
+   "err": 1.095837345765819,
+   "auc8": 0.937894344329834
+  },
+  {
+   "model": "VAE, window ELBO",
+   "FAP": 0.01,
+   "morph": "sg",
+   "rho50": 12.150289017341041,
+   "err": 0.23747500338498728,
+   "auc8": 0.7929918766021729
+  },
+  {
+   "model": "VAE, window ELBO",
+   "FAP": 0.01,
+   "morph": "pulse",
+   "rho50": 12.419512195121952,
+   "err": 0.14706691607565592,
+   "auc8": 0.7927173376083374
+  },
+  {
+   "model": "VAE, window ELBO",
+   "FAP": 0.01,
+   "morph": "chirp",
+   "rho50": 12.311111111111112,
+   "err": 0.20363089000258405,
+   "auc8": 0.7947835326194763
+  },
+  {
+   "model": "VAE, window ELBO",
+   "FAP": 0.01,
+   "morph": "imr",
+   "rho50": 12.440677966101696,
+   "err": 0.1745690670915785,
+   "auc8": 0.7944672107696533
+  },
+  {
+   "model": "VAE, window ELBO",
+   "FAP": 0.001,
+   "morph": "sg",
+   "rho50": NaN,
+   "err": 0.0,
+   "auc8": 0.7929918766021729
+  },
+  {
+   "model": "VAE, window ELBO",
+   "FAP": 0.001,
+   "morph": "pulse",
+   "rho50": NaN,
+   "err": 0.0,
+   "auc8": 0.7927173376083374
+  },
+  {
+   "model": "VAE, window ELBO",
+   "FAP": 0.001,
+   "morph": "chirp",
+   "rho50": NaN,
+   "err": 0.0,
+   "auc8": 0.7947835326194763
+  },
+  {
+   "model": "VAE, window ELBO",
+   "FAP": 0.001,
+   "morph": "imr",
+   "rho50": NaN,
+   "err": 0.0,
+   "auc8": 0.7944672107696533
+  }
+ ],
+ "overlap": [
+  {
+   "model": "flow",
+   "alarm_rate": 0.0072731755424063115,
+   "fraction_of_bank_alarms_also_flagged": 0.2608695652173913,
+   "spearman_with_bank_stat": 0.17347397414696508
+  },
+  {
+   "model": "vae_local",
+   "alarm_rate": 0.009245562130177515,
+   "fraction_of_bank_alarms_also_flagged": 0.2608695652173913,
+   "spearman_with_bank_stat": 0.32918739455414475
+  },
+  {
+   "model": "vae_elbo",
+   "alarm_rate": 0.0027120315581854043,
+   "fraction_of_bank_alarms_also_flagged": 0.2028985507246377,
+   "spearman_with_bank_stat": 0.3013901890038708
+  }
+ ]
+}

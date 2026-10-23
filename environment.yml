@@ -21,9 +21,11 @@ dependencies:
   - jupyter_core
   - nbconvert
   - nbformat
+  - pytest
   - ipykernel=7.3.0
   - tectonic            # only to compile the report
   - pip
   - pip:
       - tensorflow==2.21.0
       - keras==3.15.1
+      - lalsuite==7.26.16      # IMRPhenomD waveforms: only to build the libraries of notebooks 08-10 (python imr_tools.py)

@@ -1,0 +1,24 @@
+\section{Unfolding the mass distribution of detected binaries}\label{sec:unfold}
+The IMR bank returns a reconstructed total mass $\hat M$ (the best of eight template masses), so the observed distribution of $\hat M$ is a smeared, sculpted version of the true one (the efficiency depends on mass and SNR). Notebook~19 unfolds it with the methods of the course. The response is simulated with the training IMR library, a uniform mass prior and $p(\rho)\propto\rho^{-4}$ on $[6,40]$ ($30\,000$ events, selection: IMR-bank statistic above the validation threshold at FAP $10^{-2}$, efficiency $0.84$--$0.91$ per mass bin); the pseudo-data ($12\,000$ events from the held-out library, other noise windows) follow a very different population (a peak at $45\,M_\odot$ plus a flat tail), so the truth is known. Seven mass bins between $30$ and $100\,M_\odot$ are used for the binned methods; OmniFold is unbinned on $(\hat M,\hat q,\ln\rho^2,\text{lag})\to(M,q)$ with gradient-boosted classifiers and $4$ iterations.
+\begin{table}[h]\centering\small
+\begin{tabular}{lr}
+\toprule
+method & $\sum(\text{unfolded}-\text{true})^2/\text{true}$ \\
+\midrule
+naive (observed$/\bar\varepsilon$) & $1216$\\
+matrix inversion & $4862$\\
+IBU, $1$ / $2$ / $3$ / $5$ / $10$ iterations & $1811$ / $521$ / $199$ / $141$ / $268$\\
+OmniFold, $4$ iterations & $468$\\
+\bottomrule
+\end{tabular}
+\caption{Distance of each unfolded spectrum from the true pseudo-data spectrum (seven bins; the absolute value only ranks the methods).}\label{tab:unfold}
+\end{table}
+\begin{figure}[h]\centering\includegraphics[width=0.98\textwidth]{fig19_unfolding.pdf}\caption{Left: true, prior and observed mass distributions. Right: unfolded over true per bin (mean and standard deviation of $30$ bootstraps of the pseudo-data).}\label{fig:unfold}\end{figure}
+\begin{itemize}[nosep]
+\item \textbf{Inversion fails}: the response is nearly singular for neighbouring bins (the template masses are coarse), the solution has negative bins and a relative bootstrap spread of $15\,\%$.
+\item \textbf{IBU} converges in $3$--$5$ iterations (the distance is minimal at $5$ and grows again at $10$: noise amplification, the usual regularisation by early stopping), relative spread $3\,\%$, mean absolute bias $11\,\%$.
+\item \textbf{OmniFold} recovers the shape without binning but leaves a visible bias ($1157$ against $673$ in the $55$--$65\,M_\odot$ bin), mean absolute bias $19\,\%$, spread $3\,\%$: with only four reco variables and a coarse $\hat M$ it brings no gain over IBU.
+\item \textbf{The bootstrap spread is smaller than the bias}: the truth lies within one standard deviation in only $57\,\%$ (IBU) or $0\,\%$ (OmniFold) of the bins. The dominant error is the dependence on the simulation prior and the finite resolution, not the statistics of the data; an honest uncertainty needs a prior-variation systematic.
+\end{itemize}
+This is the unfolding of a toy population \emph{for this detector and this SNR law}; it is not an estimate of the astrophysical mass function.
+\paragraph{Population inference with selection effects.} The same pseudo-data can be analysed in the hierarchical way of gravitational-wave population studies (notebook~32): the mass distribution is a mixture of a flat component and a Gaussian of unknown $(f_{\rm flat},\mu,\sigma)$, the likelihood of each detected event uses the response matrix of the simulation, and the normalisation divides by the detection efficiency of the population. The posterior means are $\mu=44.8\,M_\odot$, $\sigma=4.7\,M_\odot$ and $f_{\rm flat}=0.30$, against $(45,5,0.30)$ from fitting the true masses (all events, undetected included): selection effects and response are correctly handled. Ignoring them (taking the reconstructed mass as the true one) gives $\mu=49.6$, $\sigma=6.4$, $f_{\rm flat}=0.36$: a bias of $+4.6\,M_\odot$ in the peak, because the efficiency rises with mass and the template masses are discrete. The hierarchical likelihood is both simpler and more precise than the binned unfolding for a parametric population, and it is the right tool when the question is a parameter rather than a spectrum.

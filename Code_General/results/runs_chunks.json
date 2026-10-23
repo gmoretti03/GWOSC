@@ -1,0 +1,56 @@
+[
+ {
+  "run": "O2",
+  "gps_start": 1171091456,
+  "duration": 4096,
+  "file": "H1_1171091456.npy"
+ },
+ {
+  "run": "O2",
+  "gps_start": 1175318528,
+  "duration": 4096,
+  "file": "H1_1175318528.npy"
+ },
+ {
+  "run": "O2",
+  "gps_start": 1182334976,
+  "duration": 4096,
+  "file": "H1_1182334976.npy"
+ },
+ {
+  "run": "O3a",
+  "gps_start": 1242619904,
+  "duration": 4096,
+  "file": "H1_1242619904.npy"
+ },
+ {
+  "run": "O3a",
+  "gps_start": 1246408704,
+  "duration": 4096,
+  "file": "H1_1246408704.npy"
+ },
+ {
+  "run": "O3a",
+  "gps_start": 1250336768,
+  "duration": 4096,
+  "file": "H1_1250336768.npy"
+ },
+ {
+  "run": "O3b",
+  "gps_start": 1259868160,
+  "duration": 4096,
+  "file": "H1_1259868160.npy"
+ },
+ {
+  "run": "O3b",
+  "gps_start": 1263034368,
+  "duration": 4096,
+  "file": "H1_1263034368.npy"
+ },
+ {
+  "run": "O3b",
+  "gps_start": 1266307072,
+  "duration": 4096,
+  "file": "H1_1266307072.npy"
+ }
+]

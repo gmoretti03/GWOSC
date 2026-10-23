@@ -54,6 +54,7 @@ def load_data():
         v, cid = data[sp]
         sig, kinds, snr = make_signals(v, S1[sp], list(g.MORPHS), np.random.default_rng(SEED + len(sp)))
         DS[sp] = dict(noise=v, sig=sig, snr=snr)
+        DS[sp]["y4"] = np.r_[np.zeros(len(v), int), [KID[k] for k in kinds]]
         DS[sp]["X"] = np.concatenate([clip(v), clip(sig)])[..., None]
         DS[sp]["yb"] = np.r_[np.zeros(len(v)), np.ones(len(v))].astype(np.float32)
     return CH, data, S1, DS
@@ -101,21 +102,21 @@ def _block(h, d, heads, mlp, drop):
     f = L.LayerNormalization()(h); f = L.Dense(d)(L.Dense(mlp, activation="gelu")(f)); return h + L.Dropout(drop)(f)
 
 
-def _head(h, drop=0.1):
+def _head(h, drop=0.1, nout=1):
     tf, keras, L = _tf()
     x = L.Concatenate()([L.GlobalMaxPooling1D()(h), L.GlobalAveragePooling1D()(h)])
-    x = L.Dropout(drop)(L.Dense(64, activation="gelu")(x)); return L.Dense(1)(x)
+    x = L.Dropout(drop)(L.Dense(64, activation="gelu")(x)); return L.Dense(nout)(x)
 
 
-def build_tf(patch=16, d=D, depth=3, heads=4, mlp=128, seed=0):
+def build_tf(patch=16, d=D, depth=3, heads=4, mlp=128, seed=0, nout=1):
     """Patch transformer (as notebook 06, with a configurable patch size)."""
     tf, keras, L = _tf(); tf.keras.utils.set_random_seed(seed)
     inp = L.Input((g.NWIN, 1)); h = L.Conv1D(d, patch, strides=patch)(inp); h = _pos_layer()()(h)
     for _ in range(depth): h = _block(h, d, heads, mlp, 0.1)
-    return keras.Model(inp, _head(L.LayerNormalization()(h)))
+    return keras.Model(inp, _head(L.LayerNormalization()(h), nout=nout))
 
 
-def build_hybrid(d=D, depth=2, heads=4, mlp=128, seed=0):
+def build_hybrid(d=D, depth=2, heads=4, mlp=128, seed=0, nout=1):
     """Convolutional stem (the backbone of the CNN of notebook 05, 8x down-sampling) + transformer on 128 tokens."""
     tf, keras, L = _tf(); tf.keras.utils.set_random_seed(seed)
     inp = L.Input((g.NWIN, 1)); h = inp
@@ -124,17 +125,17 @@ def build_hybrid(d=D, depth=2, heads=4, mlp=128, seed=0):
         if pool > 1: h = L.MaxPool1D(pool)(h)
     h = _pos_layer()()(h)
     for _ in range(depth): h = _block(h, d, heads, mlp, 0.1)
-    return keras.Model(inp, _head(L.LayerNormalization()(h)))
+    return keras.Model(inp, _head(L.LayerNormalization()(h), nout=nout))
 
 
-def build_cnn(seed=0, drop=0.2):
+def build_cnn(seed=0, drop=0.2, nout=1):
     """The 1-D CNN of notebook 05 (binary logit)."""
     tf, keras, L = _tf(); tf.keras.utils.set_random_seed(seed)
     return keras.Sequential([L.Input((g.NWIN, 1)),
         L.Conv1D(16, 15, padding="same"), L.BatchNormalization(), L.ReLU(), L.MaxPool1D(4),
         L.Conv1D(32, 9, padding="same"), L.BatchNormalization(), L.ReLU(), L.MaxPool1D(4),
         L.Conv1D(64, 5, padding="same"), L.BatchNormalization(), L.ReLU(),
-        L.GlobalMaxPooling1D(), L.Dense(32, activation="relu"), L.Dropout(drop), L.Dense(1)])
+        L.GlobalMaxPooling1D(), L.Dense(32, activation="relu"), L.Dropout(drop), L.Dense(nout)])
 
 
 # --------------------------------------------------------------------------------------------------------------
@@ -145,15 +146,25 @@ VARIANTS = {
     "cnn_static":      (dict(arch="cnn"),               False, 20, 2e-3, (0, 1)),
     "cnn_fresh":       (dict(arch="cnn"),               True,  20, 2e-3, (0, 1)),
     "tf16_static_lr3": (dict(arch="tf", patch=16),      False, 12, 3e-3, (0,)),
-    "tf16_fresh":      (dict(arch="tf", patch=16),      True,  12, 1e-3, (0,)),
+    "tf16_fresh":      (dict(arch="tf", patch=16),      True,  12, 1e-3, (0, 1)),
     "tf8_static":      (dict(arch="tf", patch=8),       False, 12, 1e-3, (0,)),
-    "hyb_static":      (dict(arch="hyb"),               False, 12, 1e-3, (0,)),
-    "hyb_fresh":       (dict(arch="hyb"),               True,  12, 1e-3, (0,)),
+    "hyb_static":      (dict(arch="hyb"),               False, 12, 1e-3, (0, 1)),
+    "hyb_fresh":       (dict(arch="hyb"),               True,  12, 1e-3, (0, 1)),
+    # four-class (noise / sine-Gaussian / pulse / chirp) networks trained with fresh injections (nout = 4)
+    # binary CNN trained with fresh injections of the three phenomenological morphologies AND of IMRPhenomD signals (notebook 08)
+    "cnn_fresh_imr":   (dict(arch="cnn", pool="all"),   True,  20, 2e-3, (0, 1)),
+    "cnn4_fresh":      (dict(arch="cnn", nout=4),       True,  20, 2e-3, (0, 1)),
+    # notebook 33: depth / width / training length of the patch Transformer (the levers not covered by notebook 07)
+    "tf16_d6_fresh":   (dict(arch="tf", patch=16, depth=6),                 True, 12, 1e-3, (0,)),
+    "tf16_w128_fresh": (dict(arch="tf", patch=16, d=128, heads=4, mlp=256), True, 12, 1e-3, (0,)),
+    "tf16_long_fresh": (dict(arch="tf", patch=16),                          True, 30, 1e-3, (0,)),
+    "tf16_4_fresh":    (dict(arch="tf", patch=16, nout=4), True, 12, 1e-3, (0,)),
+    "hyb4_fresh":      (dict(arch="hyb", nout=4),       True,  12, 1e-3, (0,)),
 }
 
 
 def builder(spec, seed):
-    spec = dict(spec); arch = spec.pop("arch")
+    spec = dict(spec); arch = spec.pop("arch"); spec.pop("pool", None)
     return {"cnn": build_cnn, "tf": build_tf, "hyb": build_hybrid}[arch](seed=seed, **spec)
 
 
@@ -165,18 +176,22 @@ def train_variant(name, DSd, S1_train, seed=0, patience=6, bs=128, verbose=True)
     m = builder(spec, seed)
     if os.path.exists(fn) and os.path.exists(hf):
         m.load_weights(fn); return m, json.load(open(hf))
-    X, y = DSd["train"]["X"], DSd["train"]["yb"]; XV, yv = DSd["val"]["X"], DSd["val"]["yb"]
+    nout = spec.get("nout", 1)
+    ykey = "yb" if nout == 1 else "y4"
+    X, y = DSd["train"]["X"], DSd["train"][ykey]; XV, yv = DSd["val"]["X"], DSd["val"][ykey]
+    loss = keras.losses.BinaryCrossentropy(from_logits=True) if nout == 1 else keras.losses.SparseCategoricalCrossentropy(from_logits=True)
     noise = DSd["train"]["noise"]; steps = int(math.ceil(len(X) / bs))
     sched = keras.optimizers.schedules.CosineDecay(0.0, epochs * steps, alpha=0.02, warmup_target=lr, warmup_steps=2 * steps)
-    m.compile(keras.optimizers.AdamW(sched, weight_decay=1e-4), keras.losses.BinaryCrossentropy(from_logits=True))
+    m.compile(keras.optimizers.AdamW(sched, weight_decay=1e-4), loss)
     r = np.random.default_rng(10_000 + seed)
     hist = dict(loss=[], val_loss=[], seconds=[]); best, best_w, bad = np.inf, None, 0
     n_noise = len(noise)
     for ep in range(epochs):
         t0 = time.time()
         if fresh:                                                     # new burst morphology / SNR / parameters / phase every epoch
-            sig, _, _ = make_signals(noise, S1_train, list(g.MORPHS), r)
+            sig, kinds_, _ = make_signals(noise, S1_train, list(g.MORPHS_ALL if spec.get("pool") == "all" else g.MORPHS), r)
             X = np.concatenate([clip(noise), clip(sig)])[..., None]
+            if nout > 1: y = np.r_[np.zeros(len(noise), int), [KID[k] for k in kinds_]]
         h = m.fit(X, y, validation_data=(XV, yv), epochs=1, batch_size=bs, verbose=0, shuffle=True)
         l, vl = float(h.history["loss"][0]), float(h.history["val_loss"][0])
         hist["loss"].append(l); hist["val_loss"].append(vl); hist["seconds"].append(time.time() - t0)

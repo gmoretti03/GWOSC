@@ -1,0 +1,120 @@
+\section{Realistic signals: binary black holes}\label{sec:imr}
+
+The three morphologies of Sections~\ref{sec:signals}--\ref{sec:seq} are phenomenological: standard benchmarks for burst searches, but not what LIGO observes. The signals detected so far are compact-binary coalescences~\cite{GW150914,GW150914prop}: an inspiral whose frequency sweep accelerates up to a merger and a ringdown. This section asks (i) how close the project's chirp is to a real inspiral, and (ii) whether the detectors built on the phenomenological bursts still work on realistic signals.
+
+\subsection{The linear chirp as a binary}
+At leading order a binary of chirp mass $\mathcal M_c$ sweeps in frequency at $\dot f=\frac{96}{5}\pi^{8/3}(G\mathcal M_c/c^3)^{5/3}f^{11/3}$ and merges a time $\tau=\frac{5}{256}(G\mathcal M_c/c^3)^{-5/3}(\pi f)^{-8/3}$ after passing $f$. Inverting the first relation for the $(f_0,\dot f)$ prior of the linear chirp gives the chirp mass whose local sweep rate it mimics (Table~\ref{tab:mc}, left): $\mathcal M_c\approx4$--$10\,M_\odot$ at $f=100$\,Hz, $2$--$4\,M_\odot$ at 150\,Hz and $20$--$47\,M_\odot$ at 50\,Hz, i.e.\ binaries within the reach of LIGO. But a real signal of that chirp mass is much longer than the 30--80\,ms of the chirp's envelope and its sweep \emph{accelerates}, whereas the linear chirp has a constant $\dot f$, a symmetric envelope and no merger. A one-second window contains the whole in-band inspiral (from 30\,Hz) only for $\mathcal M_c\gtrsim13\,M_\odot$ (total mass $\gtrsim30\,M_\odot$); neutron-star binaries last about a minute in band and merge above the 500\,Hz cut, so they are out of reach of this setup (Table~\ref{tab:mc}, right).
+
+\begin{table}[h]\centering\small
+\begin{tabular}{lrrr}
+\toprule
+$\mathcal M_c$ [$M_\odot$] & $\dot f=150$ & 300 & 600\,Hz/s\\
+\midrule
+$f=50$\,Hz & 20.4 & 31.0 & 46.9\\
+$f=100$\,Hz & 4.4 & 6.7 & 10.2\\
+$f=150$\,Hz & 1.8 & 2.8 & 4.2\\
+\bottomrule
+\end{tabular}\hfill
+\begin{tabular}{lrrr}
+\toprule
+system & $\mathcal M_c$ & $\dot f_{100}$ [Hz/s] & $\tau_{30\rm Hz}$ [s]\\
+\midrule
+BNS 1.4+1.4 & 1.2 & 17 & 54\\
+BBH 8+8 & 7.0 & 317 & 2.9\\
+BBH 15+15 & 13.1 & 904 & 1.03\\
+GW150914 (36+29) & 28.1 & 3242 & 0.29\\
+\bottomrule
+\end{tabular}
+\caption{Left: chirp mass of the leading-order inspiral whose sweep rate equals the $(f,\dot f)$ of the linear-chirp prior. Right: sweep rate at 100\,Hz and time from 30\,Hz to merger of real systems.}\label{tab:mc}
+\end{table}
+
+\subsection{IMRPhenomD library and injection}
+A library of black-hole binaries is generated with LALSuite~\cite{LALSuite} (IMRPhenomD~\cite{IMRPhenomD}, aligned spins) as the strain of one interferometer (random sky position, polarisation and inclination) in the frequency bins of the one-second window: total mass $U(30,100)\,M_\odot$ ($\mathcal M_c=10$--$43\,M_\odot$), mass ratio $q\sim U(0.25,1)$, spins $\chi_{1,2}\sim U(-0.5,0.5)$, merger at a random time of the window. Two **disjoint** libraries with the same prior are built: 4000 waveforms for training and 2000 \emph{held-out} waveforms used for every evaluation (so that a network trained with IMR signals cannot have memorised the test waveforms). The injection is exactly as for the other morphologies, at a given optimal SNR (Fig.~\ref{fig:imrwave}). As validation, a matched-filter bank of 24 IMR templates (total mass 30--100\,$M_\odot$, $q=1,0.6,0.3$, no spin, face-on) recovers on average $93\,\%$ of the injected amplitude (fitting factor $0.93$, $0.76$ at the 10th percentile) and the merger time to 1.6\,ms; the sine-Gaussian bank recovers only $65\,\%$: on a binary-black-hole signal a sine-Gaussian bank is a poor matched filter.
+
+\begin{figure}[h]\centering
+\includegraphics[width=0.95\textwidth]{fig08_waveforms.pdf}
+\caption{Left: IMRPhenomD strain of three binaries of increasing mass in the window. Centre: instantaneous frequency against time (accelerating sweep and merger). Right: draws of the linear-chirp prior (constant sweep rate).}\label{fig:imrwave}
+\end{figure}
+
+\subsection{Detection of binary-black-hole signals}
+Test set: 500 windows of the test chunks per SNR with a held-out library signal injected, thresholds on the validation noise as in the previous sections (Table~\ref{tab:imr}, Fig.~\ref{fig:imreff}). The \emph{oracle} knows the exact waveform and its time: the Neyman--Pearson statistic of a simple hypothesis and the floor that no detector can beat.
+\begin{itemize}[nosep]
+\item \textbf{The detectors designed on the burst morphologies do not transfer for free.} The sine-Gaussian bank needs $\snr_{50}=7.4$ / $11.1$ at FAP $10^{-2}$ / $10^{-3}$, i.e.\ $2.0$ / $4.6$ more than the IMR bank ($5.4$ / $6.4$); excess power $8.3$ / $10.2$; the hybrid Transformer trained without IMR signals $7.6$ / $9.4$. The CNNs trained on the three morphologies without IMR signals generalise better ($5.5$ / $7.2$ with fresh injections, $6.0$ / $7.3$ for the static ensemble): on par with the IMR bank at FAP $10^{-2}$, worse at $10^{-3}$.
+\item \textbf{Training with IMR signals closes the gap and goes beyond the matched filter.} The CNN trained with fresh injections of the three morphologies \emph{and} of the training library reaches $4.45$ / $5.91$ against $5.40$ / $6.42$ for the IMR bank and $3.00$ / $3.50$ for the oracle; the efficiency at $\snr=8$ is $0.98$ against $0.91$. It does so on waveforms never seen in training ($4.45$ on the held-out library against $4.40$ on the training one: no memorisation) and at no cost on the three phenomenological morphologies ($\snr_{50}=4.32/3.65/4.36$ against $4.63/3.87/4.47$ at FAP $10^{-2}$). Two contributions to the advantage over the bank are consistent with the data but were not separated: the bank's fitting factor of $0.93$ (a coarse bank of non-spinning face-on templates), and the glitch tail of its statistic, which raises its threshold, while the network has learned from real noise which transients are not signals. The oracle--bank gap ($2.4$ at FAP $10^{-2}$) contains the look-elsewhere effect, the template mismatch and the glitches.
+\item \textbf{Mass dependence} (Fig.~\ref{fig:imrmass}). The IMR bank is flat ($0.87$--$0.93$ efficiency at $\snr=8$). The methods built on bursts are worst for the lightest systems ($30$--$45\,M_\odot$: sine-Gaussian bank $0.45$, excess power $0.25$), whose signal is a long slow chirp, and better for the heaviest ($80$--$100\,M_\odot$: $0.75$ and $0.53$), dominated by a short merger that looks like a burst. The CNN trained with IMR signals is at $0.93$ or above for every mass.
+\end{itemize}
+
+\begin{table}[h]\centering\small
+\begin{tabular}{lrrrrr}
+\toprule
+& \multicolumn{2}{c}{FAP $10^{-2}$} & \multicolumn{2}{c}{FAP $10^{-3}$} & \\
+statistic & $\snr_{50}$ & $\snr_{90}$ & $\snr_{50}$ & $\snr_{90}$ & $\varepsilon(\snr=8)$\\
+\midrule
+oracle (exact waveform known) & 3.00 & 4.35 & 3.50 & 4.92 & 1.00\\
+CNN, trained with IMR signals (2 seeds) & \textbf{4.45} & \textbf{6.72} & \textbf{5.91} & \textbf{8.00} & 0.98\\
+IMR matched-filter bank (24 templates) & 5.40 & 7.73 & 6.42 & 8.71 & 0.91\\
+CNN, fresh injections, no IMR (2 seeds) & 5.52 & 8.11 & 7.16 & 9.69 & 0.89\\
+CNN ensemble of Sec.~\ref{sec:ml} (static, no IMR) & 5.97 & 8.30 & 7.31 & 9.72 & 0.88\\
+CNN, static, no IMR (2 seeds) & 6.18 & 8.75 & 7.67 & 10.00 & 0.81\\
+sine-Gaussian bank & 7.38 & 9.98 & 11.05 & 13.98 & 0.64\\
+hybrid Transformer, fresh, no IMR & 7.55 & 10.52 & 9.41 & 13.51 & 0.57\\
+excess power & 8.28 & 11.06 & 10.16 & 13.19 & 0.45\\
+\bottomrule
+\end{tabular}
+\caption{Optimal SNR at 50\,\% and 90\,\% efficiency on binary-black-hole injections of the held-out library (thresholds on the validation noise) and efficiency at $\snr=8$ and FAP $10^{-2}$.}\label{tab:imr}
+\end{table}
+
+\begin{figure}[h]\centering
+\includegraphics[width=0.95\textwidth]{fig08_efficiency.pdf}
+\caption{Efficiency against optimal SNR on binary-black-hole injections, at FAP $10^{-2}$ (left) and $10^{-3}$ (right); dashed: model-based statistics.}\label{fig:imreff}
+\end{figure}
+
+\begin{figure}[h]\centering
+\includegraphics[width=0.6\textwidth]{fig08_mass_dependence.pdf}
+\caption{Efficiency at $\snr=8$ (FAP $10^{-2}$) against the total mass of the binary.}\label{fig:imrmass}
+\end{figure}
+
+\paragraph{Caveats.} Single detector; IMRPhenomD only (aligned spins, no precession, higher modes or eccentricity); total masses $\ge30\,M_\odot$; the network was trained on the same \emph{prior} as the test waveforms (the waveforms themselves are disjoint); a real search works at false-alarm rates several orders of magnitude lower (next section).
+
+\subsection{Three real events as a blind-ish check}
+The unchanged pipeline (whitening with the median-Welch PSD, sine-Gaussian and IMR banks, per-detector p-values on the background of Section~\ref{sec:coinc}, Fisher combination with the $15\,$ms gate) is applied to the one-second window around GW150914, GW151012 and GW151226 in H1 and L1 (notebook~13, Fig.~\ref{fig:events}). Where the GWOSC file contains out-of-science gaps (NaN) only the common clean stretch around the event is used.
+\begin{table}[h]\centering\small
+\begin{tabular}{lrrrrrr}
+\toprule
+event & $\rho_{H}$ & $\rho_{L}$ & $\Delta t_{HL}$ [ms] & $M_{\rm tot}^{\rm best}$ & $p_H$, $p_L$ & FAP$_{\rm coinc}$\\
+\midrule
+GW150914 (IMR bank) & $19.2$ & $13.3$ & $5.9$ & $72$ & $1.4\cdot10^{-3}$, $3.7\cdot10^{-4}$ & $<10^{-5}$\\
+GW150914 (sine-Gaussian) & $12.1$ & $8.8$ & $6.8$ & -- & $2.4\cdot10^{-3}$, $1.0\cdot10^{-3}$ & $<10^{-5}$\\
+GW151012 (IMR bank) & $6.5$ & $6.4$ & $-1.0$ & $42$ & $4.9\cdot10^{-3}$, $3.9\cdot10^{-3}$ & $2\cdot10^{-4}$\\
+GW151012 (sine-Gaussian) & $4.5$ & $4.1$ & $5.9$ & -- & $0.19$, $0.67$ & $0.39$\\
+GW151226 (IMR bank) & $4.7$ & $4.8$ & $-153$ & $35$/$50$ & $0.09$, $0.11$ & gate fails\\
+\bottomrule
+\end{tabular}
+\caption{Matched-filter SNR $\rho=\sqrt{\max\rho^2}$ of the banks on three real events. $p$: empirical p-values on the $16\,224$-window background of notebook~09 (floor $6\cdot10^{-5}$, the H1 tail contains glitches). FAP$_{\rm coinc}$ uses $(1+S)e^{-S}$ and is conservative; it is not an astrophysical rate.}\label{tab:events}
+\end{table}
+\begin{figure}[h]\centering\includegraphics[width=0.9\textwidth]{fig13_real_events.pdf}
+\caption{Whitened strain of the one-second window containing each event (dotted: catalogue time).}\label{fig:events}\end{figure}
+GW150914 is the loudest window of H1 and the second of L1 in its chunk, the best-fit total mass ($72\,M_\odot$, detector frame) and the H--L delay ($5.9\,$ms) agree with the catalogue and the matched-filter network SNR ($23.4$) with the published one ($\approx24$); the sine-Gaussian bank sees the same event with $\rho_{\rm net}=14.9$, the price of the wrong family. GW151012 (network $\rho=9.1$, catalogue $\approx9.5$) is a weak but coincident detection with the IMR bank only. GW151226 is \emph{not} recovered: it lies partly outside the bank (source-frame total mass $\approx22\,M_\odot$, long inspiral inside the cut band and window), and in this chunk only $540\,$s of clean two-detector data are available. The test does not tune anything and is a plausibility check of the pipeline, not a detection claim.
+
+\subsection{Precessing spins and higher modes}\label{sec:prec}
+Notebook~29 repeats the detection with $600$ signals per family and the same mass, inclination and sky prior: IMRPhenomD with aligned spins ($|\chi|\le0.5$, a control regenerated here), IMRPhenomPv2 (precessing, $|\chi|\le0.8$ in random directions) and IMRPhenomXPHM (precession and higher modes). The networks are not retrained. At FAP $10^{-2}$ ($10^{-3}$) the $\snr_{50}$ is $5.30$ ($6.42$), $5.57$ ($6.56$) and $5.59$ ($6.57$) for the IMR bank, $4.44$ ($5.74$), $4.44$ ($6.00$) and $4.52$ ($5.91$) for the CNN trained with IMRPhenomD, and $5.32$, $5.62$, $5.25$ for the CNN trained without IMR signals: the loss is at most $0.3$ and often inside the precision of $0.1$--$0.2$. The fitting factor of the non-spinning, face-on bank falls from a median of $0.971$ (10th percentile $0.80$) to $0.937$ ($0.66$) with precession and $0.931$ ($0.66$) with higher modes, but this reflects mainly the large spins and the orientation, and it costs the detector only a few per cent of SNR for the \emph{short} signals ($30$--$100\,M_\odot$, one second) considered here; the ranking of the methods (CNN with IMR $<$ IMR bank $\approx$ CNN without IMR $<$ sine-Gaussian bank $<$ excess power) does not change. The situation would differ for lower masses and longer signals, where the precession cycles and the higher-mode content are within the window, which this analysis does not cover.
+
+\subsection{Where the pipeline stops: low masses, neutron stars, NSBH and eccentricity}\label{sec:limits}
+The analysis unit (one second, $30$--$500\,$Hz) is made for black-hole binaries of $30$--$100\,M_\odot$. Notebook~37 quantifies what leaves it. For equal-mass IMRPhenomD signals the fraction of the optimal SNR retained by the band \emph{and} by the last second of the signal, with the PSD of the test chunks, is $0.49$ for $3+3\,M_\odot$, $0.73$ for $5+5$, $0.87$ for $7.5+7.5$, $0.93$ for $10+10$ and $0.96$--$0.97$ for $15$--$25\,M_\odot$ per component ($0.93$ at $50+50$, where the signal is too short and the $20\,$Hz cut matters); in the band alone $0.97$--$0.98$ of the SNR$^2$ is kept above $15\,M_\odot$ total ($0.84$ at $10$, $0.46$ at $8$). A binary neutron star $1.4+1.4\,M_\odot$ keeps only $3.6\,\%$ of its SNR$^2$ in the band and $0.8\,\%$ in the last second: the pipeline cannot see it ($8.7\,\%$ of the SNR), which requires the full $20$--$2000\,$Hz band, windows of minutes and a bank of inspiral templates. Four- to eight-second windows would recover the systems down to $\approx10\,M_\odot$ total at a cost in background and bank size that was not explored here.
+\begin{table}[h]\centering\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrr}
+\toprule
+detector & NSBH & IMRPhenomD $30$--$60$ & ecc.\ $e_0=0.2$ & ecc.\ $e_0=0.4$ & IMRPhenomD $15$--$40$\\
+\midrule
+IMR bank ($30$--$100\,M_\odot$, non-spinning) & $10.8$ & $5.29$ & $7.38$ & $7.39$ & $6.53$\\
+sine-Gaussian bank & $8.99$ & $8.08$ & $8.57$ & $8.51$ & $8.93$\\
+CNN without IMR training & $6.23$ & $5.48$ & $5.86$ & $5.68$ & $6.15$\\
+CNN trained with IMRPhenomD & $5.44$ & $4.56$ & $5.44$ & $5.19$ & $5.24$\\
+excess power & $11.0$ & $9.03$ & $9.97$ & $9.66$ & $10.8$\\
+\bottomrule
+\end{tabular}}
+\caption{$\snr_{50}$ at FAP $10^{-2}$ (single H1) for NSBH (BH $20$--$60\,M_\odot$, NS $1.2$--$2\,M_\odot$, $\Lambda=0$--$800$, aligned spin, IMRPhenomNSBH) and eccentric inspirals (EccentricFD, $15$--$40\,M_\odot$ total, inspiral only) against IMRPhenomD controls of the same mass ranges.}\label{tab:limits}
+\end{table}
+NSBH signals cost the IMR bank, whose templates are non-spinning IMRPhenomD with total masses $\ge30\,M_\odot$ and equal to or comparable component masses, $5.5$ units ($10.8$ against $5.3$ for the control), while the CNN trained with IMRPhenomD loses $0.9$ ($5.44$ against $4.56$) and the CNN without IMR training $0.8$. Eccentricity up to $0.4$ at $20\,$Hz costs the IMR bank $\approx0.4$--$0.9$ with respect to the control (the signal is inspiral-only) and the CNN trained with IMR signals nothing. The sine-Gaussian bank and excess power are unaffected, because they are equally poor for all of them. The conclusion for the detectors designed on the project's families is the same as in Section~\ref{sec:imr}: the network trained on a family generalises to neighbouring ones, the template statistic does not.
+\begin{figure}[h]\centering\includegraphics[width=0.98\textwidth]{fig37_limits.pdf}\caption{Left: fraction of the optimal SNR retained by the $1\,$s, $30$--$500\,$Hz window against the total mass. Right: $\snr_{50}$ for the NSBH and eccentric libraries.}\label{fig:limits}\end{figure}

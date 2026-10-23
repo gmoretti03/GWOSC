@@ -1,0 +1,984 @@
+{
+ "hrss": [
+  {
+   "group": "LVK",
+   "waveform": "sine-Gaussian Q=9, f0=70 Hz",
+   "detector": "bank",
+   "FAP": 0.01,
+   "rho50": 5.111111111111111,
+   "hrss50_1e22": 0.38495701948280503,
+   "eff_rho8": 1.0
+  },
+  {
+   "group": "LVK",
+   "waveform": "sine-Gaussian Q=9, f0=70 Hz",
+   "detector": "bank",
+   "FAP": 0.001,
+   "rho50": 6.7558139534883725,
+   "hrss50_1e22": 0.5088322181181971,
+   "eff_rho8": 0.875
+  },
+  {
+   "group": "LVK",
+   "waveform": "sine-Gaussian Q=9, f0=70 Hz",
+   "detector": "cnn",
+   "FAP": 0.01,
+   "rho50": 4.232142857142857,
+   "hrss50_1e22": 0.318755171800009,
+   "eff_rho8": 1.0
+  },
+  {
+   "group": "LVK",
+   "waveform": "sine-Gaussian Q=9, f0=70 Hz",
+   "detector": "cnn",
+   "FAP": 0.001,
+   "rho50": 5.290322580645161,
+   "hrss50_1e22": 0.39845481118977577,
+   "eff_rho8": 0.995
+  },
+  {
+   "group": "LVK",
+   "waveform": "sine-Gaussian Q=9, f0=70 Hz",
+   "detector": "ep",
+   "FAP": 0.01,
+   "rho50": 7.763636363636364,
+   "hrss50_1e22": 0.584739061609652,
+   "eff_rho8": 0.565
+  },
+  {
+   "group": "LVK",
+   "waveform": "sine-Gaussian Q=9, f0=70 Hz",
+   "detector": "ep",
+   "FAP": 0.001,
+   "rho50": 9.620000000000001,
+   "hrss50_1e22": 0.7245560597135058,
+   "eff_rho8": 0.095
+  },
+  {
+   "group": "LVK",
+   "waveform": "sine-Gaussian Q=9, f0=100 Hz",
+   "detector": "bank",
+   "FAP": 0.01,
+   "rho50": 4.9523809523809526,
+   "hrss50_1e22": 0.2928338890784998,
+   "eff_rho8": 1.0
+  },
+  {
+   "group": "LVK",
+   "waveform": "sine-Gaussian Q=9, f0=100 Hz",
+   "detector": "bank",
+   "FAP": 0.001,
+   "rho50": 6.768115942028985,
+   "hrss50_1e22": 0.400198153594321,
+   "eff_rho8": 0.9
+  },
+  {
+   "group": "LVK",
+   "waveform": "sine-Gaussian Q=9, f0=100 Hz",
+   "detector": "cnn",
+   "FAP": 0.01,
+   "rho50": 4.209677419354839,
+   "hrss50_1e22": 0.24891788865373096,
+   "eff_rho8": 1.0
+  },
+  {
+   "group": "LVK",
+   "waveform": "sine-Gaussian Q=9, f0=100 Hz",
+   "detector": "cnn",
+   "FAP": 0.001,
+   "rho50": 5.216666666666667,
+   "hrss50_1e22": 0.3084610821975928,
+   "eff_rho8": 0.98
+  },
+  {
+   "group": "LVK",
+   "waveform": "sine-Gaussian Q=9, f0=100 Hz",
+   "detector": "ep",
+   "FAP": 0.01,
+   "rho50": 6.96,
+   "hrss50_1e22": 0.4115442425741685,
+   "eff_rho8": 0.76
+  },
+  {
+   "group": "LVK",
+   "waveform": "sine-Gaussian Q=9, f0=100 Hz",
+   "detector": "ep",
+   "FAP": 0.001,
+   "rho50": 8.809917355371901,
+   "hrss50_1e22": 0.5209297076375792,
+   "eff_rho8": 0.255
+  },
+  {
+   "group": "LVK",
+   "waveform": "sine-Gaussian Q=9, f0=153 Hz",
+   "detector": "bank",
+   "FAP": 0.01,
+   "rho50": 4.968253968253968,
+   "hrss50_1e22": 0.2731179432386927,
+   "eff_rho8": 0.995
+  },
+  {
+   "group": "LVK",
+   "waveform": "sine-Gaussian Q=9, f0=153 Hz",
+   "detector": "bank",
+   "FAP": 0.001,
+   "rho50": 6.842105263157895,
+   "hrss50_1e22": 0.37612846058935484,
+   "eff_rho8": 0.85
+  },
+  {
+   "group": "LVK",
+   "waveform": "sine-Gaussian Q=9, f0=153 Hz",
+   "detector": "cnn",
+   "FAP": 0.01,
+   "rho50": 4.531914893617021,
+   "hrss50_1e22": 0.24913124059003583,
+   "eff_rho8": 0.995
+  },
+  {
+   "group": "LVK",
+   "waveform": "sine-Gaussian Q=9, f0=153 Hz",
+   "detector": "cnn",
+   "FAP": 0.001,
+   "rho50": 5.621212121212121,
+   "hrss50_1e22": 0.30901276441659237,
+   "eff_rho8": 0.96
+  },
+  {
+   "group": "LVK",
+   "waveform": "sine-Gaussian Q=9, f0=153 Hz",
+   "detector": "ep",
+   "FAP": 0.01,
+   "rho50": 6.203703703703703,
+   "hrss50_1e22": 0.34103385351157317,
+   "eff_rho8": 0.89
+  },
+  {
+   "group": "LVK",
+   "waveform": "sine-Gaussian Q=9, f0=153 Hz",
+   "detector": "ep",
+   "FAP": 0.001,
+   "rho50": 7.757142857142857,
+   "hrss50_1e22": 0.42643047559344766,
+   "eff_rho8": 0.585
+  },
+  {
+   "group": "LVK",
+   "waveform": "sine-Gaussian Q=9, f0=235 Hz",
+   "detector": "bank",
+   "FAP": 0.01,
+   "rho50": 5.032786885245901,
+   "hrss50_1e22": 0.28644316403881803,
+   "eff_rho8": 0.995
+  },
+  {
+   "group": "LVK",
+   "waveform": "sine-Gaussian Q=9, f0=235 Hz",
+   "detector": "bank",
+   "FAP": 0.001,
+   "rho50": 6.863013698630137,
+   "hrss50_1e22": 0.3906112862518548,
+   "eff_rho8": 0.88
+  },
+  {
+   "group": "LVK",
+   "waveform": "sine-Gaussian Q=9, f0=235 Hz",
+   "detector": "cnn",
+   "FAP": 0.01,
+   "rho50": 5.0588235294117645,
+   "hrss50_1e22": 0.28792505049772743,
+   "eff_rho8": 0.99
+  },
+  {
+   "group": "LVK",
+   "waveform": "sine-Gaussian Q=9, f0=235 Hz",
+   "detector": "cnn",
+   "FAP": 0.001,
+   "rho50": 6.061538461538461,
+   "hrss50_1e22": 0.34499498895058645,
+   "eff_rho8": 0.965
+  },
+  {
+   "group": "LVK",
+   "waveform": "sine-Gaussian Q=9, f0=235 Hz",
+   "detector": "ep",
+   "FAP": 0.01,
+   "rho50": 5.9,
+   "hrss50_1e22": 0.33580096005723326,
+   "eff_rho8": 0.975
+  },
+  {
+   "group": "LVK",
+   "waveform": "sine-Gaussian Q=9, f0=235 Hz",
+   "detector": "ep",
+   "FAP": 0.001,
+   "rho50": 6.915492957746479,
+   "hrss50_1e22": 0.3935981651661531,
+   "eff_rho8": 0.83
+  },
+  {
+   "group": "LVK",
+   "waveform": "sine-Gaussian Q=9, f0=361 Hz",
+   "detector": "bank",
+   "FAP": 0.01,
+   "rho50": 4.945945945945946,
+   "hrss50_1e22": 0.3405214885342485,
+   "eff_rho8": 1.0
+  },
+  {
+   "group": "LVK",
+   "waveform": "sine-Gaussian Q=9, f0=361 Hz",
+   "detector": "bank",
+   "FAP": 0.001,
+   "rho50": 6.579710144927536,
+   "hrss50_1e22": 0.45300387775388506,
+   "eff_rho8": 0.89
+  },
+  {
+   "group": "LVK",
+   "waveform": "sine-Gaussian Q=9, f0=361 Hz",
+   "detector": "cnn",
+   "FAP": 0.01,
+   "rho50": 5.531914893617021,
+   "hrss50_1e22": 0.3808646343099024,
+   "eff_rho8": 0.945
+  },
+  {
+   "group": "LVK",
+   "waveform": "sine-Gaussian Q=9, f0=361 Hz",
+   "detector": "cnn",
+   "FAP": 0.001,
+   "rho50": 6.595744680851064,
+   "hrss50_1e22": 0.4541078332156529,
+   "eff_rho8": 0.865
+  },
+  {
+   "group": "LVK",
+   "waveform": "sine-Gaussian Q=9, f0=361 Hz",
+   "detector": "ep",
+   "FAP": 0.01,
+   "rho50": 5.341463414634147,
+   "hrss50_1e22": 0.36775231528628766,
+   "eff_rho8": 1.0
+  },
+  {
+   "group": "LVK",
+   "waveform": "sine-Gaussian Q=9, f0=361 Hz",
+   "detector": "ep",
+   "FAP": 0.001,
+   "rho50": 6.1940298507462686,
+   "hrss50_1e22": 0.4264503267631829,
+   "eff_rho8": 0.95
+  },
+  {
+   "group": "LVK",
+   "waveform": "Gaussian pulse, sigma=0.1 ms",
+   "detector": "bank",
+   "FAP": 0.01,
+   "rho50": 5.648648648648648,
+   "hrss50_1e22": 0.38068212468454815,
+   "eff_rho8": 0.98
+  },
+  {
+   "group": "LVK",
+   "waveform": "Gaussian pulse, sigma=0.1 ms",
+   "detector": "bank",
+   "FAP": 0.001,
+   "rho50": 7.824324324324325,
+   "hrss50_1e22": 0.5273084932831421,
+   "eff_rho8": 0.565
+  },
+  {
+   "group": "LVK",
+   "waveform": "Gaussian pulse, sigma=0.1 ms",
+   "detector": "cnn",
+   "FAP": 0.01,
+   "rho50": 5.229166666666667,
+   "hrss50_1e22": 0.3524117715256578,
+   "eff_rho8": 0.99
+  },
+  {
+   "group": "LVK",
+   "waveform": "Gaussian pulse, sigma=0.1 ms",
+   "detector": "cnn",
+   "FAP": 0.001,
+   "rho50": 6.4411764705882355,
+   "hrss50_1e22": 0.434093337506177,
+   "eff_rho8": 0.92
+  },
+  {
+   "group": "LVK",
+   "waveform": "Gaussian pulse, sigma=0.1 ms",
+   "detector": "ep",
+   "FAP": 0.01,
+   "rho50": 5.134328358208955,
+   "hrss50_1e22": 0.34602028729450324,
+   "eff_rho8": 1.0
+  },
+  {
+   "group": "LVK",
+   "waveform": "Gaussian pulse, sigma=0.1 ms",
+   "detector": "ep",
+   "FAP": 0.001,
+   "rho50": 6.25,
+   "hrss50_1e22": 0.42120928867608504,
+   "eff_rho8": 0.965
+  },
+  {
+   "group": "LVK",
+   "waveform": "Gaussian pulse, sigma=0.5 ms",
+   "detector": "bank",
+   "FAP": 0.01,
+   "rho50": 5.655737704918033,
+   "hrss50_1e22": 0.37963086397114126,
+   "eff_rho8": 0.995
+  },
+  {
+   "group": "LVK",
+   "waveform": "Gaussian pulse, sigma=0.5 ms",
+   "detector": "bank",
+   "FAP": 0.001,
+   "rho50": 7.746268656716418,
+   "hrss50_1e22": 0.5199538621009026,
+   "eff_rho8": 0.585
+  },
+  {
+   "group": "LVK",
+   "waveform": "Gaussian pulse, sigma=0.5 ms",
+   "detector": "cnn",
+   "FAP": 0.01,
+   "rho50": 4.560975609756097,
+   "hrss50_1e22": 0.30614699648772065,
+   "eff_rho8": 1.0
+  },
+  {
+   "group": "LVK",
+   "waveform": "Gaussian pulse, sigma=0.5 ms",
+   "detector": "cnn",
+   "FAP": 0.001,
+   "rho50": 5.746031746031746,
+   "hrss50_1e22": 0.3856916833775359,
+   "eff_rho8": 0.965
+  },
+  {
+   "group": "LVK",
+   "waveform": "Gaussian pulse, sigma=0.5 ms",
+   "detector": "ep",
+   "FAP": 0.01,
+   "rho50": 5.151515151515151,
+   "hrss50_1e22": 0.3457858638015578,
+   "eff_rho8": 1.0
+  },
+  {
+   "group": "LVK",
+   "waveform": "Gaussian pulse, sigma=0.5 ms",
+   "detector": "ep",
+   "FAP": 0.001,
+   "rho50": 6.149253731343284,
+   "hrss50_1e22": 0.4127572084500421,
+   "eff_rho8": 0.96
+  },
+  {
+   "group": "LVK",
+   "waveform": "Gaussian pulse, sigma=2.5 ms",
+   "detector": "bank",
+   "FAP": 0.01,
+   "rho50": 5.25,
+   "hrss50_1e22": 0.6704136667068774,
+   "eff_rho8": 0.99
+  },
+  {
+   "group": "LVK",
+   "waveform": "Gaussian pulse, sigma=2.5 ms",
+   "detector": "bank",
+   "FAP": 0.001,
+   "rho50": 7.222222222222222,
+   "hrss50_1e22": 0.9222621870041698,
+   "eff_rho8": 0.745
+  },
+  {
+   "group": "LVK",
+   "waveform": "Gaussian pulse, sigma=2.5 ms",
+   "detector": "cnn",
+   "FAP": 0.01,
+   "rho50": 3.6440677966101696,
+   "hrss50_1e22": 0.4653395910959762,
+   "eff_rho8": 1.0
+  },
+  {
+   "group": "LVK",
+   "waveform": "Gaussian pulse, sigma=2.5 ms",
+   "detector": "cnn",
+   "FAP": 0.001,
+   "rho50": 4.476923076923077,
+   "hrss50_1e22": 0.571693412488502,
+   "eff_rho8": 1.0
+  },
+  {
+   "group": "LVK",
+   "waveform": "Gaussian pulse, sigma=2.5 ms",
+   "detector": "ep",
+   "FAP": 0.01,
+   "rho50": 5.590163934426229,
+   "hrss50_1e22": 0.713851866813568,
+   "eff_rho8": 0.985
+  },
+  {
+   "group": "LVK",
+   "waveform": "Gaussian pulse, sigma=2.5 ms",
+   "detector": "ep",
+   "FAP": 0.001,
+   "rho50": 6.815384615384615,
+   "hrss50_1e22": 0.870309902860503,
+   "eff_rho8": 0.86
+  },
+  {
+   "group": "other",
+   "waveform": "ringdown f=100 Hz, tau=10 ms",
+   "detector": "bank",
+   "FAP": 0.01,
+   "rho50": 5.109375,
+   "hrss50_1e22": 0.3332067114523039,
+   "eff_rho8": 0.99
+  },
+  {
+   "group": "other",
+   "waveform": "ringdown f=100 Hz, tau=10 ms",
+   "detector": "bank",
+   "FAP": 0.001,
+   "rho50": 7.158536585365853,
+   "hrss50_1e22": 0.466842311323941,
+   "eff_rho8": 0.845
+  },
+  {
+   "group": "other",
+   "waveform": "ringdown f=100 Hz, tau=10 ms",
+   "detector": "cnn",
+   "FAP": 0.01,
+   "rho50": 4.1875,
+   "hrss50_1e22": 0.2730868460832338,
+   "eff_rho8": 0.985
+  },
+  {
+   "group": "other",
+   "waveform": "ringdown f=100 Hz, tau=10 ms",
+   "detector": "cnn",
+   "FAP": 0.001,
+   "rho50": 5.209302325581395,
+   "hrss50_1e22": 0.3397234489282575,
+   "eff_rho8": 0.96
+  },
+  {
+   "group": "other",
+   "waveform": "ringdown f=100 Hz, tau=10 ms",
+   "detector": "ep",
+   "FAP": 0.01,
+   "rho50": 5.732142857142858,
+   "hrss50_1e22": 0.37382037352971453,
+   "eff_rho8": 0.97
+  },
+  {
+   "group": "other",
+   "waveform": "ringdown f=100 Hz, tau=10 ms",
+   "detector": "ep",
+   "FAP": 0.001,
+   "rho50": 6.966666666666667,
+   "hrss50_1e22": 0.45432955885688253,
+   "eff_rho8": 0.795
+  },
+  {
+   "group": "other",
+   "waveform": "ringdown f=200 Hz, tau=5 ms",
+   "detector": "bank",
+   "FAP": 0.01,
+   "rho50": 5.245901639344262,
+   "hrss50_1e22": 0.3064591769590006,
+   "eff_rho8": 1.0
+  },
+  {
+   "group": "other",
+   "waveform": "ringdown f=200 Hz, tau=5 ms",
+   "detector": "bank",
+   "FAP": 0.001,
+   "rho50": 7.03125,
+   "hrss50_1e22": 0.4107570511486605,
+   "eff_rho8": 0.81
+  },
+  {
+   "group": "other",
+   "waveform": "ringdown f=200 Hz, tau=5 ms",
+   "detector": "cnn",
+   "FAP": 0.01,
+   "rho50": 4.746031746031746,
+   "hrss50_1e22": 0.2772573873291276,
+   "eff_rho8": 0.995
+  },
+  {
+   "group": "other",
+   "waveform": "ringdown f=200 Hz, tau=5 ms",
+   "detector": "cnn",
+   "FAP": 0.001,
+   "rho50": 6.073529411764706,
+   "hrss50_1e22": 0.3548081822209606,
+   "eff_rho8": 0.96
+  },
+  {
+   "group": "other",
+   "waveform": "ringdown f=200 Hz, tau=5 ms",
+   "detector": "ep",
+   "FAP": 0.01,
+   "rho50": 5.2407407407407405,
+   "hrss50_1e22": 0.30615768355574235,
+   "eff_rho8": 1.0
+  },
+  {
+   "group": "other",
+   "waveform": "ringdown f=200 Hz, tau=5 ms",
+   "detector": "ep",
+   "FAP": 0.001,
+   "rho50": 6.421686746987952,
+   "hrss50_1e22": 0.37514710920436706,
+   "eff_rho8": 0.945
+  },
+  {
+   "group": "other",
+   "waveform": "ringdown f=300 Hz, tau=3 ms",
+   "detector": "bank",
+   "FAP": 0.01,
+   "rho50": 5.219178082191781,
+   "hrss50_1e22": 0.32855040876511854,
+   "eff_rho8": 0.995
+  },
+  {
+   "group": "other",
+   "waveform": "ringdown f=300 Hz, tau=3 ms",
+   "detector": "bank",
+   "FAP": 0.001,
+   "rho50": 7.274193548387097,
+   "hrss50_1e22": 0.4579148720588433,
+   "eff_rho8": 0.725
+  },
+  {
+   "group": "other",
+   "waveform": "ringdown f=300 Hz, tau=3 ms",
+   "detector": "cnn",
+   "FAP": 0.01,
+   "rho50": 5.0,
+   "hrss50_1e22": 0.3147530162710453,
+   "eff_rho8": 0.975
+  },
+  {
+   "group": "other",
+   "waveform": "ringdown f=300 Hz, tau=3 ms",
+   "detector": "cnn",
+   "FAP": 0.001,
+   "rho50": 6.072727272727273,
+   "hrss50_1e22": 0.38228184521646963,
+   "eff_rho8": 0.9
+  },
+  {
+   "group": "other",
+   "waveform": "ringdown f=300 Hz, tau=3 ms",
+   "detector": "ep",
+   "FAP": 0.01,
+   "rho50": 5.1891891891891895,
+   "hrss50_1e22": 0.32666258985967944,
+   "eff_rho8": 0.99
+  },
+  {
+   "group": "other",
+   "waveform": "ringdown f=300 Hz, tau=3 ms",
+   "detector": "ep",
+   "FAP": 0.001,
+   "rho50": 6.2025316455696204,
+   "hrss50_1e22": 0.3904531087919296,
+   "eff_rho8": 0.95
+  },
+  {
+   "group": "other",
+   "waveform": "cosmic-string cusp, f_high=150 Hz",
+   "detector": "bank",
+   "FAP": 0.01,
+   "rho50": 5.606557377049181,
+   "hrss50_1e22": 0.5664748461955953,
+   "eff_rho8": 0.995
+  },
+  {
+   "group": "other",
+   "waveform": "cosmic-string cusp, f_high=150 Hz",
+   "detector": "bank",
+   "FAP": 0.001,
+   "rho50": 8.0,
+   "hrss50_1e22": 0.8083032893083348,
+   "eff_rho8": 0.5
+  },
+  {
+   "group": "other",
+   "waveform": "cosmic-string cusp, f_high=150 Hz",
+   "detector": "cnn",
+   "FAP": 0.01,
+   "rho50": 3.745762711864407,
+   "hrss50_1e22": 0.3784640401210636,
+   "eff_rho8": 1.0
+  },
+  {
+   "group": "other",
+   "waveform": "cosmic-string cusp, f_high=150 Hz",
+   "detector": "cnn",
+   "FAP": 0.001,
+   "rho50": 4.472727272727273,
+   "hrss50_1e22": 0.451915020840569,
+   "eff_rho8": 1.0
+  },
+  {
+   "group": "other",
+   "waveform": "cosmic-string cusp, f_high=150 Hz",
+   "detector": "ep",
+   "FAP": 0.01,
+   "rho50": 5.758620689655173,
+   "hrss50_1e22": 0.5818390056659134,
+   "eff_rho8": 0.985
+  },
+  {
+   "group": "other",
+   "waveform": "cosmic-string cusp, f_high=150 Hz",
+   "detector": "ep",
+   "FAP": 0.001,
+   "rho50": 7.0,
+   "hrss50_1e22": 0.7072653781447931,
+   "eff_rho8": 0.795
+  },
+  {
+   "group": "other",
+   "waveform": "cosmic-string cusp, f_high=300 Hz",
+   "detector": "bank",
+   "FAP": 0.01,
+   "rho50": 5.823529411764706,
+   "hrss50_1e22": 0.5600861617324048,
+   "eff_rho8": 0.97
+  },
+  {
+   "group": "other",
+   "waveform": "cosmic-string cusp, f_high=300 Hz",
+   "detector": "bank",
+   "FAP": 0.001,
+   "rho50": 8.41904761904762,
+   "hrss50_1e22": 0.8097137891788918,
+   "eff_rho8": 0.39
+  },
+  {
+   "group": "other",
+   "waveform": "cosmic-string cusp, f_high=300 Hz",
+   "detector": "cnn",
+   "FAP": 0.01,
+   "rho50": 3.7959183673469385,
+   "hrss50_1e22": 0.36507780733825274,
+   "eff_rho8": 1.0
+  },
+  {
+   "group": "other",
+   "waveform": "cosmic-string cusp, f_high=300 Hz",
+   "detector": "cnn",
+   "FAP": 0.001,
+   "rho50": 4.75,
+   "hrss50_1e22": 0.4568379551504211,
+   "eff_rho8": 1.0
+  },
+  {
+   "group": "other",
+   "waveform": "cosmic-string cusp, f_high=300 Hz",
+   "detector": "ep",
+   "FAP": 0.01,
+   "rho50": 5.425925925925926,
+   "hrss50_1e22": 0.521846085220559,
+   "eff_rho8": 0.99
+  },
+  {
+   "group": "other",
+   "waveform": "cosmic-string cusp, f_high=300 Hz",
+   "detector": "ep",
+   "FAP": 0.001,
+   "rho50": 6.655737704918033,
+   "hrss50_1e22": 0.6401249690804865,
+   "eff_rho8": 0.85
+  },
+  {
+   "group": "other",
+   "waveform": "cosmic-string cusp, f_high=500 Hz",
+   "detector": "bank",
+   "FAP": 0.01,
+   "rho50": 5.838709677419355,
+   "hrss50_1e22": 0.5584347606228952,
+   "eff_rho8": 0.965
+  },
+  {
+   "group": "other",
+   "waveform": "cosmic-string cusp, f_high=500 Hz",
+   "detector": "bank",
+   "FAP": 0.001,
+   "rho50": 8.431034482758621,
+   "hrss50_1e22": 0.8063738365672003,
+   "eff_rho8": 0.375
+  },
+  {
+   "group": "other",
+   "waveform": "cosmic-string cusp, f_high=500 Hz",
+   "detector": "cnn",
+   "FAP": 0.01,
+   "rho50": 3.8793103448275863,
+   "hrss50_1e22": 0.37103090639595104,
+   "eff_rho8": 1.0
+  },
+  {
+   "group": "other",
+   "waveform": "cosmic-string cusp, f_high=500 Hz",
+   "detector": "cnn",
+   "FAP": 0.001,
+   "rho50": 4.810344827586206,
+   "hrss50_1e22": 0.46007832393097925,
+   "eff_rho8": 1.0
+  },
+  {
+   "group": "other",
+   "waveform": "cosmic-string cusp, f_high=500 Hz",
+   "detector": "ep",
+   "FAP": 0.01,
+   "rho50": 5.506329113924051,
+   "hrss50_1e22": 0.5266447127071643,
+   "eff_rho8": 1.0
+  },
+  {
+   "group": "other",
+   "waveform": "cosmic-string cusp, f_high=500 Hz",
+   "detector": "ep",
+   "FAP": 0.001,
+   "rho50": 6.545454545454545,
+   "hrss50_1e22": 0.6260303293371683,
+   "eff_rho8": 0.935
+  },
+  {
+   "group": "other",
+   "waveform": "white-noise burst 100-200 Hz",
+   "detector": "bank",
+   "FAP": 0.01,
+   "rho50": 14.769230769230768,
+   "hrss50_1e22": 0.827332666361176,
+   "eff_rho8": 0.03
+  },
+  {
+   "group": "other",
+   "waveform": "white-noise burst 100-200 Hz",
+   "detector": "bank",
+   "FAP": 0.001,
+   "rho50": 23.054545454545455,
+   "hrss50_1e22": 1.291453756846366,
+   "eff_rho8": 0.0
+  },
+  {
+   "group": "other",
+   "waveform": "white-noise burst 100-200 Hz",
+   "detector": "cnn",
+   "FAP": 0.01,
+   "rho50": 10.222222222222223,
+   "hrss50_1e22": 0.5726214519490548,
+   "eff_rho8": 0.35
+  },
+  {
+   "group": "other",
+   "waveform": "white-noise burst 100-200 Hz",
+   "detector": "cnn",
+   "FAP": 0.001,
+   "rho50": NaN,
+   "hrss50_1e22": NaN,
+   "eff_rho8": 0.065
+  },
+  {
+   "group": "other",
+   "waveform": "white-noise burst 100-200 Hz",
+   "detector": "ep",
+   "FAP": 0.01,
+   "rho50": 18.591549295774648,
+   "hrss50_1e22": 1.0414486909300016,
+   "eff_rho8": 0.015
+  },
+  {
+   "group": "other",
+   "waveform": "white-noise burst 100-200 Hz",
+   "detector": "ep",
+   "FAP": 0.001,
+   "rho50": 23.829787234042552,
+   "hrss50_1e22": 1.3348807205472875,
+   "eff_rho8": 0.0
+  },
+  {
+   "group": "other",
+   "waveform": "white-noise burst 100-500 Hz",
+   "detector": "bank",
+   "FAP": 0.01,
+   "rho50": 22.19607843137255,
+   "hrss50_1e22": 1.394224137976349,
+   "eff_rho8": 0.015
+  },
+  {
+   "group": "other",
+   "waveform": "white-noise burst 100-500 Hz",
+   "detector": "bank",
+   "FAP": 0.001,
+   "rho50": NaN,
+   "hrss50_1e22": NaN,
+   "eff_rho8": 0.0
+  },
+  {
+   "group": "other",
+   "waveform": "white-noise burst 100-500 Hz",
+   "detector": "cnn",
+   "FAP": 0.01,
+   "rho50": NaN,
+   "hrss50_1e22": NaN,
+   "eff_rho8": 0.2
+  },
+  {
+   "group": "other",
+   "waveform": "white-noise burst 100-500 Hz",
+   "detector": "cnn",
+   "FAP": 0.001,
+   "rho50": NaN,
+   "hrss50_1e22": NaN,
+   "eff_rho8": 0.025
+  },
+  {
+   "group": "other",
+   "waveform": "white-noise burst 100-500 Hz",
+   "detector": "ep",
+   "FAP": 0.01,
+   "rho50": 19.492957746478872,
+   "hrss50_1e22": 1.2244303557821457,
+   "eff_rho8": 0.025
+  },
+  {
+   "group": "other",
+   "waveform": "white-noise burst 100-500 Hz",
+   "detector": "ep",
+   "FAP": 0.001,
+   "rho50": NaN,
+   "hrss50_1e22": NaN,
+   "eff_rho8": 0.005
+  }
+ ],
+ "snr_per_Mpc_median": 4115.496335883079,
+ "gw150914_rho_per_Mpc": 14788.268442905714,
+ "range": [
+  {
+   "detector": "IMR bank",
+   "FAP": 0.01,
+   "mass": "30-50",
+   "range_Mpc": 801.9340860290201,
+   "VT_Gpc3_yr": 2.1602530634389394
+  },
+  {
+   "detector": "IMR bank",
+   "FAP": 0.01,
+   "mass": "50-75",
+   "range_Mpc": 1266.0299850249962,
+   "VT_Gpc3_yr": 8.500032467435696
+  },
+  {
+   "detector": "IMR bank",
+   "FAP": 0.01,
+   "mass": "75-100",
+   "range_Mpc": 1557.0493178580202,
+   "VT_Gpc3_yr": 15.81232438163739
+  },
+  {
+   "detector": "IMR bank",
+   "FAP": 0.01,
+   "mass": "30-100 (all)",
+   "range_Mpc": 1305.4927780109672,
+   "VT_Gpc3_yr": 9.319916689953594
+  },
+  {
+   "detector": "IMR bank",
+   "FAP": 0.001,
+   "mass": "30-50",
+   "range_Mpc": 661.8542951640945,
+   "VT_Gpc3_yr": 1.2144392196970188
+  },
+  {
+   "detector": "IMR bank",
+   "FAP": 0.001,
+   "mass": "50-75",
+   "range_Mpc": 1060.5542110141596,
+   "VT_Gpc3_yr": 4.9967454700396665
+  },
+  {
+   "detector": "IMR bank",
+   "FAP": 0.001,
+   "mass": "75-100",
+   "range_Mpc": 1326.2759253523602,
+   "VT_Gpc3_yr": 9.772153233564193
+  },
+  {
+   "detector": "IMR bank",
+   "FAP": 0.001,
+   "mass": "30-100 (all)",
+   "range_Mpc": 1104.017903415029,
+   "VT_Gpc3_yr": 5.636596647376179
+  },
+  {
+   "detector": "CNN trained with IMR",
+   "FAP": 0.01,
+   "mass": "30-50",
+   "range_Mpc": 1028.2378958730392,
+   "VT_Gpc3_yr": 4.553752542807362
+  },
+  {
+   "detector": "CNN trained with IMR",
+   "FAP": 0.01,
+   "mass": "50-75",
+   "range_Mpc": 1553.0714543261179,
+   "VT_Gpc3_yr": 15.69144436892304
+  },
+  {
+   "detector": "CNN trained with IMR",
+   "FAP": 0.01,
+   "mass": "75-100",
+   "range_Mpc": 1840.5368154211997,
+   "VT_Gpc3_yr": 26.116930653032473
+  },
+  {
+   "detector": "CNN trained with IMR",
+   "FAP": 0.01,
+   "mass": "30-100 (all)",
+   "range_Mpc": 1571.228536701338,
+   "VT_Gpc3_yr": 16.248253413339242
+  },
+  {
+   "detector": "CNN trained with IMR",
+   "FAP": 0.001,
+   "mass": "30-50",
+   "range_Mpc": 778.6392398392233,
+   "VT_Gpc3_yr": 1.9774133799745295
+  },
+  {
+   "detector": "CNN trained with IMR",
+   "FAP": 0.001,
+   "mass": "50-75",
+   "range_Mpc": 1221.2740443971045,
+   "VT_Gpc3_yr": 7.630060663297226
+  },
+  {
+   "detector": "CNN trained with IMR",
+   "FAP": 0.001,
+   "mass": "75-100",
+   "range_Mpc": 1497.4533011612218,
+   "VT_Gpc3_yr": 14.06528291079542
+  },
+  {
+   "detector": "CNN trained with IMR",
+   "FAP": 0.001,
+   "mass": "30-100 (all)",
+   "range_Mpc": 1257.5427551381306,
+   "VT_Gpc3_yr": 8.330227992664947
+  }
+ ]
+}

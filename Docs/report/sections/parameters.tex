@@ -1,0 +1,31 @@
+\section{Parameter estimation of binary black holes}\label{sec:pe}
+Detecting a merger is half of the problem; the other half is to say what it is. Notebook~22 estimates the chirp mass $M_c$, the total mass $M$, the mass ratio $q$ and the merger time of IMRPhenomD signals injected in real test noise with the held-out library, with three estimators: (i) the best template of a $203$-template IMR bank ($29$ total masses $\times$ $7$ mass ratios, non-spinning, face-on), (ii) the grid posterior of the same cube (amplitude marginalised, $\sigma_\rho=10$, flat priors), and (iii) a 1-D CNN with a heteroscedastic Gaussian head (mean and log-variance of the four standardised targets) trained with fresh injections of SNR $6$--$20$. Two heads are compared: global max pooling (the project CNN, which discards position) and a position-aware flatten head.
+\begin{table}[h]\centering\small
+\begin{tabular}{llrrrrr}
+\toprule
+quantity & estimator & $\snr=8$ & $10$ & $12$ & $16$ & $20$\\
+\midrule
+median $|\Delta M_c|/M_c$ & bank MLE & $0.075$ & $0.073$ & $0.068$ & $0.076$ & $0.067$\\
+ & posterior mean & $0.067$ & $0.073$ & $0.068$ & $0.069$ & $0.063$\\
+ & CNN (max pool) & $0.132$ & $0.120$ & $0.101$ & $0.084$ & $0.088$\\
+ & CNN (flatten) & $0.172$ & $0.150$ & $0.135$ & $0.130$ & $0.107$\\
+median $|\Delta q|/q$ & posterior mean & $0.25$ & $0.25$ & $0.24$ & $0.24$ & $0.21$\\
+ & CNN (max pool) & $0.27$ & $0.28$ & $0.28$ & $0.25$ & $0.28$\\
+median $|\Delta t_{\rm merge}|$ [ms] & posterior mean & $1.3$ & $1.0$ & $1.1$ & $1.1$ & $1.1$\\
+ & CNN (flatten) & $37$ & $28$ & $21$ & $19$ & $15$\\
+ & CNN (max pool) & $85$ & $82$ & $73$ & $90$ & $87$\\
+\midrule
+68\,\% coverage of $M_c$ & posterior (grid) & $0.32$ & $0.28$ & $0.24$ & $0.18$ & $0.12$\\
+ & CNN (flatten) & $0.75$ & $0.73$ & $0.78$ & $0.78$ & $0.81$\\
+\bottomrule
+\end{tabular}
+\caption{Accuracy and calibration of the estimators on $300$ held-out signals per SNR.}\label{tab:pe}
+\end{table}
+\begin{figure}[h]\centering\includegraphics[width=0.98\textwidth]{fig22_parameter_estimation.pdf}\caption{Left, centre: estimated against true chirp mass at $\snr=12$ for the grid posterior and the CNN. Right: median fractional error of $M_c$ against SNR.}\label{fig:pebbh}\end{figure}
+\begin{itemize}[nosep]
+\item \textbf{The matched-filter estimators win on accuracy}: $\approx7\,\%$ in $M_c$ and $M$ at every SNR (the error is the mass-ratio and spin degeneracy plus the grid step, not noise: it does not improve with SNR), against $10$--$17\,\%$ for the CNN, which improves slowly with SNR. The merger time is determined to $\approx1\,$ms by the bank and to $15$--$85\,$ms by the networks (the max-pooling head has no access to position: its error is that of a guess in the window).
+\item \textbf{The grid posterior is badly overconfident}: its $68\,\%$ interval contains the truth in only $9$--$32\,\%$ of the cases for $M_c$ and $M$, and less as the SNR grows. The reason is the model mismatch (non-spinning, face-on templates against aligned spins and random inclination) plus the discrete grid: the likelihood becomes sharp on the wrong point. The interval is a statement about the template model, not about the signal.
+\item \textbf{The CNN is better calibrated} ($0.65$--$0.82$ coverage for a nominal $0.68$ in $M_c$, $M$ and the merger time with the flatten head), because it is trained on the true family and learns its own error.
+\item $q$ is poorly measured by every estimator ($21$--$30\,\%$): at these SNRs it is essentially unconstrained within its prior range.
+\end{itemize}
+This is not a full Bayesian parameter estimation (no nested sampling, spins, sky position or two detectors); the grid posterior is the cheap Bayesian counterpart of the bank, and its failure shows what the full analysis (extension 35) would have to repair.

@@ -1,0 +1,466 @@
+{
+ "observed_FAP_test": {
+  "bank \u03c1\u00b2": 0.008505917159763314,
+  "bank + \u03c7\u00b2<3": 0.008875739644970414,
+  "Bayes factor": 0.006656804733727811,
+  "robust Bayes factor": 0.006040433925049309,
+  "CNN (fresh)": 0.003821499013806706
+ },
+ "B100_test": {
+  "nominal": 0.0017258382642998027,
+  "robust": 0.0014792899408284023
+ },
+ "B100_val": {
+  "nominal": 0.002095660749506903,
+  "robust": 0.0018491124260355029
+ },
+ "rates": [
+  {
+   "family": "sg",
+   "norm": 4,
+   "role": "signal",
+   "bank \u03c1\u00b2": 0.18,
+   "bank + \u03c7\u00b2<3": 0.19,
+   "Bayes factor": 0.16333333333333333,
+   "robust Bayes factor": 0.18,
+   "CNN (fresh)": 0.36
+  },
+  {
+   "family": "sg",
+   "norm": 6,
+   "role": "signal",
+   "bank \u03c1\u00b2": 0.8433333333333334,
+   "bank + \u03c7\u00b2<3": 0.85,
+   "Bayes factor": 0.8333333333333334,
+   "robust Bayes factor": 0.8366666666666667,
+   "CNN (fresh)": 0.8033333333333333
+  },
+  {
+   "family": "sg",
+   "norm": 8,
+   "role": "signal",
+   "bank \u03c1\u00b2": 1.0,
+   "bank + \u03c7\u00b2<3": 0.99,
+   "Bayes factor": 1.0,
+   "robust Bayes factor": 0.9933333333333333,
+   "CNN (fresh)": 0.98
+  },
+  {
+   "family": "sg",
+   "norm": 10,
+   "role": "signal",
+   "bank \u03c1\u00b2": 1.0,
+   "bank + \u03c7\u00b2<3": 0.9833333333333333,
+   "Bayes factor": 1.0,
+   "robust Bayes factor": 1.0,
+   "CNN (fresh)": 1.0
+  },
+  {
+   "family": "sg",
+   "norm": 14,
+   "role": "signal",
+   "bank \u03c1\u00b2": 1.0,
+   "bank + \u03c7\u00b2<3": 0.9466666666666667,
+   "Bayes factor": 1.0,
+   "robust Bayes factor": 1.0,
+   "CNN (fresh)": 1.0
+  },
+  {
+   "family": "pulse",
+   "norm": 4,
+   "role": "signal",
+   "bank \u03c1\u00b2": 0.18333333333333332,
+   "bank + \u03c7\u00b2<3": 0.19666666666666666,
+   "Bayes factor": 0.17666666666666667,
+   "robust Bayes factor": 0.16666666666666666,
+   "CNN (fresh)": 0.58
+  },
+  {
+   "family": "pulse",
+   "norm": 6,
+   "role": "signal",
+   "bank \u03c1\u00b2": 0.7066666666666667,
+   "bank + \u03c7\u00b2<3": 0.7233333333333334,
+   "Bayes factor": 0.7033333333333334,
+   "robust Bayes factor": 0.61,
+   "CNN (fresh)": 0.94
+  },
+  {
+   "family": "pulse",
+   "norm": 8,
+   "role": "signal",
+   "bank \u03c1\u00b2": 0.9933333333333333,
+   "bank + \u03c7\u00b2<3": 0.9933333333333333,
+   "Bayes factor": 0.99,
+   "robust Bayes factor": 0.7833333333333333,
+   "CNN (fresh)": 0.9966666666666667
+  },
+  {
+   "family": "pulse",
+   "norm": 10,
+   "role": "signal",
+   "bank \u03c1\u00b2": 1.0,
+   "bank + \u03c7\u00b2<3": 1.0,
+   "Bayes factor": 1.0,
+   "robust Bayes factor": 0.79,
+   "CNN (fresh)": 1.0
+  },
+  {
+   "family": "pulse",
+   "norm": 14,
+   "role": "signal",
+   "bank \u03c1\u00b2": 1.0,
+   "bank + \u03c7\u00b2<3": 0.9633333333333334,
+   "Bayes factor": 1.0,
+   "robust Bayes factor": 0.9433333333333334,
+   "CNN (fresh)": 1.0
+  },
+  {
+   "family": "chirp",
+   "norm": 4,
+   "role": "signal",
+   "bank \u03c1\u00b2": 0.03333333333333333,
+   "bank + \u03c7\u00b2<3": 0.03333333333333333,
+   "Bayes factor": 0.03333333333333333,
+   "robust Bayes factor": 0.03666666666666667,
+   "CNN (fresh)": 0.3233333333333333
+  },
+  {
+   "family": "chirp",
+   "norm": 6,
+   "role": "signal",
+   "bank \u03c1\u00b2": 0.4166666666666667,
+   "bank + \u03c7\u00b2<3": 0.43333333333333335,
+   "Bayes factor": 0.43333333333333335,
+   "robust Bayes factor": 0.45666666666666667,
+   "CNN (fresh)": 0.8366666666666667
+  },
+  {
+   "family": "chirp",
+   "norm": 8,
+   "role": "signal",
+   "bank \u03c1\u00b2": 0.8633333333333333,
+   "bank + \u03c7\u00b2<3": 0.8633333333333333,
+   "Bayes factor": 0.88,
+   "robust Bayes factor": 0.8766666666666667,
+   "CNN (fresh)": 0.97
+  },
+  {
+   "family": "chirp",
+   "norm": 10,
+   "role": "signal",
+   "bank \u03c1\u00b2": 1.0,
+   "bank + \u03c7\u00b2<3": 0.9533333333333334,
+   "Bayes factor": 1.0,
+   "robust Bayes factor": 0.9866666666666667,
+   "CNN (fresh)": 1.0
+  },
+  {
+   "family": "chirp",
+   "norm": 14,
+   "role": "signal",
+   "bank \u03c1\u00b2": 1.0,
+   "bank + \u03c7\u00b2<3": 0.72,
+   "Bayes factor": 1.0,
+   "robust Bayes factor": 1.0,
+   "CNN (fresh)": 1.0
+  },
+  {
+   "family": "blip",
+   "norm": 4,
+   "role": "glitch",
+   "bank \u03c1\u00b2": 0.12666666666666668,
+   "bank + \u03c7\u00b2<3": 0.13666666666666666,
+   "Bayes factor": 0.08666666666666667,
+   "robust Bayes factor": 0.06,
+   "CNN (fresh)": 0.32
+  },
+  {
+   "family": "blip",
+   "norm": 6,
+   "role": "glitch",
+   "bank \u03c1\u00b2": 0.6366666666666667,
+   "bank + \u03c7\u00b2<3": 0.66,
+   "Bayes factor": 0.59,
+   "robust Bayes factor": 0.33666666666666667,
+   "CNN (fresh)": 0.7166666666666667
+  },
+  {
+   "family": "blip",
+   "norm": 8,
+   "role": "glitch",
+   "bank \u03c1\u00b2": 0.9833333333333333,
+   "bank + \u03c7\u00b2<3": 0.9833333333333333,
+   "Bayes factor": 0.9733333333333334,
+   "robust Bayes factor": 0.35333333333333333,
+   "CNN (fresh)": 0.9766666666666667
+  },
+  {
+   "family": "blip",
+   "norm": 10,
+   "role": "glitch",
+   "bank \u03c1\u00b2": 1.0,
+   "bank + \u03c7\u00b2<3": 0.9933333333333333,
+   "Bayes factor": 1.0,
+   "robust Bayes factor": 0.32666666666666666,
+   "CNN (fresh)": 1.0
+  },
+  {
+   "family": "blip",
+   "norm": 14,
+   "role": "glitch",
+   "bank \u03c1\u00b2": 1.0,
+   "bank + \u03c7\u00b2<3": 0.96,
+   "Bayes factor": 1.0,
+   "robust Bayes factor": 0.9333333333333333,
+   "CNN (fresh)": 1.0
+  },
+  {
+   "family": "whistle",
+   "norm": 4,
+   "role": "glitch",
+   "bank \u03c1\u00b2": 0.02666666666666667,
+   "bank + \u03c7\u00b2<3": 0.023333333333333334,
+   "Bayes factor": 0.013333333333333334,
+   "robust Bayes factor": 0.013333333333333334,
+   "CNN (fresh)": 0.21333333333333335
+  },
+  {
+   "family": "whistle",
+   "norm": 6,
+   "role": "glitch",
+   "bank \u03c1\u00b2": 0.12,
+   "bank + \u03c7\u00b2<3": 0.14333333333333334,
+   "Bayes factor": 0.07333333333333333,
+   "robust Bayes factor": 0.016666666666666666,
+   "CNN (fresh)": 0.25666666666666665
+  },
+  {
+   "family": "whistle",
+   "norm": 8,
+   "role": "glitch",
+   "bank \u03c1\u00b2": 0.47333333333333333,
+   "bank + \u03c7\u00b2<3": 0.5,
+   "Bayes factor": 0.38,
+   "robust Bayes factor": 0.043333333333333335,
+   "CNN (fresh)": 0.5166666666666667
+  },
+  {
+   "family": "whistle",
+   "norm": 10,
+   "role": "glitch",
+   "bank \u03c1\u00b2": 0.8433333333333334,
+   "bank + \u03c7\u00b2<3": 0.8333333333333334,
+   "Bayes factor": 0.8033333333333333,
+   "robust Bayes factor": 0.09,
+   "CNN (fresh)": 0.6366666666666667
+  },
+  {
+   "family": "whistle",
+   "norm": 14,
+   "role": "glitch",
+   "bank \u03c1\u00b2": 0.9966666666666667,
+   "bank + \u03c7\u00b2<3": 0.89,
+   "Bayes factor": 0.9966666666666667,
+   "robust Bayes factor": 0.03666666666666667,
+   "CNN (fresh)": 0.9666666666666667
+  },
+  {
+   "family": "arch",
+   "norm": 4,
+   "role": "glitch",
+   "bank \u03c1\u00b2": 0.03333333333333333,
+   "bank + \u03c7\u00b2<3": 0.03666666666666667,
+   "Bayes factor": 0.04,
+   "robust Bayes factor": 0.03333333333333333,
+   "CNN (fresh)": 0.23
+  },
+  {
+   "family": "arch",
+   "norm": 6,
+   "role": "glitch",
+   "bank \u03c1\u00b2": 0.18,
+   "bank + \u03c7\u00b2<3": 0.15666666666666668,
+   "Bayes factor": 0.21666666666666667,
+   "robust Bayes factor": 0.12333333333333334,
+   "CNN (fresh)": 0.4
+  },
+  {
+   "family": "arch",
+   "norm": 8,
+   "role": "glitch",
+   "bank \u03c1\u00b2": 0.5166666666666667,
+   "bank + \u03c7\u00b2<3": 0.43666666666666665,
+   "Bayes factor": 0.5233333333333333,
+   "robust Bayes factor": 0.19333333333333333,
+   "CNN (fresh)": 0.53
+  },
+  {
+   "family": "arch",
+   "norm": 10,
+   "role": "glitch",
+   "bank \u03c1\u00b2": 0.7466666666666667,
+   "bank + \u03c7\u00b2<3": 0.49333333333333335,
+   "Bayes factor": 0.77,
+   "robust Bayes factor": 0.15666666666666668,
+   "CNN (fresh)": 0.6566666666666666
+  },
+  {
+   "family": "arch",
+   "norm": 14,
+   "role": "glitch",
+   "bank \u03c1\u00b2": 0.9066666666666666,
+   "bank + \u03c7\u00b2<3": 0.29333333333333333,
+   "Bayes factor": 0.9,
+   "robust Bayes factor": 0.25333333333333335,
+   "CNN (fresh)": 0.67
+  }
+ ],
+ "auc": [
+  {
+   "norm": 8,
+   "glitch": "blip",
+   "score": "\u03c7\u00b2 (small = signal)",
+   "AUC_signal_vs_glitch": 0.46174074074074073
+  },
+  {
+   "norm": 8,
+   "glitch": "blip",
+   "score": "Bayes factor",
+   "AUC_signal_vs_glitch": 0.519774074074074
+  },
+  {
+   "norm": 8,
+   "glitch": "blip",
+   "score": "robust Bayes factor",
+   "AUC_signal_vs_glitch": 0.8679851851851852
+  },
+  {
+   "norm": 8,
+   "glitch": "blip",
+   "score": "CNN",
+   "AUC_signal_vs_glitch": 0.6785037037037036
+  },
+  {
+   "norm": 8,
+   "glitch": "whistle",
+   "score": "\u03c7\u00b2 (small = signal)",
+   "AUC_signal_vs_glitch": 0.5239111111111111
+  },
+  {
+   "norm": 8,
+   "glitch": "whistle",
+   "score": "Bayes factor",
+   "AUC_signal_vs_glitch": 0.9295814814814815
+  },
+  {
+   "norm": 8,
+   "glitch": "whistle",
+   "score": "robust Bayes factor",
+   "AUC_signal_vs_glitch": 0.9709666666666668
+  },
+  {
+   "norm": 8,
+   "glitch": "whistle",
+   "score": "CNN",
+   "AUC_signal_vs_glitch": 0.9562148148148149
+  },
+  {
+   "norm": 8,
+   "glitch": "arch",
+   "score": "\u03c7\u00b2 (small = signal)",
+   "AUC_signal_vs_glitch": 0.6722037037037037
+  },
+  {
+   "norm": 8,
+   "glitch": "arch",
+   "score": "Bayes factor",
+   "AUC_signal_vs_glitch": 0.8465
+  },
+  {
+   "norm": 8,
+   "glitch": "arch",
+   "score": "robust Bayes factor",
+   "AUC_signal_vs_glitch": 0.9174111111111112
+  },
+  {
+   "norm": 8,
+   "glitch": "arch",
+   "score": "CNN",
+   "AUC_signal_vs_glitch": 0.9368777777777777
+  },
+  {
+   "norm": 10,
+   "glitch": "blip",
+   "score": "\u03c7\u00b2 (small = signal)",
+   "AUC_signal_vs_glitch": 0.4295296296296296
+  },
+  {
+   "norm": 10,
+   "glitch": "blip",
+   "score": "Bayes factor",
+   "AUC_signal_vs_glitch": 0.47317777777777775
+  },
+  {
+   "norm": 10,
+   "glitch": "blip",
+   "score": "robust Bayes factor",
+   "AUC_signal_vs_glitch": 0.9093777777777778
+  },
+  {
+   "norm": 10,
+   "glitch": "blip",
+   "score": "CNN",
+   "AUC_signal_vs_glitch": 0.6741925925925926
+  },
+  {
+   "norm": 10,
+   "glitch": "whistle",
+   "score": "\u03c7\u00b2 (small = signal)",
+   "AUC_signal_vs_glitch": 0.5083222222222222
+  },
+  {
+   "norm": 10,
+   "glitch": "whistle",
+   "score": "Bayes factor",
+   "AUC_signal_vs_glitch": 0.9519148148148149
+  },
+  {
+   "norm": 10,
+   "glitch": "whistle",
+   "score": "robust Bayes factor",
+   "AUC_signal_vs_glitch": 0.9742222222222223
+  },
+  {
+   "norm": 10,
+   "glitch": "whistle",
+   "score": "CNN",
+   "AUC_signal_vs_glitch": 0.9738074074074075
+  },
+  {
+   "norm": 10,
+   "glitch": "arch",
+   "score": "\u03c7\u00b2 (small = signal)",
+   "AUC_signal_vs_glitch": 0.7516777777777779
+  },
+  {
+   "norm": 10,
+   "glitch": "arch",
+   "score": "Bayes factor",
+   "AUC_signal_vs_glitch": 0.8693925925925927
+  },
+  {
+   "norm": 10,
+   "glitch": "arch",
+   "score": "robust Bayes factor",
+   "AUC_signal_vs_glitch": 0.9426111111111111
+  },
+  {
+   "norm": 10,
+   "glitch": "arch",
+   "score": "CNN",
+   "AUC_signal_vs_glitch": 0.9643629629629629
+  }
+ ],
+ "eta": 0.1
+}

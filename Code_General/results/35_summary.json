@@ -1,0 +1,212 @@
+{
+ "calibration": [
+  {
+   "veto": "none",
+   "detector": "bank",
+   "FAP": 0.01,
+   "dead_time": 0.0,
+   "ratio_min": 0.2958579881656805,
+   "ratio_max": 4.289940828402367,
+   "ratio_spread_log": 0.7420212440365334,
+   "threshold": 30.095457267761216
+  },
+  {
+   "veto": "none",
+   "detector": "bank",
+   "FAP": 0.001,
+   "dead_time": 0.0,
+   "ratio_min": 0.4930966469428008,
+   "ratio_max": 4.930966469428008,
+   "ratio_spread_log": 0.7282427471035547,
+   "threshold": 110.29380279541002
+  },
+  {
+   "veto": "none",
+   "detector": "CNN",
+   "FAP": 0.01,
+   "dead_time": 0.0,
+   "ratio_min": 0.07396449704142012,
+   "ratio_max": 3.9940828402366866,
+   "ratio_spread_log": 1.2931580917156786,
+   "threshold": 0.8653630018234253
+  },
+  {
+   "veto": "none",
+   "detector": "CNN",
+   "FAP": 0.001,
+   "dead_time": 0.0,
+   "ratio_min": 0.0,
+   "ratio_max": 4.191321499013807,
+   "ratio_spread_log": 3.581218248955399,
+   "threshold": 2.809389114379883
+  },
+  {
+   "veto": "H1_CBC_CAT1",
+   "detector": "bank",
+   "FAP": 0.01,
+   "dead_time": 0.0,
+   "ratio_min": 0.2958579881656805,
+   "ratio_max": 4.289940828402367,
+   "ratio_spread_log": 0.7420212440365334,
+   "threshold": 30.095457267761216
+  },
+  {
+   "veto": "H1_CBC_CAT1",
+   "detector": "bank",
+   "FAP": 0.001,
+   "dead_time": 0.0,
+   "ratio_min": 0.4930966469428008,
+   "ratio_max": 4.930966469428008,
+   "ratio_spread_log": 0.7282427471035547,
+   "threshold": 110.29380279541002
+  },
+  {
+   "veto": "H1_CBC_CAT1",
+   "detector": "CNN",
+   "FAP": 0.01,
+   "dead_time": 0.0,
+   "ratio_min": 0.07396449704142012,
+   "ratio_max": 3.9940828402366866,
+   "ratio_spread_log": 1.2931580917156786,
+   "threshold": 0.8653630018234253
+  },
+  {
+   "veto": "H1_CBC_CAT1",
+   "detector": "CNN",
+   "FAP": 0.001,
+   "dead_time": 0.0,
+   "ratio_min": 0.0,
+   "ratio_max": 4.191321499013807,
+   "ratio_spread_log": 3.581218248955399,
+   "threshold": 2.809389114379883
+  },
+  {
+   "veto": "H1_CBC_CAT2",
+   "detector": "bank",
+   "FAP": 0.01,
+   "dead_time": 0.009461291913214986,
+   "ratio_min": 0.7642998027613412,
+   "ratio_max": 1.2089810017271159,
+   "ratio_spread_log": 0.15023336655984487,
+   "threshold": 28.426610946655273
+  },
+  {
+   "veto": "H1_CBC_CAT2",
+   "detector": "bank",
+   "FAP": 0.001,
+   "dead_time": 0.009461291913214986,
+   "ratio_min": 0.26624068157614483,
+   "ratio_max": 1.4800197335964478,
+   "ratio_spread_log": 0.5744980945941794,
+   "threshold": 57.032128829956655
+  },
+  {
+   "veto": "H1_CBC_CAT2",
+   "detector": "CNN",
+   "FAP": 0.01,
+   "dead_time": 0.009461291913214986,
+   "ratio_min": 0.09869232667160127,
+   "ratio_max": 4.1420118343195265,
+   "ratio_spread_log": 1.2772631025455128,
+   "threshold": 0.8447455167770386
+  },
+  {
+   "veto": "H1_CBC_CAT2",
+   "detector": "CNN",
+   "FAP": 0.001,
+   "dead_time": 0.009461291913214986,
+   "ratio_min": 0.0,
+   "ratio_max": 4.191321499013807,
+   "ratio_spread_log": 3.594068330611736,
+   "threshold": 2.7672698497772217
+  }
+ ],
+ "top_windows": [
+  {
+   "detector": "bank",
+   "top_fraction": 0.010000000000000009,
+   "n": 325,
+   "removed_by_H1_CBC_CAT1": 0.0,
+   "removed_by_H1_CBC_CAT2": 0.4,
+   "removed_by_H1_BURST_CAT2": 0.046153846153846156,
+   "dead_time_CAT2": 0.00946129191321499
+  },
+  {
+   "detector": "bank",
+   "top_fraction": 0.0010000000000000009,
+   "n": 33,
+   "removed_by_H1_CBC_CAT1": 0.0,
+   "removed_by_H1_CBC_CAT2": 0.3939393939393939,
+   "removed_by_H1_BURST_CAT2": 0.2727272727272727,
+   "dead_time_CAT2": 0.00946129191321499
+  },
+  {
+   "detector": "bank",
+   "top_fraction": 0.0004999999999999449,
+   "n": 17,
+   "removed_by_H1_CBC_CAT1": 0.0,
+   "removed_by_H1_CBC_CAT2": 0.35294117647058826,
+   "removed_by_H1_BURST_CAT2": 0.4117647058823529,
+   "dead_time_CAT2": 0.00946129191321499
+  },
+  {
+   "detector": "CNN",
+   "top_fraction": 0.010000000000000009,
+   "n": 325,
+   "removed_by_H1_CBC_CAT1": 0.0,
+   "removed_by_H1_CBC_CAT2": 0.04,
+   "removed_by_H1_BURST_CAT2": 0.003076923076923077,
+   "dead_time_CAT2": 0.00946129191321499
+  },
+  {
+   "detector": "CNN",
+   "top_fraction": 0.0010000000000000009,
+   "n": 33,
+   "removed_by_H1_CBC_CAT1": 0.0,
+   "removed_by_H1_CBC_CAT2": 0.030303030303030304,
+   "removed_by_H1_BURST_CAT2": 0.0,
+   "dead_time_CAT2": 0.00946129191321499
+  },
+  {
+   "detector": "CNN",
+   "top_fraction": 0.0004999999999999449,
+   "n": 17,
+   "removed_by_H1_CBC_CAT1": 0.0,
+   "removed_by_H1_CBC_CAT2": 0.0,
+   "removed_by_H1_BURST_CAT2": 0.0,
+   "dead_time_CAT2": 0.00946129191321499
+  }
+ ],
+ "dead_time": {
+  "H1_CBC_CAT1": [
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "H1_CBC_CAT2": [
+   0.0,
+   0.0,
+   0.07396449704142016,
+   0.0,
+   0.0004930966469427478,
+   0.0,
+   0.0007396449704142327,
+   0.0004930966469427478
+  ],
+  "H1_BURST_CAT2": [
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0019723865877712132,
+   0.0,
+   0.0019723865877712132,
+   0.0019723865877712132
+  ]
+ }
+}

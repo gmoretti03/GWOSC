@@ -1,0 +1,261 @@
+{
+ "rho50": [
+  {
+   "family": "IMRPhenomD aligned",
+   "detector": "sine-Gaussian bank",
+   "FAP": 0.01,
+   "rho50": 7.777777777777778,
+   "rho90": 9.935483870967742,
+   "eff_rho6": 0.188
+  },
+  {
+   "family": "IMRPhenomD aligned",
+   "detector": "sine-Gaussian bank",
+   "FAP": 0.001,
+   "rho50": 10.941176470588236,
+   "rho90": 14.820512820512821,
+   "eff_rho6": 0.004
+  },
+  {
+   "family": "IMRPhenomD aligned",
+   "detector": "IMR bank (24 templates)",
+   "FAP": 0.01,
+   "rho50": 5.3,
+   "rho90": 8.363636363636363,
+   "eff_rho6": 0.696
+  },
+  {
+   "family": "IMRPhenomD aligned",
+   "detector": "IMR bank (24 templates)",
+   "FAP": 0.001,
+   "rho50": 6.419753086419753,
+   "rho90": 9.515151515151516,
+   "eff_rho6": 0.364
+  },
+  {
+   "family": "IMRPhenomD aligned",
+   "detector": "excess power",
+   "FAP": 0.01,
+   "rho50": 8.136986301369863,
+   "rho90": 11.280000000000001,
+   "eff_rho6": 0.1
+  },
+  {
+   "family": "IMRPhenomD aligned",
+   "detector": "excess power",
+   "FAP": 0.001,
+   "rho50": 10.063157894736841,
+   "rho90": 12.96969696969697,
+   "eff_rho6": 0.004
+  },
+  {
+   "family": "IMRPhenomD aligned",
+   "detector": "CNN (no IMR in training)",
+   "FAP": 0.01,
+   "rho50": 5.32,
+   "rho90": 7.973684210526316,
+   "eff_rho6": 0.636
+  },
+  {
+   "family": "IMRPhenomD aligned",
+   "detector": "CNN (no IMR in training)",
+   "FAP": 0.001,
+   "rho50": 7.375,
+   "rho90": 9.818181818181818,
+   "eff_rho6": 0.3
+  },
+  {
+   "family": "IMRPhenomD aligned",
+   "detector": "CNN (trained with IMRPhenomD)",
+   "FAP": 0.01,
+   "rho50": 4.440677966101695,
+   "rho90": 6.6000000000000005,
+   "eff_rho6": 0.828
+  },
+  {
+   "family": "IMRPhenomD aligned",
+   "detector": "CNN (trained with IMRPhenomD)",
+   "FAP": 0.001,
+   "rho50": 5.743243243243243,
+   "rho90": 8.0,
+   "eff_rho6": 0.576
+  },
+  {
+   "family": "IMRPhenomPv2 precessing",
+   "detector": "sine-Gaussian bank",
+   "FAP": 0.01,
+   "rho50": 7.425925925925926,
+   "rho90": 9.916666666666666,
+   "eff_rho6": 0.228
+  },
+  {
+   "family": "IMRPhenomPv2 precessing",
+   "detector": "sine-Gaussian bank",
+   "FAP": 0.001,
+   "rho50": 10.613636363636363,
+   "rho90": 14.557377049180328,
+   "eff_rho6": 0.004
+  },
+  {
+   "family": "IMRPhenomPv2 precessing",
+   "detector": "IMR bank (24 templates)",
+   "FAP": 0.01,
+   "rho50": 5.568181818181818,
+   "rho90": 10.2,
+   "eff_rho6": 0.652
+  },
+  {
+   "family": "IMRPhenomPv2 precessing",
+   "detector": "IMR bank (24 templates)",
+   "FAP": 0.001,
+   "rho50": 6.56,
+   "rho90": 11.384615384615385,
+   "eff_rho6": 0.332
+  },
+  {
+   "family": "IMRPhenomPv2 precessing",
+   "detector": "excess power",
+   "FAP": 0.01,
+   "rho50": 8.359550561797752,
+   "rho90": 11.227272727272728,
+   "eff_rho6": 0.124
+  },
+  {
+   "family": "IMRPhenomPv2 precessing",
+   "detector": "excess power",
+   "FAP": 0.001,
+   "rho50": 10.205128205128204,
+   "rho90": 14.222222222222223,
+   "eff_rho6": 0.004
+  },
+  {
+   "family": "IMRPhenomPv2 precessing",
+   "detector": "CNN (no IMR in training)",
+   "FAP": 0.01,
+   "rho50": 5.625,
+   "rho90": 7.857142857142857,
+   "eff_rho6": 0.56
+  },
+  {
+   "family": "IMRPhenomPv2 precessing",
+   "detector": "CNN (no IMR in training)",
+   "FAP": 0.001,
+   "rho50": 7.037037037037037,
+   "rho90": 9.548387096774194,
+   "eff_rho6": 0.24
+  },
+  {
+   "family": "IMRPhenomPv2 precessing",
+   "detector": "CNN (trained with IMRPhenomD)",
+   "FAP": 0.01,
+   "rho50": 4.444444444444445,
+   "rho90": 6.864864864864865,
+   "eff_rho6": 0.772
+  },
+  {
+   "family": "IMRPhenomPv2 precessing",
+   "detector": "CNN (trained with IMRPhenomD)",
+   "FAP": 0.001,
+   "rho50": 6.0,
+   "rho90": 7.935483870967742,
+   "eff_rho6": 0.5
+  },
+  {
+   "family": "IMRPhenomXPHM precessing + HM",
+   "detector": "sine-Gaussian bank",
+   "FAP": 0.01,
+   "rho50": 7.383333333333334,
+   "rho90": 9.938461538461539,
+   "eff_rho6": 0.24
+  },
+  {
+   "family": "IMRPhenomXPHM precessing + HM",
+   "detector": "sine-Gaussian bank",
+   "FAP": 0.001,
+   "rho50": 10.727272727272727,
+   "rho90": 14.793650793650794,
+   "eff_rho6": 0.004
+  },
+  {
+   "family": "IMRPhenomXPHM precessing + HM",
+   "detector": "IMR bank (24 templates)",
+   "FAP": 0.01,
+   "rho50": 5.585365853658536,
+   "rho90": 8.0,
+   "eff_rho6": 0.636
+  },
+  {
+   "family": "IMRPhenomXPHM precessing + HM",
+   "detector": "IMR bank (24 templates)",
+   "FAP": 0.001,
+   "rho50": 6.573529411764706,
+   "rho90": 9.619047619047619,
+   "eff_rho6": 0.344
+  },
+  {
+   "family": "IMRPhenomXPHM precessing + HM",
+   "detector": "excess power",
+   "FAP": 0.01,
+   "rho50": 8.026315789473685,
+   "rho90": 11.25,
+   "eff_rho6": 0.136
+  },
+  {
+   "family": "IMRPhenomXPHM precessing + HM",
+   "detector": "excess power",
+   "FAP": 0.001,
+   "rho50": 10.056338028169014,
+   "rho90": 14.431372549019608,
+   "eff_rho6": 0.016
+  },
+  {
+   "family": "IMRPhenomXPHM precessing + HM",
+   "detector": "CNN (no IMR in training)",
+   "FAP": 0.01,
+   "rho50": 5.25,
+   "rho90": 7.814814814814815,
+   "eff_rho6": 0.632
+  },
+  {
+   "family": "IMRPhenomXPHM precessing + HM",
+   "detector": "CNN (no IMR in training)",
+   "FAP": 0.001,
+   "rho50": 7.176470588235294,
+   "rho90": 9.833333333333334,
+   "eff_rho6": 0.276
+  },
+  {
+   "family": "IMRPhenomXPHM precessing + HM",
+   "detector": "CNN (trained with IMRPhenomD)",
+   "FAP": 0.01,
+   "rho50": 4.517857142857143,
+   "rho90": 6.695652173913043,
+   "eff_rho6": 0.836
+  },
+  {
+   "family": "IMRPhenomXPHM precessing + HM",
+   "detector": "CNN (trained with IMRPhenomD)",
+   "FAP": 0.001,
+   "rho50": 5.907692307692307,
+   "rho90": 7.921052631578947,
+   "eff_rho6": 0.524
+  }
+ ],
+ "fitting_factor": [
+  {
+   "family": "IMRPhenomD aligned",
+   "median_FF": 0.9710666642683534,
+   "q10_FF": 0.796047901387764
+  },
+  {
+   "family": "IMRPhenomPv2 precessing",
+   "median_FF": 0.9366924418986015,
+   "q10_FF": 0.6611970084211174
+  },
+  {
+   "family": "IMRPhenomXPHM precessing + HM",
+   "median_FF": 0.9308143609961235,
+   "q10_FF": 0.6550568836249178
+  }
+ ]
+}

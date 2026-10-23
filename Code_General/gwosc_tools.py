@@ -127,6 +127,19 @@ def load_chunk(i, psd_kw=None, band=FBAND, cache=True):
     return out
 
 
+def load_coinc_chunk(k, det):
+    """Whitened windows of chunk ``k`` of results/coinc_chunks.json for one detector ("H1" or "L1"): dict(v, S1, f_psd, S, gps).
+    Windows with the same index are simultaneous in the two detectors."""
+    meta = load_json("coinc_chunks.json")[k]
+    fn = os.path.join(CACHE, f"win_{det}_{meta['gps_start']}.npz")
+    if os.path.exists(fn):
+        d = np.load(fn); return {kk: d[kk] for kk in d.files}
+    x = np.load(os.path.join(CACHE, "raw", meta["files"][det]))
+    v, f_psd, S = whiten_chunk(x); w = make_windows(v)
+    out = {"v": w, "S1": psd_1hz(f_psd, S), "f_psd": f_psd, "S": S, "gps": meta["gps_start"] + TRIM + np.arange(len(w), dtype=float)}
+    np.savez_compressed(fn, **out); return out
+
+
 def load_split(split, **kw):
     """Concatenate the windows of a split; returns v (n, 1024), chunk id per window, list of chunk dicts."""
     vs, ids, ch = [], [], []
@@ -176,6 +189,21 @@ def chirp_ft(f, f0, fdot, sigma, phi=0.0):
 
 
 MORPHS = ("sg", "pulse", "chirp")
+MORPHS_ALL = MORPHS + ("imr",)      # "imr": IMRPhenomD binary-black-hole signals (library built by imr_tools.py, needs lalsuite once)
+
+_IMR_LIB = {}
+
+
+def imr_library(split="train"):
+    """Cache of IMRPhenomD waveforms in the frequency bins of a 1 s window (built by `python imr_tools.py`).
+    Two disjoint libraries with the same prior: "train" (injection kind "imr", used to train networks) and "test"
+    (kind "imr_test", waveforms never seen in training: use it for every evaluation)."""
+    if split not in _IMR_LIB:
+        fn = os.path.join(CACHE, "imr_library.npz" if split == "train" else "imr_library_test.npz")
+        if not os.path.exists(fn):
+            raise FileNotFoundError(f"{fn} is missing: run `python imr_tools.py` (needs `pip install lalsuite`)")
+        d = np.load(fn); _IMR_LIB[split] = {k: d[k] for k in d.files}
+    return _IMR_LIB[split]
 
 
 def draw_params(kind, rng, n):
@@ -190,6 +218,9 @@ def draw_params(kind, rng, n):
         p["f0"] = rng.uniform(50, 150, n)
         p["fdot"] = rng.uniform(150, 600, n)
         p["sigma"] = rng.uniform(0.03, 0.08, n)
+    elif kind in ("imr", "imr_test"):
+        lib = imr_library("test" if kind == "imr_test" else "train"); idx = rng.integers(0, len(lib["H"]), n)
+        p["lib"] = idx; p["tc"] = lib["tc"][idx]; p["t0"] = rng.uniform(-0.03, 0.03, n)       # t0 = extra time shift of the merger
     else:
         raise ValueError(kind)
     return p
@@ -206,6 +237,8 @@ def waveform_bins(kind, p, S1, band=BAND):
         H = gaussian_pulse_ft(f, p["sigma"][:, None]) * np.ones((n, 1))
     elif kind == "chirp":
         H = chirp_ft(f, p["f0"][:, None], p["fdot"][:, None], p["sigma"][:, None], p["phi"][:, None])
+    elif kind in ("imr", "imr_test"):
+        H = imr_library("test" if kind == "imr_test" else "train")["H"][p["lib"]].astype(np.complex128)
     H = H * np.exp(-2j * np.pi * f * p["t0"][:, None])
     return 2.0 * H / np.sqrt(np.atleast_2d(S1)) * band
 
@@ -372,3 +405,60 @@ def exact_template_stat(X, p, S1, band=BAND):
     T = T * np.exp(-2j * np.pi * FREQ[None, :] * p["t0"][:, None]) / np.sqrt(np.atleast_2d(S1)) * band
     T /= np.sqrt(np.sum(np.abs(T) ** 2, axis=1))[:, None]
     return np.abs(np.sum(X * np.conj(T), axis=1)) ** 2
+
+
+# --------------------------------------------------------------------------------------------------------------
+# Bootstrap error bars (notebook 11)
+# --------------------------------------------------------------------------------------------------------------
+def snr_level(eff, snrs, level):
+    """SNR at which a (monotonised) efficiency curve crosses ``level``; NaN if it never does."""
+    e = np.maximum.accumulate(np.asarray(eff, float))
+    return float(np.interp(level, e, np.asarray(snrs, float))) if e.max() >= level else np.nan
+
+
+def bootstrap_rho(bkg, sig_by_snr, snrs, far, levels=(0.5, 0.9), B=500, seed=0):
+    """Bootstrap of rho_level at a given FAP: resamples the background (threshold uncertainty) and, independently,
+    the injections at every SNR. ``sig_by_snr`` is a list of statistic arrays, one per SNR.
+    Returns (point estimates, array B x len(levels))."""
+    rng = np.random.default_rng(seed)
+    thr0 = threshold_at_far(bkg, far)
+    point = [snr_level([(s > thr0).mean() for s in sig_by_snr], snrs, lv) for lv in levels]
+    out = np.full((B, len(levels)), np.nan)
+    for b in range(B):
+        thr = threshold_at_far(rng.choice(bkg, len(bkg)), far)
+        eff = [(rng.choice(s, len(s)) > thr).mean() for s in sig_by_snr]
+        out[b] = [snr_level(eff, snrs, lv) for lv in levels]
+    return np.array(point), out
+
+
+def ci(x, q=(16, 84)):
+    """Percentile interval of a bootstrap sample, ignoring NaN."""
+    return tuple(float(v) for v in np.nanpercentile(x, q))
+
+
+# --------------------------------------------------------------------------------------------------------------
+# Signal-consistency test (notebook 16): Allen chi^2 of the best template and the re-weighted ("new") SNR
+# --------------------------------------------------------------------------------------------------------------
+def template_index(bank, f0, Q):
+    """Index in ``bank.grid`` of the best template returned by ``bank.scan`` (matched on the (f0, Q) labels)."""
+    key = {(round(float(a), 6), round(float(b), 6)): i for i, (a, b) in enumerate(bank.grid)}
+    return np.array([key[(round(float(a), 6), round(float(b), 6))] for a, b in zip(f0, Q)])
+
+
+def allen_chi2(bank, X, tau, idx, p=8):
+    """chi^2 of the best-fit template: the template is split in ``p`` frequency bands of equal template power, z_i is the
+    complex matched-filter output of band i at the best lag ``tau`` (fraction of the window); chi^2 = sum_i |z_i - z/p|^2 / (1/p).
+    For Gaussian noise and an exact template chi^2 ~ chi^2 with 2 (p-1) degrees of freedom. Returns chi^2 / (2 (p-1))."""
+    X = np.asarray(X, np.complex64); T = bank.T[idx]                              # (n, 513) unit-norm templates
+    P = np.abs(T) ** 2; band = np.minimum((np.cumsum(P, axis=1) * p - 1e-9).astype(int), p - 1)
+    prod = X * np.conj(T) * np.exp(2j * np.pi * FREQ[None, :] * np.asarray(tau)[:, None])
+    z = prod.sum(1); chi = np.zeros(len(X))
+    for i in range(p):
+        zi = (prod * (band == i)).sum(1); chi += np.abs(zi - z / p) ** 2 * p
+    return chi / (2 * (p - 1))
+
+
+def new_snr(rho2, chi2_red):
+    """Re-weighted SNR (Usman et al.): rho / [(1 + c^3)/2]^(1/6) for c = chi^2/dof > 1, rho otherwise."""
+    rho = np.sqrt(rho2)
+    return np.where(chi2_red > 1, rho / ((1 + chi2_red ** 3) / 2) ** (1 / 6), rho)

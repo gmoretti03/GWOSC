@@ -24,6 +24,7 @@ All statistics are evaluated on exactly the same test windows and injections, wi
 (there $\snr_{50}=5.5$ for sine-Gaussians; here $4.9$). Table~\ref{tab:mlcomp} and Fig.~\ref{fig:mleff} summarise the result; if the threshold is instead set on the test noise itself (equal observed FAP) the networks gain $0.4$--$0.6$ in $\snr_{50}$ (the test epochs are cleaner than the validation ones) and the bank only $0.04$, so that the ensemble then also beats the bank in family ($4.6$ against $4.8$); the conclusions for pulse and chirp and for the unseen morphology are unchanged.
 
 \begin{table}[h]\centering\small
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{lrrrrrr}
 \toprule
 & \multicolumn{2}{c}{sine-Gaussian} & \multicolumn{2}{c}{Gaussian pulse} & \multicolumn{2}{c}{linear chirp}\\
@@ -39,7 +40,7 @@ CNN (sine-Gaussian only) & 5.09 & 6.87 & 6.50 & 12.93 & 6.80 & 10.82\\
 autoencoder, window MSE & 12.09 & 15.14 & 12.44 & 15.06 & 12.32 & 15.14\\
 autoencoder, local max & 6.89 & 8.80 & 6.75 & 8.53 & 8.30 & 11.08\\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \caption{Optimal SNR at 50\,\% and 90\,\% efficiency (FAP $10^{-2}$ on validation noise, test injections). Bold: best in each column.}\label{tab:mlcomp}
 \end{table}
 
@@ -70,3 +71,99 @@ The epistemic uncertainty is estimated with the ensemble~\cite{DeepEnsembles} an
 \includegraphics[width=0.95\textwidth]{fig05_uncertainty.pdf}
 \caption{Top: reliability diagram on the test set, raw and after temperature scaling. Bottom: predictive standard deviation against SNR (ensemble and MC dropout), against the ensemble mean, and the effect of rejecting uncertain windows.}\label{fig:cal}
 \end{figure}
+
+\subsection{Hard-negative mining and families of real glitches}\label{sec:glitchfam}
+\paragraph{Mining.} Notebook~17 fine-tunes the fresh-injection CNN for $8$ epochs either as is (control) or repeating $5$ times, at every epoch, the $10\,\%$ of training noise windows with the highest network score. Mean $\snr_{50}$ over the three morphologies (validation thresholds): baseline $4.57/5.66$, control $4.37/5.80$, mining $4.46/5.84$ at FAP $10^{-2}/10^{-3}$. The paired difference mining\,$-$\,control is $+0.10$ ($95\,\%$ interval $-0.15$ to $+0.33$) and $+0.04$ ($-0.21$ to $+0.33$): no measurable effect. With a binary cross-entropy that already sees $16\,000$ noise windows per epoch, the hard windows are not rare enough for re-weighting to matter at FAP $\ge10^{-3}$; the effect might appear at lower FAP, which the available background cannot test.
+\paragraph{Families.} Notebook~18 takes the $4\,\%$ of validation and test windows with the largest bank statistic ($649$), describes them by their log-spectrogram and clusters them (k-means, $3$ families plus an ``extreme'' family of the $3\,\%$ most atypical windows). The silhouette of the typical windows is only $0.08$: they are noise-tail fluctuations that differ essentially by the band in which the bank fired (peak frequency $113$, $218$ and $280\,$Hz), not distinct glitch classes. The extreme family ($20$ windows, median $\max|v|=4.7$) is the real-glitch population: the bank alarms in $95\,\%$ of them at FAP $10^{-2}$, the $\chi^2<3$ condition removes $\approx95\,\%$ of those alarms and the CNN alarms in $5\,\%$ (Fig.~\ref{fig:glitchfam}). Without human labels the unsupervised analysis therefore supports one conclusion: what separates the detectors is a small tail of loud glitches that the template statistic cannot reject by amplitude and that the network and the $\chi^2$ test do.
+\begin{figure}[h]\centering\includegraphics[width=0.95\textwidth]{fig18_glitch_families.pdf}\caption{Mean log-spectrogram of each family of candidate windows (top) and fraction above the FAP $10^{-2}$ threshold for the bank, the bank with $\chi^2<3$ and the CNN (bottom).}\label{fig:glitchfam}\end{figure}
+
+\subsection{Prior mismatch and the base rate}\label{sec:priorshift}
+\paragraph{Prior mismatch.} Notebook~20 tests the fresh-injection CNN and the $160$-template bank on injections outside the training ranges (FAP $10^{-2}$, validation thresholds; Fig.~\ref{fig:priorbase}). The bank keeps its performance ($\snr_{50}\le7.0$ in every case, and efficiency $1.0$ at $\snr=40$ everywhere), the CNN does not:
+\begin{itemize}[nosep]
+\item sine-Gaussians at $400$--$500\,$Hz: $\snr_{50}=8.6$ for the CNN against $5.1$ for the bank (efficiency at $\snr=8$: $0.42$ against $0.99$); at $30$--$50\,$Hz $6.7$ against $5.7$;
+\item pulses of $5$--$15\,$ms: $9.3$ against $6.7$; chirps at $150$--$250\,$Hz: $7.4$ against $7.0$;
+\item loud signals: the efficiency at $\snr=40$ of the CNN falls to $0.72$ for pulses in the training range, $0.02$ for pulses of $0.3$--$0.8\,$ms and $0.65$ for chirps at $150$--$250\,$Hz, because the network input is clipped at $\pm12$ and the training SNR stops at $15$: the loudest events are the ones it misses;
+\item mild extrapolations (broader or narrower $Q$, steeper chirps) are harmless: $4.6$--$5.3$ for the CNN.
+\end{itemize}
+The CNN advantage of this section is therefore an advantage \emph{inside the injection prior}; outside it, the template statistic degrades gracefully and the network does not. The remedy (a wider prior and no clipping, or a bank veto for loud events) is not tested here.
+\paragraph{Base rate.} The efficiencies of this report describe a balanced problem. If a one-second window contains a signal with prior probability $\pi$, an alarm is real with probability $\mathrm{PPV}=\varepsilon\pi/(\varepsilon\pi+\mathrm{FAP}(1-\pi))$. With $\varepsilon\approx0.99$ at $\snr=8$ and for an \emph{illustrative} rate of one detectable burst per day ($\pi\approx1.2\cdot10^{-5}$) the PPV is $0.001$ at a single-detector FAP of $10^{-2}$, $0.01$ at $10^{-3}$ and $0.90$ at the two-detector $10^{-6}$ of Section~\ref{sec:coinc}; at one per month it is $4\cdot10^{-5}$, $3\cdot10^{-4}$ and $0.24$. A PPV of $0.9$ needs a FAP of $10^{-6}$ (one per day) or $4\cdot10^{-8}$ (one per month): the single-detector FAPs quoted in this report are far from sufficient for a real search, which is why the two-detector time slides are essential. The rates are assumptions, not measured burst rates.
+\begin{figure}[h]\centering\includegraphics[width=0.98\textwidth]{fig20_prior_baserate.pdf}\caption{Left: $\snr_{50}$ of the bank and of the CNN on injections outside the CNN training prior (a bar is missing if the detector never reaches $50\,\%$). Right: probability that an alarm is real against the prior probability of a signal per window, with the illustrative rates marked.}\label{fig:priorbase}\end{figure}
+
+\subsection{Robustness, conformal thresholds, interpretability, latency and adversarial attacks}\label{sec:robust}
+Notebook~25 stresses the fresh-injection CNN (two seeds) with the bank as reference; thresholds are those of the validation noise at FAP $10^{-2}$ and the efficiency is the mean at $\snr=6$ over the three morphologies.
+\begin{table}[h]\centering\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrr}
+\toprule
+perturbation & FAP bank & FAP CNN & eff.\ bank & eff.\ CNN\\
+\midrule
+baseline & $0.0085$ & $0.0038$ & $0.66$ & $0.86$\\
+signal amplitude $\times0.9$ / $\times1.1$ & -- & -- & $0.49$ / $0.80$ & $0.76$ / $0.94$\\
+$60\,$Hz line left in the noise (norm $3$ / $6$) & $0.0085$ & $0.17$ / $0.29$ & $0.66$ / $0.65$ & $0.87$ / $0.88$\\
+signals at the window edges ($t_0$ outside $0.25$--$0.75$) & -- & -- & $0.02$ & $0.74$\\
+PSD from the mean / 1 s / 16 s segments & $0.0064$ / $0.0075$ / $0.0097$ & $0.0035$ / $0.0057$ / $0.0048$ & $0.64$--$0.66$ & $0.86$--$0.87$\\
+\bottomrule
+\end{tabular}}
+\caption{Robustness of the bank and of the CNN to one perturbation at a time (nominal thresholds).}\label{tab:robust}
+\end{table}
+\begin{itemize}[nosep]
+\item A $\pm10\,\%$ error on the calibration of the signal amplitude moves the efficiency at $\snr=6$ by about $\pm0.1$--$0.15$ for both detectors, as any $\snr$ rescaling does; the alternative PSD estimates change the FAP by a factor $<1.5$ and the efficiencies by $<0.02$ for both.
+\item \textbf{A spectral line left in the data breaks the CNN, not the bank}: with a $60\,$Hz line of norm $3$ the CNN FAP rises from $0.4\,\%$ to $17\,\%$ ($29\,\%$ at norm $6$), the bank is unchanged. The network has never seen a persistent line and responds to a feature that the template statistic, with its narrow-band but short-lived templates, ignores. Retraining with augmentation and the robust tests of Section~\ref{sec:priorshift} are the remedies; the line itself is removed in practice by the PSD whitening.
+\item The bank cannot see signals whose lag lies outside the range it scans ($0.15$--$0.85\,$s), an explicit design choice, while the CNN keeps $0.74$ out of its training prior of the lag.
+\end{itemize}
+\paragraph{Conformal prediction.} A split-conformal threshold (the $\lceil(n+1)(1-\alpha)\rceil$-th calibration score) is guaranteed to give FAP $\le\alpha$ for exchangeable data; across epochs it is not: calibrating on one validation chunk and testing on the other gives observed/nominal ratios of $0.5$--$1.9$ for the CNN and $0.5$--$3.5$ for the bank at $\alpha=10^{-2},10^{-3}$, i.e.\ the guarantee holds only within an epoch (this is the epoch dependence of Section~\ref{sec:bkgrigour} seen from another side). Conformal sets of the 4-class morphology network at $90\,\%$ nominal coverage have an average size $1.00$--$1.04$ and marginal coverage $0.98$ on noise, but the \emph{conditional} coverage depends on the SNR (sine-Gaussian: $0.07$ at $\snr=3$, $0.69$ at $6$, $0.95$ at $8$): a faint signal receives a confident wrong label rather than a larger set, and the $90\,\%$ holds only on average over the training SNR prior.
+\paragraph{Interpretability.} The input gradient times the input of the detection logit puts $30\,\%$ of its mass within $\pm4\sigma_t$ of an injected sine-Gaussian, against $10\,\%$ for a uniform saliency; the $16$ first-layer filters peak between $\approx40$ and $500\,$Hz (Fig.~\ref{fig:interp}), covering the injection prior as a filter bank would.
+\begin{figure}[h]\centering\includegraphics[width=0.98\textwidth]{fig25_interpretability.pdf}\caption{Left: spectra of the $16$ first-layer kernels. Centre: their peak frequencies against the sine-Gaussian prior. Right: saliency of twenty injected signals.}\label{fig:interp}\end{figure}
+\paragraph{Latency.} Per one-second window, the CNN takes $0.17\,$ms in batches of $1024$ (and $88\,$ms for a single call, Keras overhead), the hybrid $1.9\,$ms, the Transformer $1.0\,$ms and the $160$-template bank $3.5\,$ms (numpy FFT): the network is $20$ times faster than the bank on a batch.
+\paragraph{Adversarial perturbations.} A one-step FGSM attack with $\epsilon=0.1\sigma$ per sample (perturbation norm $3.2$, a third of the signal norm $10$) lowers the CNN efficiency at $\snr=10$ from $1.0$ to $0.33$ ($0.02$ at $0.2\sigma$), while the bank, given the same perturbation, stays at $0.998$; in the opposite direction $\epsilon=0.05\sigma$ takes the CNN FAP from $0.5\,\%$ to $7\,\%$. The CNN is not adversarially robust, which matters only if the noise could be chosen by an adversary; it matters in practice as a statement about sensitivity to small coherent structure.
+
+\subsection{Scaling with the data, augmentation, label noise and transfer to L1}\label{sec:scaling}
+Notebook~26 retrains the CNN of notebook~07 with fewer or differently prepared data (one seed per variant; mean $\snr_{50}$ over the three morphologies, FAP $10^{-2}/10^{-3}$, validation thresholds).
+\begin{table}[h]\centering\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrr}
+\toprule
+variant & FAP $10^{-2}$ & FAP $10^{-3}$\\
+\midrule
+static injections, $1000$ / $4000$ / $16\,224$ noise windows & $6.70$ / $6.16$ / $5.34$ & $9.61$ / $7.39$ / $6.48$\\
+fresh injections, $1000$ / $4000$ / $16\,224$ noise windows & $6.53$ / $5.83$ / $4.49$ & $9.33$ / $7.11$ / $5.67$\\
+static, $16\,224$ windows, sign flip + circular shift & $5.32$ & $6.15$\\
+static, $4000$ windows, sign flip + circular shift & $5.94$ & $7.23$\\
+fresh, $4000$ windows, $5\,\%$ / $20\,\%$ wrong labels & $5.77$ / $6.21$ & $6.72$ / $8.47$\\
+\midrule
+H1-trained CNN on H1 / zero-shot on L1 & $4.57$ / $5.55$ & $5.66$ / $6.97$\\
+fine-tuned on L1 ($5$ epochs) & $5.49$ & $6.94$\\
+trained from scratch on L1 (two chunks) & $8.45$ & $9.95$\\
+\bottomrule
+\end{tabular}}
+\caption{Mean $\snr_{50}$ (bootstrap error $0.04$--$0.07$ at $10^{-2}$, up to $0.5$ at $10^{-3}$ for the smallest sets).}\label{tab:scaling}
+\end{table}
+\begin{figure}[h]\centering\includegraphics[width=0.98\textwidth]{fig26_scaling_adaptation.pdf}\caption{Left: $\snr_{50}$ against the number of training noise windows. Right: transfer from H1 to L1.}\label{fig:scaling}\end{figure}
+\begin{itemize}[nosep]
+\item \textbf{The network is data-limited}: going from $10^3$ to $1.6\cdot10^4$ noise windows lowers $\snr_{50}$ by $1.4$ (static) to $2.0$ (fresh injections) at FAP $10^{-2}$ and by $3.1$ to $3.7$ at $10^{-3}$, with no sign of saturation: more background is the most direct way to improve the detector, and the fresh-injection advantage grows with the amount of noise ($0.2$ at $10^3$, $0.9$ at $1.6\cdot10^4$).
+\item \textbf{Flip-and-shift augmentation} does not replace fresh injections: it changes nothing at full size ($5.32$ against $5.34$) and gains $0.2$ at $4000$ windows; the over-fitting of the static set is a lack of signal diversity, not of translation or sign invariance.
+\item \textbf{Label noise is tolerated}: $5\,\%$ wrong labels cost nothing measurable, $20\,\%$ cost $0.4$ (FAP $10^{-2}$) and $1.4$ ($10^{-3}$).
+\item \textbf{Transfer works}: the H1-trained network applied to L1 gives $5.55$ (the noise and the thresholds are those of L1, from two chunks), fine-tuning on L1 does not improve it ($5.49$), while a network trained from scratch on the two L1 training chunks is far worse ($8.45$): the value of the H1 training is in the number of noise windows, not in the specifics of H1.
+\end{itemize}
+
+\subsection{Unsupervised noise models: a normalising flow and a variational autoencoder}\label{sec:flowvae}
+Notebook~33 uses models of the noise only (no signal is ever seen) as model-independent detectors. A RealNVP flow ($6$ affine coupling layers) learns the density of a $16$-dimensional description of each window ($8$ log band energies, the maxima of the sliding energy at $5$ durations, $\max|v|$, skewness, kurtosis); its score is $-\ln p$. A $1$-D convolutional VAE (latent dimension $16$) reconstructs the whitened samples; scores are the largest local ($50\,$ms) reconstruction error and the window ELBO. Thresholds are those of the validation noise.
+\begin{table}[h]\centering\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrr}
+\toprule
+detector & sine-Gaussian & pulse & chirp & IMR & AUC($\snr=8$, sg)\\
+\midrule
+normalising flow $(-\ln p)$ & $7.45$ & $7.24$ & $9.25$ & $9.45$ & $0.97$\\
+VAE, local reconstruction error & $6.74$ & $6.52$ & $8.50$ & $7.69$ & $0.98$\\
+VAE, window ELBO & $12.2$ & $12.4$ & $12.3$ & $12.4$ & $0.79$\\
+\midrule
+excess power (Section~\ref{sec:ml}) & $6.54$ & $5.77$ & $10.10$ & $8.28$ & ---\\
+CNN, fresh injections (Section~\ref{sec:seq}) & $4.7$ & $4.2$ & $4.8$ & $4.45^{\ast}$ & ---\\
+\bottomrule
+\end{tabular}}
+\caption{$\snr_{50}$ at FAP $10^{-2}$ of the unsupervised detectors (IMR: held-out IMRPhenomD library; $^\ast$ network trained with IMR signals).}\label{tab:unsup}
+\end{table}
+The local VAE score reaches the level of excess power on bursts ($6.5$--$6.7$ for sine-Gaussians and pulses) and is better on chirps and IMR signals ($8.5$ and $7.7$ against $10.1$ and $8.3$); it improves on the deterministic autoencoder of Section~\ref{sec:ml}. The flow, on hand-built features, is $0.7$--$1$ unit worse than the VAE. The window ELBO is useless as a detector: the KL term and the global average dilute a $50\,$ms burst. At FAP $10^{-3}$ the gap to the supervised detectors widens ($9.2$--$12.5$ against $5.7$ for the CNN): the price of seeing no signal during training is $\approx2$ units at $10^{-2}$ and $\approx4$ at $10^{-3}$, in return for a detector that has no prior on the morphology (the IMR signals are detected as well as the three burst families).
+The alarms of the unsupervised models are not simply the glitches that fool the bank: only $20$--$26\,\%$ of the bank alarms are also flagged (Spearman correlation of the scores with the bank statistic $0.17$--$0.33$), so they are complementary background rejectors rather than copies of the matched filter.
+\begin{figure}[h]\centering\includegraphics[width=0.98\textwidth]{fig33_unsupervised.pdf}\caption{Left: flow score of validation noise and of $\snr=8$ sine-Gaussians. Centre: $\snr_{50}$ per family. Right: flow score against the bank statistic on test noise.}\label{fig:unsup}\end{figure}

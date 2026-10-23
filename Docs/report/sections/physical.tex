@@ -1,0 +1,31 @@
+\section{Physical units: $h_{\rm rss}$, other sources and sensitive range}\label{sec:physical}
+Notebook~28 converts $\snr_{50}$ into physical quantities. Thresholds are those of the validation noise at FAP $10^{-2}$, the PSD is the median of the test chunks, the detector is H1 alone, optimally oriented and linearly polarised for the bursts.
+\paragraph{$h_{\rm rss}$ benchmarks.} The root-sum-square strain at $50\,\%$ efficiency is $\snr_{50}/\snr(h_{\rm rss}{=}1)$ with the SNR per unit $h_{\rm rss}$ computed from the PSD (the SNR of $h_{\rm rss}=10^{-22}\,\mathrm{Hz}^{-1/2}$ is $13$--$18$ for $70$--$153\,$Hz sine-Gaussians). Table~\ref{tab:hrss} gives $h_{\rm rss,50}$ in units of $10^{-22}\,\mathrm{Hz}^{-1/2}$.
+\begin{table}[h]\centering\small
+\begin{tabular}{lrrr}
+\toprule
+waveform & bank & CNN & excess power\\
+\midrule
+sine-Gaussian $Q=9$, $f_0=$70 Hz & 0.38 & 0.32 & 0.58\\
+sine-Gaussian $Q=9$, $f_0=$100 Hz & 0.29 & 0.25 & 0.41\\
+sine-Gaussian $Q=9$, $f_0=$153 Hz & 0.27 & 0.25 & 0.34\\
+sine-Gaussian $Q=9$, $f_0=$235 Hz & 0.29 & 0.29 & 0.34\\
+sine-Gaussian $Q=9$, $f_0=$361 Hz & 0.34 & 0.38 & 0.37\\
+Gaussian pulse, $\sigma=$0.1 ms & 0.38 & 0.35 & 0.35\\
+Gaussian pulse, $\sigma=$0.5 ms & 0.38 & 0.31 & 0.35\\
+Gaussian pulse, $\sigma=$2.5 ms & 0.67 & 0.47 & 0.71\\
+ringdown $f=$100 Hz, $\tau=$10 ms & 0.33 & 0.27 & 0.37\\
+ringdown $f=$200 Hz, $\tau=$5 ms & 0.31 & 0.28 & 0.31\\
+ringdown $f=$300 Hz, $\tau=$3 ms & 0.33 & 0.31 & 0.33\\
+cosmic-string cusp, $f_{\rm high}=$150 Hz & 0.57 & 0.38 & 0.58\\
+cosmic-string cusp, $f_{\rm high}=$300 Hz & 0.56 & 0.37 & 0.52\\
+cosmic-string cusp, $f_{\rm high}=$500 Hz & 0.56 & 0.37 & 0.53\\
+white-noise burst 100-200 Hz & 0.83 & 0.57 & 1.04\\
+white-noise burst 100-500 Hz & 1.39 & --- & 1.22\\
+\bottomrule
+\end{tabular}
+\caption{$h_{\rm rss}$ at $50\,\%$ efficiency, in units of $10^{-22}\,\mathrm{Hz}^{-1/2}$, FAP $10^{-2}$ (single H1, optimally oriented); ``---'': does not reach $50\,\%$ up to $\snr=24$.}\label{tab:hrss}
+\end{table}
+The best value is $\approx2.5\cdot10^{-23}\,\mathrm{Hz}^{-1/2}$ at $100$--$153\,$Hz, a factor $\sim10$ below the network values of LVK burst searches, because of the optimal orientation, the single detector, the FAP per window ($10^{-2}$) and the absence of an astrophysical false-alarm requirement: the numbers rank the methods, they are not search sensitivities. The CNN matches or beats the bank on every shape but the highest frequency ($361\,$Hz), including shapes it never saw (ringdowns, cusps: $\snr_{50}=3.8$--$5.0$ against $5.1$--$5.8$ for the bank); it fails on the broadband white-noise bursts of $400\,$Hz bandwidth (no $50\,\%$ up to $\snr=24$), the one family far outside its prior, where excess power is as good as the bank.
+\paragraph{Sensitive range for black-hole binaries.} $600$ IMRPhenomD sources of the library prior (spins, inclination, sky position, H1 antenna pattern) are generated at $1\,$Mpc with their physical amplitude, giving a median optimal SNR of $4.1\cdot10^3$ at $1\,$Mpc (an optimally oriented $36+29\,M_\odot$ system has $1.5\cdot10^4$, i.e.\ SNR $36$ at $410\,$Mpc against $19$--$20$ measured in H1 for GW150914, reduced by the inclination and the antenna pattern). Folding $\snr(D)$ with the efficiency curves of Section~\ref{sec:imr} gives, in Euclidean space, a volume-averaged range of $1.31\,$Gpc for the IMR bank and $1.57\,$Gpc for the CNN trained with IMR signals at FAP $10^{-2}$ ($1.10$ and $1.26\,$Gpc at $10^{-3}$): $0.80$/$1.27$/$1.56\,$Gpc for total masses $30$--$50$/$50$--$75$/$75$--$100\,M_\odot$ with the bank, and a volume per year of observing time of $9.3$ and $16.3\,\mathrm{Gpc}^3$ for single H1. These are detector-frame masses with no cosmology (the largest distances have $z\approx0.2$ or more), no duty cycle and no network, and a FAP per window that no real search would accept: they only show that the SNR scale of the project corresponds to a realistic reach.
+\begin{figure}[h]\centering\includegraphics[width=0.98\textwidth]{fig28_physical_units.pdf}\caption{Left: detection probability against distance for black-hole binaries. Centre: $h_{\rm rss,50}$ of Q$=9$ sine-Gaussians. Right: $\snr_{50}$ of the other burst shapes.}\label{fig:physical}\end{figure}

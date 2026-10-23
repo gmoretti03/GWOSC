@@ -1,8 +1,8 @@
 \section{Reproducibility and origin of the numbers}\label{app:code}
 
 The project is a pipeline of notebooks in \texttt{Code\_General/}, run in order with the Jupyter kernel \texttt{cern} (environment in \texttt{environment.yml}); every random number is generated with a fixed seed and long steps cache their output.
-\path{download_data.py} downloads the eight raw chunks (about 0.5\,GB in float32; not tracked); \path{gwosc_tools.py} holds the shared functions (whitening, analytic waveforms, injection, template bank, statistics) and \path{seq_models.py} the models, the dataset and the resumable training loop of the tuning study (it can train the variants in parallel processes).
-Run times on a 10-core laptop: notebook 01 $\approx$1\,min, 02 $\approx$1\,min, 03 $\approx$10--15\,min (most of it the systematic variants), 04 $\approx$20\,min, 05 $\approx$30--40\,min with training from scratch (a few minutes with the saved models), 06 $\approx$1--2\,h, 07 $\approx$1.5\,h on four processes (a laptop on battery power runs about three times slower).
+\path{download_data.py} downloads the eight raw chunks (about 0.5\,GB in float32; not tracked); \path{gwosc_tools.py} holds the shared functions (whitening, analytic waveforms, injection, template bank, statistics), \path{seq_models.py} the models, the dataset and the resumable training loop of the tuning study (it trains the variants in parallel processes), \path{imr_tools.py} the IMRPhenomD library and the IMR template bank (it needs \texttt{lalsuite} only to build the libraries, \texttt{python imr\_tools.py}), \path{open_set.py} the family fits and goodness-of-fit scores, and \path{download_coinc_data.py} the six H1+L1 chunks of Section~\ref{sec:coinc}.
+Run times on a 10-core laptop (on AC power): notebook 01 $\approx$1\,min, 02 $\approx$1\,min, 03 $\approx$10--15\,min (most of it the systematic variants), 04 $\approx$20\,min, 05 $\approx$30--40\,min with training from scratch (a few minutes with the saved models), 06 $\approx$1--2\,h, 07 $\approx$3\,h of training on four processes in total, 08 $\approx$10\,min plus 20\,min for the two networks trained with IMR signals, 09 $\approx$10\,min plus the download of the L1 data, 10 $\approx$10\,min (a laptop on battery power runs about three times slower).
 
 \begin{table}[h]\centering\footnotesize
 \begin{tabular}{p{4.2cm}p{5.8cm}p{4.6cm}}
@@ -15,7 +15,26 @@ Sec.~\ref{sec:freq}: bank, background, efficiency, MLE, toys, systematics & \pat
 Sec.~\ref{sec:bayes}: posterior, MCMC, Bayes factors, SBC, coverage & \path{04_bayesian_analysis} & \path{results/04_summary.json}\\
 Sec.~\ref{sec:ml}: features, CNN, autoencoder, calibration, uncertainty & \path{05_ml_detection} & \path{results/05_summary.json}\\
 Sec.~\ref{sec:seq}: Transformer, GRU, pre-training, glitches, attention, morphology classification & \path{06_sequence_models_hypothesis_testing} & \path{results/06_summary.json}\\
-Sec.~\ref{sec:tuning}: tuning study (fresh injections, learning rate, patch size, convolutional stem) & \path{07_tuning_sequence_models} & \path{results/07_summary.json}\\
+Sec.~\ref{sec:tuning}: tuning study (fresh injections, learning rate, patch size, convolutional stem), multiclass with fresh injections & \path{07_tuning_sequence_models} & \path{results/07_summary.json}\\
+Sec.~\ref{sec:imr}: binary-black-hole signals, IMR bank, detection and mass dependence & \path{08_realistic_inspiral_signals} & \path{results/08_summary.json}\\
+Sec.~\ref{sec:coinc}: two detectors, coincidence, time slides & \path{09_two_detector_coincidence} & \path{results/09_summary.json}, \path{results/coinc_chunks.json}\\
+Sec.~\ref{sec:openset}: goodness-of-fit and open-set scores & \path{10_open_set_goodness_of_fit} & \path{results/10_summary.json}\\
+Sec.~\ref{sec:seeds}, \ref{sec:threshconv}: bootstrap errors, threshold convention & \path{11_bootstrap_error_bars}, \path{12_threshold_convention} & \path{results/11_summary.json}, \path{results/12_summary.json}\\
+Sec.~\ref{sec:imr}: real events (GW150914, GW151012, GW151226) & \path{13_real_events} & \path{results/13_summary.json}, \path{results/events_chunks.json}\\
+Sec.~\ref{sec:coinc}: mini continuous search & \path{14_continuous_search} & \path{results/14_summary.json}\\
+Sec.~\ref{sec:ablation}, \ref{sec:chi2}: CNN-versus-bank ablation, $\chi^2$ and ranking statistics & \path{15_cnn_vs_bank_ablation}, \path{16_chi2_veto_ranking} & \path{results/15_summary.json}, \path{results/16_summary.json}\\
+Sec.~\ref{sec:glitchfam}: hard negatives, glitch families & \path{17_hard_negative_mining}, \path{18_glitch_families} & \path{results/17_summary.json}, \path{results/18_summary.json}\\
+Sec.~\ref{sec:unfold}: unfolding and population inference & \path{19_unfolding}, \path{32_bayesian_extensions} & \path{results/19_summary.json}, \path{results/32_summary.json}\\
+Sec.~\ref{sec:priorshift}: prior mismatch, base rate & \path{20_prior_mismatch_base_rate} & \path{results/20_summary.json}\\
+Sec.~\ref{sec:glitchbayes}, \ref{sec:bayesext}: labelled glitches, exact-model MCMC, SBC & \path{21_injected_glitches_robust_bayes}, \path{32_bayesian_extensions} & \path{results/21_summary.json}, \path{results/32_summary.json}\\
+Sec.~\ref{sec:pe}: parameter estimation of binary black holes & \path{22_imr_parameter_estimation} & \path{results/22_summary.json}\\
+Sec.~\ref{sec:bkgrigour}, \ref{sec:bankdesign}, \ref{sec:dq}: background rigour, bank design, data-quality flags & \path{23_background_rigour}, \path{24_rare_event_mc}, \path{27_bank_design_local_whitening_psd}, \path{35_data_quality_flags} & \path{results/23_summary.json}, \path{24}, \path{27}, \path{35}\\
+Sec.~\ref{sec:robust}, \ref{sec:scaling}: robustness, conformal sets, scaling, transfer H1$\to$L1 & \path{25_robustness_conformal_interpretability}, \path{26_scaling_augmentation_adaptation} & \path{results/25_summary.json}, \path{results/26_summary.json}\\
+Sec.~\ref{sec:physical}, \ref{sec:prec}, \ref{sec:limits}: physical units, precession and higher modes, limits & \path{28_physical_units_range}, \path{29_precession_higher_modes}, \path{37_limits_low_mass_bns_nsbh_ecc} & \path{results/28_summary.json}, \path{29}, \path{37}\\
+Sec.~\ref{sec:seeds}, \ref{sec:otherarch}, \ref{sec:tftune2}: seeds, other architectures, Transformer tuning & \path{30_seeds_paired_tests}, \path{34_other_architectures}, \path{39_transformer_tuning_round2} & \path{results/30_summary.json}, \path{34}, \path{39}\\
+Sec.~\ref{sec:coherent}, \ref{sec:virgo}: coherent statistic, physical network injections, Virgo & \path{31_coherent_network}, \path{38_virgo_snr_budget} & \path{results/31_summary.json}, \path{38}\\
+Sec.~\ref{sec:flowvae}: noise-only flow and VAE & \path{33_unsupervised_flow_vae} & \path{results/33_summary.json}\\
+Sec.~\ref{sec:o2o3}: O2 and O3 generalisation & \path{36_o2_o3_generalisation} & \path{results/36_summary.json}, \path{results/runs_chunks.json}\\
 exploratory prototype (GW150914, Q-transform) & \path{00_waveform_exploration} & --\\
 \bottomrule
 \end{tabular}
@@ -23,3 +42,5 @@ exploratory prototype (GW150914, Q-transform) & \path{00_waveform_exploration} &
 \end{table}
 
 The figures of the report are the \texttt{figures/fig0N\_*.pdf} files written by the notebooks and copied into \texttt{Docs/report/figures/}. The report is compiled with \texttt{tectonic -X compile main.tex}.
+
+\paragraph{Added tools and tests.} \path{glitch_tools.py}, \path{pe_tools.py}, \path{network_tools.py}, \path{precession_tools.py}, \path{make_summary_figures.py}; \path{download_events.py}, \path{download_coinc_extra.py}, \path{download_runs.py}, \path{download_virgo.py}; nineteen automatic tests (\texttt{python -m pytest Code\_General/tests}), \path{run_all.sh} and SHA-256 checksums of the raw strain (\path{results/data_checksums.json}).

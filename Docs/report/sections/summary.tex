@@ -1,0 +1,30 @@
+\section*{Executive summary and reading guide}
+
+\paragraph{Question.} At a fixed false-alarm probability (FAP) on \emph{real} LIGO O1 noise, how do frequentist (matched-filter bank), Bayesian (same likelihood) and machine-learning detectors compare on short unmodelled bursts and on binary-black-hole signals injected at a given optimal SNR?
+
+\paragraph{Main results} (SNR at $50\,\%$ efficiency, $\snr_{50}$, FAP $10^{-2}$ per one-second window, thresholds on the validation noise; see Fig.~\ref{fig:summary}).
+\begin{itemize}[nosep]
+\item Bank and Bayes factor are two views of one likelihood and detect the same bursts ($\snr_{50}\approx4.9$ for sine-Gaussians; the oracle with known parameters needs $3.0$: the gap is the look-elsewhere effect).
+\item A 1-D CNN trained with fresh injections does as well or better with no template ($4.3$--$4.6$ averaged over three morphologies, five seeds, against $5.5$ for the bank); Transformers and GRUs do worse than the CNN with every lever tried.
+\item On binary black holes ($30$--$100\,M_\odot$) the bank of the wrong family loses $2.0$ in $\snr_{50}$; an IMR bank ($5.4$) or a CNN trained with IMR signals ($4.45$) recovers it.
+\item Bootstrap and seed studies: the error of $\snr_{50}$ from the test set is $0.05$--$0.1$, but the seed scatter of the CNN at FAP $10^{-2}$ is $0.4$; the CNN advantage lives inside its training prior and in the tails of real noise (outside it, or with a $60\,$Hz line, it fails), and the GWOSC CAT2 flags recover most of the gap for the bank at FAP $10^{-3}$ (Sections~\ref{sec:ablation}, \ref{sec:priorshift}, \ref{sec:dq}).
+\item The false-alarm threshold depends on the epoch it is measured in (factor $\approx4.5$; $\snr_{50}$ at FAP $10^{-3}$ is $6.8$ or $10.8$ depending on the background, Sec.~\ref{sec:threshconv}); two detectors with time slides reach FAP $10^{-6}$ at a network SNR of $\approx11$.
+\end{itemize}
+\paragraph{Limits.} Mostly H1 alone; SNR is optimal SNR, not distance; FAP per window is not an astrophysical rate; aligned-spin waveforms only; ML numbers hold for the training injection prior.
+
+\paragraph{Reading guide.} Method sections: \ref{sec:freq} (frequentist), \ref{sec:bayes} (Bayesian), \ref{sec:ml} and \ref{sec:seq} (machine learning). Extensions: \ref{sec:imr} (realistic signals), \ref{sec:coinc} (two detectors), \ref{sec:openset} (unknown morphologies). The comparison and the threshold convention are in Sec.~\ref{sec:comparison}. A reader short of time can read this page, Fig.~\ref{fig:summary}, Table~\ref{tab:final} and the conclusions.
+
+\paragraph{Glossary.}
+\begin{description}[nosep,leftmargin=1.2em,labelindent=0pt]
+\item[FAP] false-alarm probability: fraction of noise-only one-second windows above the threshold.
+\item[$\snr$, optimal SNR] $\rho^2=\sum_k|h_k|^2$ of the whitened signal; the SNR a matched filter with exact template would get.
+\item[$\snr_{50}$, $\snr_{90}$] optimal SNR at which the detection efficiency is $50\,\%$ and $90\,\%$ at a given FAP.
+\item[Matched-filter bank] set of templates (here 160 sine-Gaussians, or 24 IMR templates); the statistic is the maximum of $\rho^2$ over templates and time shifts.
+\item[Look-elsewhere effect] the maximum over unknown parameters is larger than a single-template value even in noise; the oracle--bank gap measures its price.
+\item[Fitting factor] fraction of the optimal SNR recovered by the best template of a bank for a signal outside it.
+\item[Time slides] shifting one detector's data by more than the light travel time to build a coincident background with no real coincident signal.
+\item[Glitch] short non-Gaussian noise transient of instrumental origin; sets the tail of the background distribution.
+\item[Oracle] statistic with the true parameters of the signal known; the Neyman--Pearson upper bound.
+\item[Bayes factor] ratio of marginal likelihoods of signal and noise hypotheses, with a prior on the signal parameters.
+\item[Open set] flagging a signal that belongs to none of the families the detector was built for.
+\end{description}

@@ -1,0 +1,42 @@
+\section{Open set: signals outside the hypotheses}\label{sec:openset}
+
+In Section~\ref{sec:seq} every method detected a burst of band-limited stochastic noise --- which belongs to none of the three families --- and assigned it a family, mostly sine-Gaussian: a softmax is normalised over the classes it knows and the Bayesian posterior over the families it contains, so none of them could say ``none of the above''. This section tests that limitation directly with two kinds of out-of-distribution signals injected at the same SNR as the in-family ones: the \emph{stochastic burst} of Section~\ref{sec:seq} (Gaussian envelope, $\sigma_t=15$\,ms) and a \emph{binary-black-hole signal} of Section~\ref{sec:imr} (a real chirp that is not one of the three phenomenological families). The networks were trained \emph{without} IMR signals.
+
+\paragraph{Scores.} (i) \emph{Goodness-of-fit of the matched filter}: the three families are fitted (best template, lag and complex amplitude), the best fit of the family with the largest $\rho^2$ is subtracted, and the energy of the residual of the whitened series in $\pm60$\,ms around the fitted time is the score: a signal that the family describes leaves only noise, one that it does not leaves excess power. (ii) For the four-class CNNs (static and fresh-injection training): the maximum softmax probability among the signal classes ($1-\mathrm{MSP}$), the energy score $-\log\sum_ce^{z_c}$, and the Mahalanobis distance of the penultimate-layer features from the three in-family class means (shared covariance, training signals of $\snr\ge6$).
+Only detected signals are compared (any-signal statistic of the network above the FAP $10^{-2}$ threshold; $96\,\%$ of the in-family signals at $\snr=8$ and $100\,\%$ at $\snr\ge12$ pass it, against $46\,\%$ of the stochastic bursts and $74\,\%$ of the IMR signals at $\snr=8$). Performance is the AUROC for separating in-family from out-of-family signals and the fraction of out-of-family signals flagged at $5\,\%$ of in-family signals wrongly flagged (Table~\ref{tab:openset}, Fig.~\ref{fig:openset}).
+
+\begin{table}[h]\centering\small
+\begin{tabular}{lrrrrrr}
+\toprule
+& \multicolumn{3}{c}{stochastic burst} & \multicolumn{3}{c}{IMR (BBH) signal}\\
+AUROC at $\snr=$ & 8 & 12 & 16 & 8 & 12 & 16\\
+\midrule
+matched-filter residual ($\pm60$\,ms) & \textbf{0.935} & \textbf{0.998} & \textbf{1.000} & 0.793 & 0.903 & 0.925\\
+energy score, CNN fresh & 0.838 & 0.966 & 0.986 & \textbf{0.932} & \textbf{0.982} & \textbf{0.989}\\
+energy score, CNN static & 0.796 & 0.944 & 0.975 & 0.892 & 0.974 & 0.990\\
+$1-$MSP, CNN fresh & 0.733 & 0.891 & 0.934 & 0.910 & 0.967 & 0.981\\
+$1-$MSP, CNN static & 0.715 & 0.833 & 0.863 & 0.851 & 0.921 & 0.938\\
+Mahalanobis, CNN fresh & 0.882 & 0.805 & 0.612 & 0.692 & 0.519 & 0.377\\
+Mahalanobis, CNN static & 0.747 & 0.477 & 0.300 & 0.672 & 0.517 & 0.408\\
+\midrule
+flagged at $5\,\%$: residual & 0.77 & 1.00 & 1.00 & 0.37 & 0.75 & 0.81\\
+flagged at $5\,\%$: energy, CNN fresh & 0.38 & 0.83 & 0.92 & 0.64 & 0.92 & 0.94\\
+\bottomrule
+\end{tabular}
+\caption{Open-set scores: AUROC of separating in-family from out-of-family detected signals at the same SNR, and fraction of out-of-family signals flagged at $5\,\%$ of in-family signals flagged.}\label{tab:openset}
+\end{table}
+
+\begin{figure}[h]\centering
+\includegraphics[width=0.95\textwidth]{fig10_auroc.pdf}
+\caption{AUROC of every open-set score against the SNR, for stochastic bursts (left) and binary-black-hole signals (right).}\label{fig:openset}
+\end{figure}
+
+\begin{itemize}[nosep]
+\item \textbf{The goodness-of-fit of the matched filter solves the problem of Section~\ref{sec:seq} for stochastic bursts.} AUROC $0.94$ / $0.998$ / $1.000$ at $\snr=8$ / 12 / 16 and $77\,\%$ of the stochastic bursts flagged at $\snr=8$ and $100\,\%$ at $\snr\ge12$, at $5\,\%$ false flagging. The median residual energy of in-family signals is $108$--$114$ (noise $104$); that of a stochastic burst $144$ / $202$ / $281$.
+\item \textbf{For a binary-black-hole signal the best open-set score is the energy score of the network} ($0.93$ / $0.98$ / $0.99$; $64$ / $92$ / $94\,\%$ flagged), followed by the maximum softmax probability of the fresh-injection network; the residual of the matched filter is weaker ($0.79$ / $0.90$ / $0.93$), because an IMR chirp is \emph{partly} described by the chirp and sine-Gaussian families (the best fit is called a sine-Gaussian or a chirp in $99\,\%$ of the cases): its residual is smaller than that of a noise-like signal.
+\item \textbf{Fresh-injection training also improves the open-set behaviour of the networks} (stochastic bursts, energy score $0.84$ / $0.97$ / $0.99$ against $0.80$ / $0.94$ / $0.98$ for the static network).
+\item \textbf{The Mahalanobis distance does not work here:} its AUROC \emph{falls} with SNR, to $0.61$ (fresh) and $0.30$ (static) at $\snr=16$, below $0.5$. Louder in-family signals move away from the class means along the amplitude direction, so the distance measures loudness rather than membership; it would need a normalisation of the features.
+\item \textbf{The two kinds of score are complementary}: the residual of the matched filter flags what no family can describe (noise-like, unmodelled power), the network's energy score also flags a coherent chirp of the wrong family. A search should report both together with the family decision.
+\end{itemize}
+
+\paragraph{Caveats.} The networks were not trained with an explicit unknown class; the flagging threshold is the $95\,\%$ quantile of the in-family scores \emph{at the same SNR}, an oracle on the SNR (the SNR of a real candidate is not known); the $\pm60$\,ms residual window assumes a burst of comparable duration (a long signal spills outside it); only two kinds of out-of-family signal were tried; no retraining.

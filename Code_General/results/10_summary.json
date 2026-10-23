@@ -1,0 +1,446 @@
+{
+ "results": [
+  {
+   "ood": "stochastic burst",
+   "snr": 8,
+   "method": "1 - MSP (CNN static)",
+   "AUROC": 0.7154555320739746,
+   "flagged_at_5pc": 0.10787172011661808,
+   "detected_in": 0.962,
+   "detected_out": 0.4573333333333333
+  },
+  {
+   "ood": "stochastic burst",
+   "snr": 8,
+   "method": "energy (CNN static)",
+   "AUROC": 0.7964174151420593,
+   "flagged_at_5pc": 0.23177842565597667,
+   "detected_in": 0.962,
+   "detected_out": 0.4573333333333333
+  },
+  {
+   "ood": "stochastic burst",
+   "snr": 8,
+   "method": "Mahalanobis (CNN static)",
+   "AUROC": 0.7471587981792064,
+   "flagged_at_5pc": 0.16763848396501457,
+   "detected_in": 0.962,
+   "detected_out": 0.4573333333333333
+  },
+  {
+   "ood": "stochastic burst",
+   "snr": 8,
+   "method": "1 - MSP (CNN fresh)",
+   "AUROC": 0.733278214931488,
+   "flagged_at_5pc": 0.14903846153846154,
+   "detected_in": 0.9906666666666667,
+   "detected_out": 0.13866666666666666
+  },
+  {
+   "ood": "stochastic burst",
+   "snr": 8,
+   "method": "energy (CNN fresh)",
+   "AUROC": 0.8379716873168945,
+   "flagged_at_5pc": 0.38461538461538464,
+   "detected_in": 0.9906666666666667,
+   "detected_out": 0.13866666666666666
+  },
+  {
+   "ood": "stochastic burst",
+   "snr": 8,
+   "method": "Mahalanobis (CNN fresh)",
+   "AUROC": 0.8823991872864686,
+   "flagged_at_5pc": 0.5865384615384616,
+   "detected_in": 0.9906666666666667,
+   "detected_out": 0.13866666666666666
+  },
+  {
+   "ood": "stochastic burst",
+   "snr": 8,
+   "method": "matched-filter residual (\u00b160 ms)",
+   "AUROC": 0.9354002743555233,
+   "flagged_at_5pc": 0.7692307692307693,
+   "detected_in": 0.9906666666666667,
+   "detected_out": 0.13866666666666666
+  },
+  {
+   "ood": "stochastic burst",
+   "snr": 12,
+   "method": "1 - MSP (CNN static)",
+   "AUROC": 0.8325443863868713,
+   "flagged_at_5pc": 0.22033898305084745,
+   "detected_in": 1.0,
+   "detected_out": 0.9833333333333333
+  },
+  {
+   "ood": "stochastic burst",
+   "snr": 12,
+   "method": "energy (CNN static)",
+   "AUROC": 0.9441893696784973,
+   "flagged_at_5pc": 0.6922033898305084,
+   "detected_in": 1.0,
+   "detected_out": 0.9833333333333333
+  },
+  {
+   "ood": "stochastic burst",
+   "snr": 12,
+   "method": "Mahalanobis (CNN static)",
+   "AUROC": 0.4766974011299435,
+   "flagged_at_5pc": 0.04813559322033898,
+   "detected_in": 1.0,
+   "detected_out": 0.9833333333333333
+  },
+  {
+   "ood": "stochastic burst",
+   "snr": 12,
+   "method": "1 - MSP (CNN fresh)",
+   "AUROC": 0.8908766508102417,
+   "flagged_at_5pc": 0.45707915273132665,
+   "detected_in": 1.0,
+   "detected_out": 0.598
+  },
+  {
+   "ood": "stochastic burst",
+   "snr": 12,
+   "method": "energy (CNN fresh)",
+   "AUROC": 0.9664697051048279,
+   "flagged_at_5pc": 0.8283166109253066,
+   "detected_in": 1.0,
+   "detected_out": 0.598
+  },
+  {
+   "ood": "stochastic burst",
+   "snr": 12,
+   "method": "Mahalanobis (CNN fresh)",
+   "AUROC": 0.805008547008547,
+   "flagged_at_5pc": 0.4983277591973244,
+   "detected_in": 1.0,
+   "detected_out": 0.598
+  },
+  {
+   "ood": "stochastic burst",
+   "snr": 12,
+   "method": "matched-filter residual (\u00b160 ms)",
+   "AUROC": 0.9980795243403939,
+   "flagged_at_5pc": 0.9977703455964325,
+   "detected_in": 1.0,
+   "detected_out": 0.598
+  },
+  {
+   "ood": "stochastic burst",
+   "snr": 16,
+   "method": "1 - MSP (CNN static)",
+   "AUROC": 0.8625966906547546,
+   "flagged_at_5pc": 0.286,
+   "detected_in": 1.0,
+   "detected_out": 1.0
+  },
+  {
+   "ood": "stochastic burst",
+   "snr": 16,
+   "method": "energy (CNN static)",
+   "AUROC": 0.9750418066978455,
+   "flagged_at_5pc": 0.8466666666666667,
+   "detected_in": 1.0,
+   "detected_out": 1.0
+  },
+  {
+   "ood": "stochastic burst",
+   "snr": 16,
+   "method": "Mahalanobis (CNN static)",
+   "AUROC": 0.30049777777777775,
+   "flagged_at_5pc": 0.008,
+   "detected_in": 1.0,
+   "detected_out": 1.0
+  },
+  {
+   "ood": "stochastic burst",
+   "snr": 16,
+   "method": "1 - MSP (CNN fresh)",
+   "AUROC": 0.9335265755653381,
+   "flagged_at_5pc": 0.6200772200772201,
+   "detected_in": 0.9993333333333333,
+   "detected_out": 0.8633333333333333
+  },
+  {
+   "ood": "stochastic burst",
+   "snr": 16,
+   "method": "energy (CNN fresh)",
+   "AUROC": 0.9858114123344421,
+   "flagged_at_5pc": 0.9227799227799228,
+   "detected_in": 0.9993333333333333,
+   "detected_out": 0.8633333333333333
+  },
+  {
+   "ood": "stochastic burst",
+   "snr": 16,
+   "method": "Mahalanobis (CNN fresh)",
+   "AUROC": 0.6117736148423273,
+   "flagged_at_5pc": 0.24247104247104248,
+   "detected_in": 0.9993333333333333,
+   "detected_out": 0.8633333333333333
+  },
+  {
+   "ood": "stochastic burst",
+   "snr": 16,
+   "method": "matched-filter residual (\u00b160 ms)",
+   "AUROC": 0.9999830002498448,
+   "flagged_at_5pc": 1.0,
+   "detected_in": 0.9993333333333333,
+   "detected_out": 0.8633333333333333
+  },
+  {
+   "ood": "IMR (BBH) signal",
+   "snr": 8,
+   "method": "1 - MSP (CNN static)",
+   "AUROC": 0.8510663509368896,
+   "flagged_at_5pc": 0.28136200716845877,
+   "detected_in": 0.962,
+   "detected_out": 0.744
+  },
+  {
+   "ood": "IMR (BBH) signal",
+   "snr": 8,
+   "method": "energy (CNN static)",
+   "AUROC": 0.8924582004547119,
+   "flagged_at_5pc": 0.496415770609319,
+   "detected_in": 0.962,
+   "detected_out": 0.744
+  },
+  {
+   "ood": "IMR (BBH) signal",
+   "snr": 8,
+   "method": "Mahalanobis (CNN static)",
+   "AUROC": 0.6723665352697611,
+   "flagged_at_5pc": 0.051075268817204304,
+   "detected_in": 0.962,
+   "detected_out": 0.744
+  },
+  {
+   "ood": "IMR (BBH) signal",
+   "snr": 8,
+   "method": "1 - MSP (CNN fresh)",
+   "AUROC": 0.9100667238235474,
+   "flagged_at_5pc": 0.46635367762128327,
+   "detected_in": 0.9906666666666667,
+   "detected_out": 0.852
+  },
+  {
+   "ood": "IMR (BBH) signal",
+   "snr": 8,
+   "method": "energy (CNN fresh)",
+   "AUROC": 0.9322792887687683,
+   "flagged_at_5pc": 0.6369327073552425,
+   "detected_in": 0.9906666666666667,
+   "detected_out": 0.852
+  },
+  {
+   "ood": "IMR (BBH) signal",
+   "snr": 8,
+   "method": "Mahalanobis (CNN fresh)",
+   "AUROC": 0.6920180421545273,
+   "flagged_at_5pc": 0.11737089201877934,
+   "detected_in": 0.9906666666666667,
+   "detected_out": 0.852
+  },
+  {
+   "ood": "IMR (BBH) signal",
+   "snr": 8,
+   "method": "matched-filter residual (\u00b160 ms)",
+   "AUROC": 0.7930891766029105,
+   "flagged_at_5pc": 0.3701095461658842,
+   "detected_in": 0.9906666666666667,
+   "detected_out": 0.852
+  },
+  {
+   "ood": "IMR (BBH) signal",
+   "snr": 12,
+   "method": "1 - MSP (CNN static)",
+   "AUROC": 0.9210538864135742,
+   "flagged_at_5pc": 0.47361389445557783,
+   "detected_in": 1.0,
+   "detected_out": 0.998
+  },
+  {
+   "ood": "IMR (BBH) signal",
+   "snr": 12,
+   "method": "energy (CNN static)",
+   "AUROC": 0.9741533994674683,
+   "flagged_at_5pc": 0.8510354041416166,
+   "detected_in": 1.0,
+   "detected_out": 0.998
+  },
+  {
+   "ood": "IMR (BBH) signal",
+   "snr": 12,
+   "method": "Mahalanobis (CNN static)",
+   "AUROC": 0.5174985526608773,
+   "flagged_at_5pc": 0.013360053440213761,
+   "detected_in": 1.0,
+   "detected_out": 0.998
+  },
+  {
+   "ood": "IMR (BBH) signal",
+   "snr": 12,
+   "method": "1 - MSP (CNN fresh)",
+   "AUROC": 0.9667760133743286,
+   "flagged_at_5pc": 0.8149632598530394,
+   "detected_in": 1.0,
+   "detected_out": 0.998
+  },
+  {
+   "ood": "IMR (BBH) signal",
+   "snr": 12,
+   "method": "energy (CNN fresh)",
+   "AUROC": 0.9820298552513123,
+   "flagged_at_5pc": 0.9231796927187709,
+   "detected_in": 1.0,
+   "detected_out": 0.998
+  },
+  {
+   "ood": "IMR (BBH) signal",
+   "snr": 12,
+   "method": "Mahalanobis (CNN fresh)",
+   "AUROC": 0.5191529726118904,
+   "flagged_at_5pc": 0.04809619238476954,
+   "detected_in": 1.0,
+   "detected_out": 0.998
+  },
+  {
+   "ood": "IMR (BBH) signal",
+   "snr": 12,
+   "method": "matched-filter residual (\u00b160 ms)",
+   "AUROC": 0.9028171899354264,
+   "flagged_at_5pc": 0.7548430193720775,
+   "detected_in": 1.0,
+   "detected_out": 0.998
+  },
+  {
+   "ood": "IMR (BBH) signal",
+   "snr": 16,
+   "method": "1 - MSP (CNN static)",
+   "AUROC": 0.9382670521736145,
+   "flagged_at_5pc": 0.5597064709806537,
+   "detected_in": 1.0,
+   "detected_out": 0.9993333333333333
+  },
+  {
+   "ood": "IMR (BBH) signal",
+   "snr": 16,
+   "method": "energy (CNN static)",
+   "AUROC": 0.9897300601005554,
+   "flagged_at_5pc": 0.9513008672448299,
+   "detected_in": 1.0,
+   "detected_out": 0.9993333333333333
+  },
+  {
+   "ood": "IMR (BBH) signal",
+   "snr": 16,
+   "method": "Mahalanobis (CNN static)",
+   "AUROC": 0.40752056926840113,
+   "flagged_at_5pc": 0.012675116744496331,
+   "detected_in": 1.0,
+   "detected_out": 0.9993333333333333
+  },
+  {
+   "ood": "IMR (BBH) signal",
+   "snr": 16,
+   "method": "1 - MSP (CNN fresh)",
+   "AUROC": 0.9812965989112854,
+   "flagged_at_5pc": 0.9086057371581054,
+   "detected_in": 0.9993333333333333,
+   "detected_out": 0.9993333333333333
+  },
+  {
+   "ood": "IMR (BBH) signal",
+   "snr": 16,
+   "method": "energy (CNN fresh)",
+   "AUROC": 0.9894810914993286,
+   "flagged_at_5pc": 0.9446297531687792,
+   "detected_in": 0.9993333333333333,
+   "detected_out": 0.9993333333333333
+  },
+  {
+   "ood": "IMR (BBH) signal",
+   "snr": 16,
+   "method": "Mahalanobis (CNN fresh)",
+   "AUROC": 0.37659262278921996,
+   "flagged_at_5pc": 0.02401601067378252,
+   "detected_in": 0.9993333333333333,
+   "detected_out": 0.9993333333333333
+  },
+  {
+   "ood": "IMR (BBH) signal",
+   "snr": 16,
+   "method": "matched-filter residual (\u00b160 ms)",
+   "AUROC": 0.9254593122121441,
+   "flagged_at_5pc": 0.8105403602401601,
+   "detected_in": 0.9993333333333333,
+   "detected_out": 0.9993333333333333
+  }
+ ],
+ "snrs": [
+  8,
+  12,
+  16
+ ],
+ "median_gof": {
+  "('in', 8)": 107.68376677491692,
+  "('stoch', 8)": 143.65779828440643,
+  "('imr', 8)": 126.77309994594214,
+  "('in', 12)": 111.40127483541218,
+  "('stoch', 12)": 202.46632751346675,
+  "('imr', 12)": 161.5798614552774,
+  "('in', 16)": 114.34475102619831,
+  "('stoch', 16)": 281.27205227037643,
+  "('imr', 16)": 210.46146987948174,
+  "noise": 103.84217273273347
+ },
+ "family_called": {
+  "in|8": [
+   612,
+   415,
+   473
+  ],
+  "stoch|8": [
+   1302,
+   81,
+   117
+  ],
+  "imr|8": [
+   816,
+   13,
+   671
+  ],
+  "in|12": [
+   529,
+   480,
+   491
+  ],
+  "stoch|12": [
+   1388,
+   101,
+   11
+  ],
+  "imr|12": [
+   717,
+   2,
+   781
+  ],
+  "in|16": [
+   518,
+   494,
+   488
+  ],
+  "stoch|16": [
+   1419,
+   76,
+   5
+  ],
+  "imr|16": [
+   711,
+   1,
+   788
+  ]
+ }
+}
